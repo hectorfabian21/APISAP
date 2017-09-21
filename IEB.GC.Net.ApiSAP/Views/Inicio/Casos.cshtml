@@ -1,0 +1,36 @@
+﻿@model IEnumerable<IEB.GC.Net.ApiSAP.Models.Caso>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre_caso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descripcion_caso)
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre_caso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descripcion_caso)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Editar", "editarcaso", new { id=item.Id }) |
+            @Html.ActionLink("Ingresar", "ingresarcaso", new { id = item.Id }) 
+        </td>
+    </tr>
+}
+
+</table>
+
+<p>     
+    <a href="@Url.Action("crearcaso","Inicio", new { id = int.Parse(TempData.Peek("id").ToString()) })">Crear un nuevo caso</a>
+</p>

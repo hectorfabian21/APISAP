@@ -1,0 +1,48 @@
+﻿@model IEnumerable<IEB.GC.Net.ApiSAP.Models.Tipos_de_carga>
+
+<h3>Tipos de carga</h3>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Convencion)
+        </th>        
+        
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.Convencion)
+        </td>       
+       @{
+           if (item.id_subestacion == 0)
+           {
+
+           }
+           else
+           {
+            <td>
+                @Html.ActionLink("Editar", "editartipodecarga", new { id = item.Id }) |
+                @Html.ActionLink("Borrar", "borrartipodecarga", new { id = item.Id })
+            </td>
+           }
+
+    }
+        
+              
+    </tr>
+}
+
+</table>
+<p>
+    @Html.ActionLink("Agregar nuevo tipo de carga", "agregartipodecarga")     
+</p>

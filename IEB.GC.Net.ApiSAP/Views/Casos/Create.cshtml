@@ -1,0 +1,73 @@
+﻿@model IEB.GC.Net.ApiSAP.Models.Caso
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Crear caso</h2>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                  
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.nombre_caso, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.nombre_caso, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.nombre_caso, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.descripcion_caso, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.descripcion_caso, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.descripcion_caso, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.HiddenFor(model => model.id_subestacion)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Guardar" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div>
+                @Html.ActionLink("Regresar", "Index",new {sid=Model.id_subestacion })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <button class="form-control btn btn-info" style="width:50%" disabled>Definir perfiles</button>
+            </div>
+            <br />
+            <div class="row">
+                <button class="form-control btn btn-info" style="width:50%" disabled>Definir columnas</button>
+            </div>
+            <br />
+            <div class="row">
+                <button class="form-control btn btn-info" style="width:50%" disabled>Definir vigas</button>
+            </div>
+            <br />
+            <div class="row">
+                <button class="form-control btn btn-info" style="width:50%" disabled>Definir Cargas de conexion</button>
+            </div>
+            <br />
+        </div>
+    </div>
+</div>
+

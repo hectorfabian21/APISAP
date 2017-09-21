@@ -1,0 +1,96 @@
+﻿@model IEnumerable<IEB.GC.Net.ApiSAP.Models.Perfile>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Perfiles</h2>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h3>Información General</h3>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","Inicio")">Inicio</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Detalles","Inicio", new {id=int.Parse(TempData.Peek("id").ToString())})">Detalle subestación</a>
+            </li>
+            @{
+                if (int.Parse(TempData.Peek("id_caso").ToString()) != 0)
+                {
+                    <li>
+                        <a href = "@Url.Action("ingresarcaso", "Inicio", new { id = int.Parse(TempData.Peek("id_caso").ToString()) })" > Detalle caso </a >
+                    </li>
+                }
+            }
+            <li>
+                <a href="@Url.Action("Index","Materials", new { id=int.Parse(TempData.Peek("id").ToString())})">Material</a>
+            </li>
+            <li>
+                <strong class="active">Perfiles</strong>
+            </li> 
+            <li>
+                <a href="@Url.Action("Index","Cargas_Automatica", new { id_subestacion=int.Parse(TempData.Peek("id").ToString())})">Cargas Automaticas</a>
+            </li>
+            @{
+                if (int.Parse(TempData.Peek("id_caso").ToString()) == 0)
+                {
+                    
+                }
+                else
+                {
+                    <li>
+                        <a href="@Url.Action("Index","Elemento", new { sid=int.Parse(TempData.Peek("id_caso").ToString())})">Elementos</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index","CARGAS_DE_CONEXIÓN", new { id=int.Parse(TempData.Peek("id_caso").ToString())})">Cargas de conexion</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index","Ensamble_subestacion", new { id=int.Parse(TempData.Peek("id_caso").ToString())})">Ensamble</a>
+                    </li>
+                }
+
+
+            }
+            
+        </ol>
+        <p></p>
+    </div>    
+</div>
+<p>
+    @Html.ActionLink("Crear nuevo perfil", "Create", new {sid= int.Parse(TempData.Peek("id").ToString()) })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre_del_perfil)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Material_del_perfil)
+        </th>      
+       
+        <th></th>
+    </tr>
+
+   
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre_del_perfil)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Material_del_perfil)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.ID_perfil }) |           
+            @Html.ActionLink("Borrar", "Delete", new { id=item.ID_perfil })
+        </td>
+    </tr>
+}
+
+</table>
+
+<div>
+    <a href="@Url.Action("Detalles","Inicio", new {id=int.Parse(TempData.Peek("id").ToString())})">Regresar</a>
+
+</div>

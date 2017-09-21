@@ -1,0 +1,110 @@
+﻿@model IEB.GC.Net.ApiSAP.Models.SubestacionSAP
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles subestación</h2>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","Inicio")">Inicio</a>
+            </li>
+            <li>
+                <strong class="active">Detalle subestación</strong>
+            </li> 
+            <li>
+                <a href="@Url.Action("Index","Materials", new { id=int.Parse(TempData.Peek("id").ToString())})">Material</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index","Perfiles", new {id=int.Parse(TempData.Peek("id").ToString())})">Perfiles</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index","Cargas_Automatica", new { id_subestacion=int.Parse(TempData.Peek("id").ToString())})">Cargas Automaticas</a>
+            </li>
+           
+        </ol>
+        <p></p>
+    </div>
+    <div class="col-lg-2"></div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div>            
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Revisor)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Revisor)
+                </dd>
+                <br />
+                <dt>
+                    @Html.DisplayNameFor(model => model.Aprobador)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Aprobador)
+                </dd>
+                <br />
+                <dt>
+                    @Html.DisplayNameFor(model => model.NombreProyecto)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NombreProyecto)
+                </dd>
+                <br />
+                <dt>
+                    @Html.DisplayNameFor(model => model.NombreSubestacion)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NombreSubestacion)
+                </dd>
+                <br />
+                <dt>
+                    @Html.DisplayNameFor(model => model.NombreModelo)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NombreModelo)
+                </dd>
+                <br />
+            </dl>
+        </div>
+    </div>
+    <div class="col-md-6 text-center">
+        <div class="row">
+            <a href="@Url.Action("Index","Materials", new {id=int.Parse(TempData.Peek("id").ToString())})" class="form-control btn btn-info" style="width:50%">Definir Materiales</a>
+        </div>
+        <br />
+        <div class="row">
+            <a href="@Url.Action("Index","Perfiles",new {id=int.Parse(TempData.Peek("id").ToString())})" class="form-control btn btn-info" style="width:50%">Definir perfiles</a>
+        </div>
+        <br />       
+        <div class="row">
+            <a href="@Url.Action("Index","Cargas_Automatica", new {id_subestacion=int.Parse(TempData.Peek("id").ToString())})" class="form-control btn btn-info" style="width:50%">Cargas automaticas</a>
+        </div>
+        <br />
+        
+        
+    </div>
+</div>
+
+<div class="col-lg-12">
+  
+</div>
+<div class="col-lg-12">
+    @Html.Action("Casos", "Inicio")
+</div>
+
+
+<p>
+    @Html.ActionLink("Regresar", "Index")
+</p>

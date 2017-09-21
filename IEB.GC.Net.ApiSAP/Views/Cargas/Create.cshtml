@@ -1,0 +1,117 @@
+﻿@model IEB.GC.Net.ApiSAP.Models.Carga
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Agregar Carga</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Carga</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Templa_o_guarda, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+               @Html.DropDownListFor(model => model.Templa_o_guarda, (SelectList)ViewBag.Listacargas, "Seleccionar", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Templa_o_guarda, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Separacion_de_fases, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Separacion_de_fases, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Separacion_de_fases, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Orientacion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Orientacion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Orientacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Posicion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+               @Html.DropDownListFor(model => model.Posicion, new SelectList(new List<Object>
+                { new {value="Superior",text="Superior" },
+                  new {value="Inferior", text="Inferior" }}, "value", "text"),
+                  new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Posicion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Separacion_diferentes, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Separacion_diferentes, new SelectList(new List<Object>
+                { new {value="No",text="No" },
+                  new {value="Si", text="Si" }}, "value", "text"),
+                  new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Separacion_diferentes, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group ocultable">
+            @Html.LabelFor(model => model.Orden, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Orden, new SelectList(new List<Object>
+                { new {value="1",text="1" },
+                  new {value="2", text="2" }}, "value", "text"),
+                  new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Orden, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>    
+    @Html.ActionLink("Regresar", "Index", new { id_ensamble = int.Parse(TempData.Peek("id_em").ToString()) })
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".ocultable").each(function () {
+                $(this).addClass("hidden");
+                $("#Separacion_diferentes").val("No") // aplicar para cada elemento que se oculta
+            });
+
+            $("#Separacion_diferentes").change(function () {
+                var elemento = $("#Separacion_diferentes").val();
+                if (elemento == "No") {
+                    $(".ocultable").each(function () {
+                        $(this).addClass("hidden");
+                        $("#Orden").val("1") // aplicar para cada elemento que se oculta
+                    });
+                }  else {
+                    $(".ocultable").each(function () {
+                        $(this).removeClass("hidden");
+                        
+                    });
+                }
+            });
+        });
+    </script>
+
+}

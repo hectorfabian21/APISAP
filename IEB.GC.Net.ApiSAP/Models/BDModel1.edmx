@@ -1,0 +1,1226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="APISAPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Carga">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id Ensamble" Type="int" Nullable="false" />
+          <Property Name="Id Carga de conexion" Type="int" Nullable="false" />
+          <Property Name="Templa o guarda" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Numero de fases" Type="float" Nullable="false" />
+          <Property Name="Separacion de fases" Type="float" Nullable="false" />
+          <Property Name="Orientacion" Type="float" Nullable="false" />
+          <Property Name="Posicion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Separacion diferentes" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Orden" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cargas Automaticas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id subestacion" Type="int" Nullable="false" />
+          <Property Name="id caso" Type="int" Nullable="false" />
+          <Property Name="Cortante_basal" Type="float" Nullable="false" />
+          <Property Name="K_exponente" Type="float" Nullable="false" />
+          <Property Name="Velocidad_viento" Type="float" Nullable="false" />
+          <Property Name="Tipo_exposicion" Type="ntext" Nullable="false" />
+          <Property Name="Factor_importancia" Type="float" Nullable="false" />
+          <Property Name="Factor_topografia" Type="float" Nullable="false" />
+          <Property Name="Factor_rafaga" Type="float" Nullable="false" />
+          <Property Name="Factor_direccion" Type="float" Nullable="false" />
+          <Property Name="R Porticos" Type="float" Nullable="false" />
+          <Property Name="R Equipos" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CARGAS DE CONEXIÓN">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Templa o guarda" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Peso  (kg)" Type="float" Nullable="false" />
+          <Property Name="Corto Transversal (kg)" Type="float" Nullable="false" />
+          <Property Name="Corto Longitudinal (kg)" Type="float" Nullable="false" />
+          <Property Name="Viento Transversal (kg)" Type="float" Nullable="false" />
+          <Property Name="Viento Longitudinal (kg)" Type="float" Nullable="false" />
+          <Property Name="Tiro (kg)" Type="float" Nullable="false" />
+          <Property Name="Id Subestacion" Type="int" Nullable="false" />
+          <Property Name="Id Caso" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Casos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_caso" Type="varchar" MaxLength="50" />
+          <Property Name="descripcion_caso" Type="varchar" MaxLength="50" />
+          <Property Name="id_subestacion" Type="int" />
+        </EntityType>
+        <EntityType Name="Casos de Combinaciones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Combinacion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tipo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Caso" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Factor de modificacion" Type="float" Nullable="false" />
+          <Property Name="id subestacion" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Combinaciones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="id_subestacion" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="ntext" />
+        </EntityType>
+        <EntityType Name="Combinacionespernosoequipos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Joint" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Combinacion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="F1" Type="float" Nullable="false" />
+          <Property Name="F2" Type="float" Nullable="false" />
+          <Property Name="F3" Type="float" Nullable="false" />
+          <Property Name="M1" Type="float" Nullable="false" />
+          <Property Name="M2" Type="float" Nullable="false" />
+          <Property Name="M3" Type="float" Nullable="false" />
+          <Property Name="Caso" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Combinacionesservicio">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Joint" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Combinacion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="F1" Type="float" Nullable="false" />
+          <Property Name="F2" Type="float" Nullable="false" />
+          <Property Name="F3" Type="float" Nullable="false" />
+          <Property Name="M1" Type="float" Nullable="false" />
+          <Property Name="M2" Type="float" Nullable="false" />
+          <Property Name="M3" Type="float" Nullable="false" />
+          <Property Name="Caso" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Combinacionesultimas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Joint" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Combinacion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="F1" Type="float" Nullable="false" />
+          <Property Name="F2" Type="float" Nullable="false" />
+          <Property Name="F3" Type="float" Nullable="false" />
+          <Property Name="M1" Type="float" Nullable="false" />
+          <Property Name="M2" Type="float" Nullable="false" />
+          <Property Name="M3" Type="float" Nullable="false" />
+          <Property Name="Caso" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CuerposDeElemento">
+          <Key>
+            <PropertyRef Name="Id Cuerpo" />
+          </Key>
+          <Property Name="Id Cuerpo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoDeElemento" Type="ntext" Nullable="false" />
+          <Property Name="Ancho inferior" Type="float" Nullable="false" />
+          <Property Name="Largo Inferior" Type="float" Nullable="false" />
+          <Property Name="Ancho superior" Type="float" Nullable="false" />
+          <Property Name="Largo Superior" Type="float" Nullable="false" />
+          <Property Name="Altura" Type="float" Nullable="false" />
+          <Property Name="Nivel de tension" Type="ntext" />
+          <Property Name="Id_Elemento" Type="int" />
+          <Property Name="Tipo de diagonal" Type="ntext" Nullable="false" />
+          <Property Name="Division adicional" Type="int" Nullable="false" />
+          <Property Name="PerfilMontante" Type="varchar" MaxLength="50" />
+          <Property Name="PerfilDiagonarl" Type="varchar" MaxLength="50" />
+          <Property Name="PerfilMontanteViga" Type="varchar" MaxLength="50" />
+          <Property Name="PerfilDiagonalViga" Type="varchar" MaxLength="50" />
+          <Property Name="PerfilCierre" Type="varchar" MaxLength="50" />
+          <Property Name="PerfilMontanteCastillete" Type="varchar" MaxLength="50" />
+          <Property Name="PerfilDiagonalCastillete" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Elementos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Elemento" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="TipoElemento" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumeroCuerpos" Type="int" Nullable="false" />
+          <Property Name="Id_Subestacion" Type="int" Nullable="false" />
+          <Property Name="NivelTension" Type="varchar" MaxLength="10" />
+          <Property Name="Caso" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="elementos cargados">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id_carga" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ensamble subestacion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id Subestacion" Type="int" Nullable="false" />
+          <Property Name="id Caso" Type="int" Nullable="false" />
+          <Property Name="Tipo de elemento" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Elemento" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id_Elemento" Type="int" Nullable="false" />
+          <Property Name="X" Type="float" Nullable="false" />
+          <Property Name="Y" Type="float" Nullable="false" />
+          <Property Name="Z" Type="float" Nullable="false" />
+          <Property Name="Divisiones" Type="int" Nullable="false" />
+          <Property Name="Orientacion viga" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreMaterial" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TipoMaterial" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="E_Material" Type="float" Nullable="false" />
+          <Property Name="V_Material" Type="float" Nullable="false" />
+          <Property Name="T_Material" Type="float" Nullable="false" />
+          <Property Name="Fy_Material" Type="float" Nullable="false" />
+          <Property Name="Fu_Material" Type="float" Nullable="false" />
+          <Property Name="eFy_Material" Type="float" Nullable="false" />
+          <Property Name="eFu_Material" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Perfiles">
+          <Key>
+            <PropertyRef Name="ID_perfil" />
+          </Key>
+          <Property Name="ID_perfil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre del perfil" Type="ntext" Nullable="false" />
+          <Property Name="Material del perfil" Type="ntext" Nullable="false" />
+          <Property Name="Tipo del perfil" Type="ntext" />
+          <Property Name="Uso del perfil" Type="ntext" />
+          <Property Name="Nivel de tensio" Type="ntext" />
+          <Property Name="t3  (mm)" Type="float" Nullable="false" />
+          <Property Name="t2 (mm)" Type="float" Nullable="false" />
+          <Property Name="tf (mm)" Type="float" Nullable="false" />
+          <Property Name="tw (mm)" Type="float" Nullable="false" />
+          <Property Name="t2b (mm)" Type="float" />
+          <Property Name="tfb (mm)" Type="float" />
+          <Property Name="Area  (mm2)" Type="float" />
+          <Property Name="Constante torsional (mm4)" Type="float" />
+          <Property Name="I33 (mm4)" Type="float" />
+          <Property Name="I22  (mm4)" Type="float" />
+          <Property Name="I23  (mm4)" Type="float" />
+          <Property Name="AS2 (mm2)" Type="float" />
+          <Property Name="AS3 (mm2)" Type="float" />
+          <Property Name="S33 (mm3)" Type="float" />
+          <Property Name="S22 (mm3)" Type="float" />
+          <Property Name="Z33 (mm3)" Type="float" />
+          <Property Name="Z22 (mm3)" Type="float" />
+          <Property Name="R33 (mm)" Type="float" />
+          <Property Name="R22 (mm)" Type="float" />
+          <Property Name="Lmax (mm)" Type="float" />
+          <Property Name="Lmin (mm)" Type="float" />
+          <Property Name="Rz (mm)" Type="float" />
+          <Property Name="Ru (mm)" Type="float" />
+          <Property Name="id_subestacion" Type="int" />
+        </EntityType>
+        <EntityType Name="Puntos">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="X" Type="float" Nullable="false" />
+          <Property Name="Y" Type="float" Nullable="false" />
+          <Property Name="Z" Type="float" Nullable="false" />
+          <Property Name="MyName" Type="varchar" MaxLength="50" />
+          <Property Name="IdCuerpo" Type="int" Nullable="false" />
+          <Property Name="Divisiones" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="resultadosdiseño">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Elemento" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Seccion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Relacion" Type="float" Nullable="false" />
+          <Property Name="tipo de relacion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Mensaje de error" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="caso" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubestacionSAP">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Revisor" Type="varchar" MaxLength="50" />
+          <Property Name="Aprobador" Type="varchar" MaxLength="50" />
+          <Property Name="NombreProyecto" Type="varchar" MaxLength="100" />
+          <Property Name="NombreSubestacion" Type="varchar" MaxLength="100" />
+          <Property Name="NombreModelo" Type="varchar" MaxLength="100" />
+          <Property Name="Id_Subestacion" Type="int" />
+        </EntityType>
+        <EntityType Name="Tipos de carga">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Convencion" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Clase" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="multiplicadorPP" Type="float" Nullable="false" />
+          <Property Name="Automatico" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="id_subestacion" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_cargaautoToSubestacion">
+          <End Role="SubestacionSAP" Type="Self.SubestacionSAP" Multiplicity="1" />
+          <End Role="Cargas Automaticas" Type="Self.Cargas Automaticas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubestacionSAP">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cargas Automaticas">
+              <PropertyRef Name="Id subestacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CargaToCargaconexion">
+          <End Role="CARGAS DE CONEXIÓN" Type="Self.CARGAS DE CONEXIÓN" Multiplicity="1" />
+          <End Role="Carga" Type="Self.Carga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CARGAS DE CONEXIÓN">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Carga">
+              <PropertyRef Name="Id Carga de conexion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CargaToEnsamble">
+          <End Role="Ensamble subestacion" Type="Self.Ensamble subestacion" Multiplicity="1" />
+          <End Role="Carga" Type="Self.Carga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ensamble subestacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Carga">
+              <PropertyRef Name="Id Ensamble" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CasosToSubestacion">
+          <End Role="SubestacionSAP" Type="Self.SubestacionSAP" Multiplicity="0..1" />
+          <End Role="Casos" Type="Self.Casos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubestacionSAP">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Casos">
+              <PropertyRef Name="id_subestacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConexionTosubestacion">
+          <End Role="SubestacionSAP" Type="Self.SubestacionSAP" Multiplicity="1" />
+          <End Role="CARGAS DE CONEXIÓN" Type="Self.CARGAS DE CONEXIÓN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubestacionSAP">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CARGAS DE CONEXIÓN">
+              <PropertyRef Name="Id Subestacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CuerpoToElemento">
+          <End Role="Elementos" Type="Self.Elementos" Multiplicity="0..1" />
+          <End Role="CuerposDeElemento" Type="Self.CuerposDeElemento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Elementos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CuerposDeElemento">
+              <PropertyRef Name="Id_Elemento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ElementoToSubestacion">
+          <End Role="SubestacionSAP" Type="Self.SubestacionSAP" Multiplicity="1" />
+          <End Role="Elementos" Type="Self.Elementos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubestacionSAP">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Elementos">
+              <PropertyRef Name="Id_Subestacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EnsambleToElementos">
+          <End Role="Elementos" Type="Self.Elementos" Multiplicity="1" />
+          <End Role="Ensamble subestacion" Type="Self.Ensamble subestacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Elementos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ensamble subestacion">
+              <PropertyRef Name="Id_Elemento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="APISAPModelStoreContainer">
+          <EntitySet Name="Carga" EntityType="Self.Carga" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cargas Automaticas" EntityType="Self.Cargas Automaticas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CARGAS DE CONEXIÓN" EntityType="Self.CARGAS DE CONEXIÓN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Casos" EntityType="Self.Casos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Casos de Combinaciones" EntityType="Self.Casos de Combinaciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Combinaciones" EntityType="Self.Combinaciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Combinacionespernosoequipos" EntityType="Self.Combinacionespernosoequipos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Combinacionesservicio" EntityType="Self.Combinacionesservicio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Combinacionesultimas" EntityType="Self.Combinacionesultimas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CuerposDeElemento" EntityType="Self.CuerposDeElemento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Elementos" EntityType="Self.Elementos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="elementos cargados" EntityType="Self.elementos cargados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ensamble subestacion" EntityType="Self.Ensamble subestacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Perfiles" EntityType="Self.Perfiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Puntos" EntityType="Self.Puntos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="resultadosdiseño" EntityType="Self.resultadosdiseño" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubestacionSAP" EntityType="Self.SubestacionSAP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tipos de carga" EntityType="Self.Tipos de carga" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_cargaautoToSubestacion" Association="Self.FK_cargaautoToSubestacion">
+            <End Role="SubestacionSAP" EntitySet="SubestacionSAP" />
+            <End Role="Cargas Automaticas" EntitySet="Cargas Automaticas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CargaToCargaconexion" Association="Self.FK_CargaToCargaconexion">
+            <End Role="CARGAS DE CONEXIÓN" EntitySet="CARGAS DE CONEXIÓN" />
+            <End Role="Carga" EntitySet="Carga" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CargaToEnsamble" Association="Self.FK_CargaToEnsamble">
+            <End Role="Ensamble subestacion" EntitySet="Ensamble subestacion" />
+            <End Role="Carga" EntitySet="Carga" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CasosToSubestacion" Association="Self.FK_CasosToSubestacion">
+            <End Role="SubestacionSAP" EntitySet="SubestacionSAP" />
+            <End Role="Casos" EntitySet="Casos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConexionTosubestacion" Association="Self.FK_ConexionTosubestacion">
+            <End Role="SubestacionSAP" EntitySet="SubestacionSAP" />
+            <End Role="CARGAS DE CONEXIÓN" EntitySet="CARGAS DE CONEXIÓN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CuerpoToElemento" Association="Self.FK_CuerpoToElemento">
+            <End Role="Elementos" EntitySet="Elementos" />
+            <End Role="CuerposDeElemento" EntitySet="CuerposDeElemento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ElementoToSubestacion" Association="Self.FK_ElementoToSubestacion">
+            <End Role="SubestacionSAP" EntitySet="SubestacionSAP" />
+            <End Role="Elementos" EntitySet="Elementos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EnsambleToElementos" Association="Self.FK_EnsambleToElementos">
+            <End Role="Elementos" EntitySet="Elementos" />
+            <End Role="Ensamble subestacion" EntitySet="Ensamble subestacion" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="APISAPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="APISAPEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CuerposDeElementoes" EntityType="APISAPModel.CuerposDeElemento" />
+          <EntitySet Name="Elementos" EntityType="APISAPModel.Elemento" />
+          <EntitySet Name="Ensamble_subestacions" EntityType="APISAPModel.Ensamble_subestacion" />
+          <EntitySet Name="Perfiles" EntityType="APISAPModel.Perfile" />
+          <EntitySet Name="Puntos" EntityType="APISAPModel.Punto" />
+          <EntitySet Name="SubestacionSAPs" EntityType="APISAPModel.SubestacionSAP" />
+          <AssociationSet Name="FK_CuerpoToElemento" Association="APISAPModel.FK_CuerpoToElemento">
+            <End Role="Elemento" EntitySet="Elementos" />
+            <End Role="CuerposDeElemento" EntitySet="CuerposDeElementoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ElementoToSubestacion" Association="APISAPModel.FK_ElementoToSubestacion">
+            <End Role="SubestacionSAP" EntitySet="SubestacionSAPs" />
+            <End Role="Elemento" EntitySet="Elementos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EnsambleToElementos" Association="APISAPModel.FK_EnsambleToElementos">
+            <End Role="Elemento" EntitySet="Elementos" />
+            <End Role="Ensamble_subestacion" EntitySet="Ensamble_subestacions" />
+          </AssociationSet>
+          <EntitySet Name="elementos_cargados" EntityType="APISAPModel.elementos_cargado" />
+          <EntitySet Name="Cargas" EntityType="APISAPModel.Carga" />
+          <EntitySet Name="CARGAS_DE_CONEXIÓN" EntityType="APISAPModel.CARGAS_DE_CONEXIÓN" />
+          <AssociationSet Name="FK_CargaToCargaconexion" Association="APISAPModel.FK_CargaToCargaconexion">
+            <End Role="CARGAS_DE_CONEXIÓN" EntitySet="CARGAS_DE_CONEXIÓN" />
+            <End Role="Carga" EntitySet="Cargas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CargaToEnsamble" Association="APISAPModel.FK_CargaToEnsamble">
+            <End Role="Ensamble_subestacion" EntitySet="Ensamble_subestacions" />
+            <End Role="Carga" EntitySet="Cargas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConexionTosubestacion" Association="APISAPModel.FK_ConexionTosubestacion">
+            <End Role="SubestacionSAP" EntitySet="SubestacionSAPs" />
+            <End Role="CARGAS_DE_CONEXIÓN" EntitySet="CARGAS_DE_CONEXIÓN" />
+          </AssociationSet>
+          <EntitySet Name="Casos" EntityType="APISAPModel.Caso" />
+          <AssociationSet Name="FK_CasosToSubestacion" Association="APISAPModel.FK_CasosToSubestacion">
+            <End Role="SubestacionSAP" EntitySet="SubestacionSAPs" />
+            <End Role="Caso" EntitySet="Casos" />
+          </AssociationSet>
+          <EntitySet Name="Materials" EntityType="APISAPModel.Material" />
+          <EntitySet Name="Cargas_Automaticas" EntityType="APISAPModel.Cargas_Automatica" />
+          <EntitySet Name="Casos_de_Combinaciones" EntityType="APISAPModel.Casos_de_Combinacione" />
+          <EntitySet Name="Combinaciones" EntityType="APISAPModel.Combinacione" />
+          <EntitySet Name="Tipos_de_cargas" EntityType="APISAPModel.Tipos_de_carga" />
+          <AssociationSet Name="FK_cargaautoTocarso" Association="APISAPModel.FK_cargaautoTocarso">
+            <End Role="Caso" EntitySet="Casos" />
+            <End Role="Cargas_Automatica" EntitySet="Cargas_Automaticas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cargaautoToSubestacion" Association="APISAPModel.FK_cargaautoToSubestacion">
+            <End Role="SubestacionSAP" EntitySet="SubestacionSAPs" />
+            <End Role="Cargas_Automatica" EntitySet="Cargas_Automaticas" />
+          </AssociationSet>
+          <EntitySet Name="Combinacionespernosoequipos" EntityType="APISAPModel.Combinacionespernosoequipos" />
+          <EntitySet Name="Combinacionesservicios" EntityType="APISAPModel.Combinacionesservicio" />
+          <EntitySet Name="Combinacionesultimas" EntityType="APISAPModel.Combinacionesultima" />
+          <EntitySet Name="resultadosdiseño" EntityType="APISAPModel.resultadosdiseño" />
+        </EntityContainer>
+        <EntityType Name="CuerposDeElemento">
+          <Key>
+            <PropertyRef Name="Id_Cuerpo" />
+          </Key>
+          <Property Name="Id_Cuerpo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoDeElemento" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ancho_inferior" Type="Double" Nullable="false" />
+          <Property Name="Largo_Inferior" Type="Double" Nullable="false" />
+          <Property Name="Ancho_superior" Type="Double" Nullable="false" />
+          <Property Name="Largo_Superior" Type="Double" Nullable="false" />
+          <Property Name="Altura" Type="Double" Nullable="false" />
+          <Property Name="Nivel_de_tension" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Id_Elemento" Type="Int32" />
+          <NavigationProperty Name="Elemento" Relationship="APISAPModel.FK_CuerpoToElemento" FromRole="CuerposDeElemento" ToRole="Elemento" />
+          <Property Name="Tipo_de_diagonal" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Division_adicional" Type="Int32" Nullable="false" />
+          <Property Name="PerfilMontante" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PerfilDiagonarl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PerfilMontanteViga" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PerfilDiagonalViga" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PerfilCierre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PerfilMontanteCastillete" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PerfilDiagonalCastillete" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Elemento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Elemento" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="TipoElemento" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NumeroCuerpos" Type="Int32" Nullable="false" />
+          <Property Name="Id_Subestacion" Type="Int32" Nullable="false" />
+          <Property Name="NivelTension" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CuerposDeElementoes" Relationship="APISAPModel.FK_CuerpoToElemento" FromRole="Elemento" ToRole="CuerposDeElemento" />
+          <NavigationProperty Name="SubestacionSAP" Relationship="APISAPModel.FK_ElementoToSubestacion" FromRole="Elemento" ToRole="SubestacionSAP" />
+          <NavigationProperty Name="Ensamble_subestacion" Relationship="APISAPModel.FK_EnsambleToElementos" FromRole="Elemento" ToRole="Ensamble_subestacion" />
+          <Property Name="Caso" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ensamble_subestacion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="id_Subestacion" Type="Int32" Nullable="false" />
+          <Property Name="Tipo_de_elemento" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Elemento" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Id_Elemento" Type="Int32" Nullable="false" />
+          <Property Name="X" Type="Double" Nullable="false" />
+          <Property Name="Y" Type="Double" Nullable="false" />
+          <Property Name="Z" Type="Double" Nullable="false" />
+          <Property Name="Divisiones" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Elemento1" Relationship="APISAPModel.FK_EnsambleToElementos" FromRole="Ensamble_subestacion" ToRole="Elemento" />
+          <Property Name="Orientacion_viga" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cargas" Relationship="APISAPModel.FK_CargaToEnsamble" FromRole="Ensamble_subestacion" ToRole="Carga" />
+          <Property Name="id_Caso" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Perfile">
+          <Key>
+            <PropertyRef Name="ID_perfil" />
+          </Key>
+          <Property Name="ID_perfil" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre_del_perfil" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Material_del_perfil" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Tipo_del_perfil" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Uso_del_perfil" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Nivel_de_tensio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="t3___mm_" Type="Double" Nullable="false" />
+          <Property Name="t2__mm_" Type="Double" Nullable="false" />
+          <Property Name="tf__mm_" Type="Double" Nullable="false" />
+          <Property Name="tw__mm_" Type="Double" Nullable="false" />
+          <Property Name="t2b__mm_" Type="Double" />
+          <Property Name="tfb__mm_" Type="Double" />
+          <Property Name="Area___mm2_" Type="Double" />
+          <Property Name="Constante_torsional__mm4_" Type="Double" />
+          <Property Name="I33__mm4_" Type="Double" />
+          <Property Name="I22___mm4_" Type="Double" />
+          <Property Name="I23___mm4_" Type="Double" />
+          <Property Name="AS2__mm2_" Type="Double" />
+          <Property Name="AS3__mm2_" Type="Double" />
+          <Property Name="S33__mm3_" Type="Double" />
+          <Property Name="S22__mm3_" Type="Double" />
+          <Property Name="Z33__mm3_" Type="Double" />
+          <Property Name="Z22__mm3_" Type="Double" />
+          <Property Name="R33__mm_" Type="Double" />
+          <Property Name="R22__mm_" Type="Double" />
+          <Property Name="Lmax__mm_" Type="Double" />
+          <Property Name="Lmin__mm_" Type="Double" />
+          <Property Name="Rz__mm_" Type="Double" />
+          <Property Name="Ru__mm_" Type="Double" />
+          <Property Name="id_subestacion" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Punto">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="X" Type="Double" Nullable="false" />
+          <Property Name="Y" Type="Double" Nullable="false" />
+          <Property Name="Z" Type="Double" Nullable="false" />
+          <Property Name="MyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdCuerpo" Type="Int32" Nullable="false" />
+          <Property Name="Divisiones" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubestacionSAP">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Revisor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Aprobador" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NombreProyecto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NombreSubestacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NombreModelo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Id_Subestacion" Type="Int32" />
+          <NavigationProperty Name="Elementos" Relationship="APISAPModel.FK_ElementoToSubestacion" FromRole="SubestacionSAP" ToRole="Elemento" />
+          <NavigationProperty Name="CARGAS_DE_CONEXIÓN" Relationship="APISAPModel.FK_ConexionTosubestacion" FromRole="SubestacionSAP" ToRole="CARGAS_DE_CONEXIÓN" />
+          <NavigationProperty Name="Casos" Relationship="APISAPModel.FK_CasosToSubestacion" FromRole="SubestacionSAP" ToRole="Caso" />
+          <NavigationProperty Name="Cargas_Automaticas" Relationship="APISAPModel.FK_cargaautoToSubestacion" FromRole="SubestacionSAP" ToRole="Cargas_Automatica" />
+        </EntityType>
+        <Association Name="FK_CuerpoToElemento">
+          <End Type="APISAPModel.Elemento" Role="Elemento" Multiplicity="0..1" />
+          <End Type="APISAPModel.CuerposDeElemento" Role="CuerposDeElemento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Elemento">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CuerposDeElemento">
+              <PropertyRef Name="Id_Elemento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ElementoToSubestacion">
+          <End Type="APISAPModel.SubestacionSAP" Role="SubestacionSAP" Multiplicity="1" />
+          <End Type="APISAPModel.Elemento" Role="Elemento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubestacionSAP">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Elemento">
+              <PropertyRef Name="Id_Subestacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EnsambleToElementos">
+          <End Type="APISAPModel.Elemento" Role="Elemento" Multiplicity="1" />
+          <End Type="APISAPModel.Ensamble_subestacion" Role="Ensamble_subestacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Elemento">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ensamble_subestacion">
+              <PropertyRef Name="Id_Elemento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="elementos_cargado">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id_carga" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Carga">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Ensamble" Type="Int32" Nullable="false" />
+          <Property Name="Id_Carga_de_conexion" Type="Int32" Nullable="false" />
+          <Property Name="Templa_o_guarda" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Numero_de_fases" Type="Double" Nullable="false" />
+          <Property Name="Separacion_de_fases" Type="Double" Nullable="false" />
+          <Property Name="Orientacion" Type="Double" Nullable="false" />
+          <Property Name="Posicion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Separacion_diferentes" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Orden" Type="Double" Nullable="false" />
+          <NavigationProperty Name="CARGAS_DE_CONEXIÓN" Relationship="APISAPModel.FK_CargaToCargaconexion" FromRole="Carga" ToRole="CARGAS_DE_CONEXIÓN" />
+          <NavigationProperty Name="Ensamble_subestacion" Relationship="APISAPModel.FK_CargaToEnsamble" FromRole="Carga" ToRole="Ensamble_subestacion" />
+        </EntityType>
+        <EntityType Name="CARGAS_DE_CONEXIÓN">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Templa_o_guarda" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Peso___kg_" Type="Double" Nullable="false" />
+          <Property Name="Corto_Transversal__kg_" Type="Double" Nullable="false" />
+          <Property Name="Corto_Longitudinal__kg_" Type="Double" Nullable="false" />
+          <Property Name="Viento_Transversal__kg_" Type="Double" Nullable="false" />
+          <Property Name="Viento_Longitudinal__kg_" Type="Double" Nullable="false" />
+          <Property Name="Tiro__kg_" Type="Double" Nullable="false" />
+          <Property Name="Id_Subestacion" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cargas" Relationship="APISAPModel.FK_CargaToCargaconexion" FromRole="CARGAS_DE_CONEXIÓN" ToRole="Carga" />
+          <NavigationProperty Name="SubestacionSAP" Relationship="APISAPModel.FK_ConexionTosubestacion" FromRole="CARGAS_DE_CONEXIÓN" ToRole="SubestacionSAP" />
+          <Property Name="Id_Caso" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CargaToCargaconexion">
+          <End Type="APISAPModel.CARGAS_DE_CONEXIÓN" Role="CARGAS_DE_CONEXIÓN" Multiplicity="1" />
+          <End Type="APISAPModel.Carga" Role="Carga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CARGAS_DE_CONEXIÓN">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Carga">
+              <PropertyRef Name="Id_Carga_de_conexion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CargaToEnsamble">
+          <End Type="APISAPModel.Ensamble_subestacion" Role="Ensamble_subestacion" Multiplicity="1" />
+          <End Type="APISAPModel.Carga" Role="Carga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ensamble_subestacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Carga">
+              <PropertyRef Name="Id_Ensamble" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConexionTosubestacion">
+          <End Type="APISAPModel.SubestacionSAP" Role="SubestacionSAP" Multiplicity="1" />
+          <End Type="APISAPModel.CARGAS_DE_CONEXIÓN" Role="CARGAS_DE_CONEXIÓN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubestacionSAP">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CARGAS_DE_CONEXIÓN">
+              <PropertyRef Name="Id_Subestacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Caso">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_caso" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion_caso" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_subestacion" Type="Int32" />
+          <NavigationProperty Name="SubestacionSAP" Relationship="APISAPModel.FK_CasosToSubestacion" FromRole="Caso" ToRole="SubestacionSAP" />
+          <NavigationProperty Name="Cargas_Automaticas" Relationship="APISAPModel.FK_cargaautoTocarso" FromRole="Caso" ToRole="Cargas_Automatica" />
+        </EntityType>
+        <Association Name="FK_CasosToSubestacion">
+          <End Type="APISAPModel.SubestacionSAP" Role="SubestacionSAP" Multiplicity="0..1" />
+          <End Type="APISAPModel.Caso" Role="Caso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubestacionSAP">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Caso">
+              <PropertyRef Name="id_subestacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreMaterial" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TipoMaterial" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="E_Material" Type="Double" Nullable="false" />
+          <Property Name="V_Material" Type="Double" Nullable="false" />
+          <Property Name="T_Material" Type="Double" Nullable="false" />
+          <Property Name="Fy_Material" Type="Double" Nullable="false" />
+          <Property Name="Fu_Material" Type="Double" Nullable="false" />
+          <Property Name="eFy_Material" Type="Double" Nullable="false" />
+          <Property Name="eFu_Material" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cargas_Automatica">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_subestacion" Type="Int32" Nullable="false" />
+          <Property Name="id_caso" Type="Int32" Nullable="false" />
+          <Property Name="Cortante_basal" Type="Double" Nullable="false" />
+          <Property Name="K_exponente" Type="Double" Nullable="false" />
+          <Property Name="Velocidad_viento" Type="Double" Nullable="false" />
+          <Property Name="Tipo_exposicion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Factor_importancia" Type="Double" Nullable="false" />
+          <Property Name="Factor_topografia" Type="Double" Nullable="false" />
+          <Property Name="Factor_rafaga" Type="Double" Nullable="false" />
+          <Property Name="Factor_direccion" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Caso" Relationship="APISAPModel.FK_cargaautoTocarso" FromRole="Cargas_Automatica" ToRole="Caso" />
+          <NavigationProperty Name="SubestacionSAP" Relationship="APISAPModel.FK_cargaautoToSubestacion" FromRole="Cargas_Automatica" ToRole="SubestacionSAP" />
+          <Property Name="R_Porticos" Type="Double" Nullable="false" />
+          <Property Name="R_Equipos" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Casos_de_Combinacione">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Combinacion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tipo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Caso" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Factor_de_modificacion" Type="Double" Nullable="false" />
+          <Property Name="id_subestacion" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Combinacione">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="id_subestacion" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Tipos_de_carga">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Convencion" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Clase" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="multiplicadorPP" Type="Double" Nullable="false" />
+          <Property Name="Automatico" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="id_subestacion" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_cargaautoTocarso">
+          <End Type="APISAPModel.Caso" Role="Caso" Multiplicity="1" />
+          <End Type="APISAPModel.Cargas_Automatica" Role="Cargas_Automatica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Caso">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cargas_Automatica">
+              <PropertyRef Name="id_caso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cargaautoToSubestacion">
+          <End Type="APISAPModel.SubestacionSAP" Role="SubestacionSAP" Multiplicity="1" />
+          <End Type="APISAPModel.Cargas_Automatica" Role="Cargas_Automatica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubestacionSAP">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cargas_Automatica">
+              <PropertyRef Name="Id_subestacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Combinacionespernosoequipos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Joint" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Combinacion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="F1" Type="Double" Nullable="false" />
+          <Property Name="F2" Type="Double" Nullable="false" />
+          <Property Name="F3" Type="Double" Nullable="false" />
+          <Property Name="M1" Type="Double" Nullable="false" />
+          <Property Name="M2" Type="Double" Nullable="false" />
+          <Property Name="M3" Type="Double" Nullable="false" />
+          <Property Name="Caso" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Combinacionesservicio">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Joint" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Combinacion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="F1" Type="Double" Nullable="false" />
+          <Property Name="F2" Type="Double" Nullable="false" />
+          <Property Name="F3" Type="Double" Nullable="false" />
+          <Property Name="M1" Type="Double" Nullable="false" />
+          <Property Name="M2" Type="Double" Nullable="false" />
+          <Property Name="M3" Type="Double" Nullable="false" />
+          <Property Name="Caso" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Combinacionesultima">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Joint" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Combinacion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="F1" Type="Double" Nullable="false" />
+          <Property Name="F2" Type="Double" Nullable="false" />
+          <Property Name="F3" Type="Double" Nullable="false" />
+          <Property Name="M1" Type="Double" Nullable="false" />
+          <Property Name="M2" Type="Double" Nullable="false" />
+          <Property Name="M3" Type="Double" Nullable="false" />
+          <Property Name="Caso" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="resultadosdiseño">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Elemento" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Seccion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Relacion" Type="Double" Nullable="false" />
+          <Property Name="tipo_de_relacion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mensaje_de_error" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="caso" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="APISAPModelStoreContainer" CdmEntityContainer="APISAPEntities1">
+          <EntitySetMapping Name="CuerposDeElementoes">
+            <EntityTypeMapping TypeName="APISAPModel.CuerposDeElemento">
+              <MappingFragment StoreEntitySet="CuerposDeElemento">
+                <ScalarProperty Name="PerfilDiagonalCastillete" ColumnName="PerfilDiagonalCastillete" />
+                <ScalarProperty Name="PerfilMontanteCastillete" ColumnName="PerfilMontanteCastillete" />
+                <ScalarProperty Name="PerfilCierre" ColumnName="PerfilCierre" />
+                <ScalarProperty Name="PerfilDiagonalViga" ColumnName="PerfilDiagonalViga" />
+                <ScalarProperty Name="PerfilMontanteViga" ColumnName="PerfilMontanteViga" />
+                <ScalarProperty Name="PerfilDiagonarl" ColumnName="PerfilDiagonarl" />
+                <ScalarProperty Name="PerfilMontante" ColumnName="PerfilMontante" />
+                <ScalarProperty Name="Division_adicional" ColumnName="Division adicional" />
+                <ScalarProperty Name="Tipo_de_diagonal" ColumnName="Tipo de diagonal" />
+                <ScalarProperty Name="Id_Elemento" ColumnName="Id_Elemento" />
+                <ScalarProperty Name="Nivel_de_tension" ColumnName="Nivel de tension" />
+                <ScalarProperty Name="Altura" ColumnName="Altura" />
+                <ScalarProperty Name="Largo_Superior" ColumnName="Largo Superior" />
+                <ScalarProperty Name="Ancho_superior" ColumnName="Ancho superior" />
+                <ScalarProperty Name="Largo_Inferior" ColumnName="Largo Inferior" />
+                <ScalarProperty Name="Ancho_inferior" ColumnName="Ancho inferior" />
+                <ScalarProperty Name="TipoDeElemento" ColumnName="TipoDeElemento" />
+                <ScalarProperty Name="Id_Cuerpo" ColumnName="Id Cuerpo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Elementos">
+            <EntityTypeMapping TypeName="APISAPModel.Elemento">
+              <MappingFragment StoreEntitySet="Elementos">
+                <ScalarProperty Name="Caso" ColumnName="Caso" />
+                <ScalarProperty Name="NivelTension" ColumnName="NivelTension" />
+                <ScalarProperty Name="Id_Subestacion" ColumnName="Id_Subestacion" />
+                <ScalarProperty Name="NumeroCuerpos" ColumnName="NumeroCuerpos" />
+                <ScalarProperty Name="TipoElemento" ColumnName="TipoElemento" />
+                <ScalarProperty Name="Id_Elemento" ColumnName="Id_Elemento" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ensamble_subestacions">
+            <EntityTypeMapping TypeName="APISAPModel.Ensamble_subestacion">
+              <MappingFragment StoreEntitySet="Ensamble subestacion">
+                <ScalarProperty Name="id_Caso" ColumnName="id Caso" />
+                <ScalarProperty Name="Orientacion_viga" ColumnName="Orientacion viga" />
+                <ScalarProperty Name="Divisiones" ColumnName="Divisiones" />
+                <ScalarProperty Name="Z" ColumnName="Z" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="Id_Elemento" ColumnName="Id_Elemento" />
+                <ScalarProperty Name="Elemento" ColumnName="Elemento" />
+                <ScalarProperty Name="Tipo_de_elemento" ColumnName="Tipo de elemento" />
+                <ScalarProperty Name="id_Subestacion" ColumnName="id Subestacion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Perfiles">
+            <EntityTypeMapping TypeName="APISAPModel.Perfile">
+              <MappingFragment StoreEntitySet="Perfiles">
+                <ScalarProperty Name="id_subestacion" ColumnName="id_subestacion" />
+                <ScalarProperty Name="Ru__mm_" ColumnName="Ru (mm)" />
+                <ScalarProperty Name="Rz__mm_" ColumnName="Rz (mm)" />
+                <ScalarProperty Name="Lmin__mm_" ColumnName="Lmin (mm)" />
+                <ScalarProperty Name="Lmax__mm_" ColumnName="Lmax (mm)" />
+                <ScalarProperty Name="R22__mm_" ColumnName="R22 (mm)" />
+                <ScalarProperty Name="R33__mm_" ColumnName="R33 (mm)" />
+                <ScalarProperty Name="Z22__mm3_" ColumnName="Z22 (mm3)" />
+                <ScalarProperty Name="Z33__mm3_" ColumnName="Z33 (mm3)" />
+                <ScalarProperty Name="S22__mm3_" ColumnName="S22 (mm3)" />
+                <ScalarProperty Name="S33__mm3_" ColumnName="S33 (mm3)" />
+                <ScalarProperty Name="AS3__mm2_" ColumnName="AS3 (mm2)" />
+                <ScalarProperty Name="AS2__mm2_" ColumnName="AS2 (mm2)" />
+                <ScalarProperty Name="I23___mm4_" ColumnName="I23  (mm4)" />
+                <ScalarProperty Name="I22___mm4_" ColumnName="I22  (mm4)" />
+                <ScalarProperty Name="I33__mm4_" ColumnName="I33 (mm4)" />
+                <ScalarProperty Name="Constante_torsional__mm4_" ColumnName="Constante torsional (mm4)" />
+                <ScalarProperty Name="Area___mm2_" ColumnName="Area  (mm2)" />
+                <ScalarProperty Name="tfb__mm_" ColumnName="tfb (mm)" />
+                <ScalarProperty Name="t2b__mm_" ColumnName="t2b (mm)" />
+                <ScalarProperty Name="tw__mm_" ColumnName="tw (mm)" />
+                <ScalarProperty Name="tf__mm_" ColumnName="tf (mm)" />
+                <ScalarProperty Name="t2__mm_" ColumnName="t2 (mm)" />
+                <ScalarProperty Name="t3___mm_" ColumnName="t3  (mm)" />
+                <ScalarProperty Name="Nivel_de_tensio" ColumnName="Nivel de tensio" />
+                <ScalarProperty Name="Uso_del_perfil" ColumnName="Uso del perfil" />
+                <ScalarProperty Name="Tipo_del_perfil" ColumnName="Tipo del perfil" />
+                <ScalarProperty Name="Material_del_perfil" ColumnName="Material del perfil" />
+                <ScalarProperty Name="Nombre_del_perfil" ColumnName="Nombre del perfil" />
+                <ScalarProperty Name="ID_perfil" ColumnName="ID_perfil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Puntos">
+            <EntityTypeMapping TypeName="APISAPModel.Punto">
+              <MappingFragment StoreEntitySet="Puntos">
+                <ScalarProperty Name="Divisiones" ColumnName="Divisiones" />
+                <ScalarProperty Name="IdCuerpo" ColumnName="IdCuerpo" />
+                <ScalarProperty Name="MyName" ColumnName="MyName" />
+                <ScalarProperty Name="Z" ColumnName="Z" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubestacionSAPs">
+            <EntityTypeMapping TypeName="APISAPModel.SubestacionSAP">
+              <MappingFragment StoreEntitySet="SubestacionSAP">
+                <ScalarProperty Name="Id_Subestacion" ColumnName="Id_Subestacion" />
+                <ScalarProperty Name="NombreModelo" ColumnName="NombreModelo" />
+                <ScalarProperty Name="NombreSubestacion" ColumnName="NombreSubestacion" />
+                <ScalarProperty Name="NombreProyecto" ColumnName="NombreProyecto" />
+                <ScalarProperty Name="Aprobador" ColumnName="Aprobador" />
+                <ScalarProperty Name="Revisor" ColumnName="Revisor" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="elementos_cargados">
+            <EntityTypeMapping TypeName="APISAPModel.elementos_cargado">
+              <MappingFragment StoreEntitySet="elementos cargados">
+                <ScalarProperty Name="Id_carga" ColumnName="Id_carga" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cargas">
+            <EntityTypeMapping TypeName="APISAPModel.Carga">
+              <MappingFragment StoreEntitySet="Carga">
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="Separacion_diferentes" ColumnName="Separacion diferentes" />
+                <ScalarProperty Name="Posicion" ColumnName="Posicion" />
+                <ScalarProperty Name="Orientacion" ColumnName="Orientacion" />
+                <ScalarProperty Name="Separacion_de_fases" ColumnName="Separacion de fases" />
+                <ScalarProperty Name="Numero_de_fases" ColumnName="Numero de fases" />
+                <ScalarProperty Name="Templa_o_guarda" ColumnName="Templa o guarda" />
+                <ScalarProperty Name="Id_Carga_de_conexion" ColumnName="Id Carga de conexion" />
+                <ScalarProperty Name="Id_Ensamble" ColumnName="Id Ensamble" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CARGAS_DE_CONEXIÓN">
+            <EntityTypeMapping TypeName="APISAPModel.CARGAS_DE_CONEXIÓN">
+              <MappingFragment StoreEntitySet="CARGAS DE CONEXIÓN">
+                <ScalarProperty Name="Id_Caso" ColumnName="Id Caso" />
+                <ScalarProperty Name="Id_Subestacion" ColumnName="Id Subestacion" />
+                <ScalarProperty Name="Tiro__kg_" ColumnName="Tiro (kg)" />
+                <ScalarProperty Name="Viento_Longitudinal__kg_" ColumnName="Viento Longitudinal (kg)" />
+                <ScalarProperty Name="Viento_Transversal__kg_" ColumnName="Viento Transversal (kg)" />
+                <ScalarProperty Name="Corto_Longitudinal__kg_" ColumnName="Corto Longitudinal (kg)" />
+                <ScalarProperty Name="Corto_Transversal__kg_" ColumnName="Corto Transversal (kg)" />
+                <ScalarProperty Name="Peso___kg_" ColumnName="Peso  (kg)" />
+                <ScalarProperty Name="Templa_o_guarda" ColumnName="Templa o guarda" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Casos">
+            <EntityTypeMapping TypeName="APISAPModel.Caso">
+              <MappingFragment StoreEntitySet="Casos">
+                <ScalarProperty Name="id_subestacion" ColumnName="id_subestacion" />
+                <ScalarProperty Name="descripcion_caso" ColumnName="descripcion_caso" />
+                <ScalarProperty Name="nombre_caso" ColumnName="nombre_caso" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Materials">
+            <EntityTypeMapping TypeName="APISAPModel.Material">
+              <MappingFragment StoreEntitySet="Material">
+                <ScalarProperty Name="eFu_Material" ColumnName="eFu_Material" />
+                <ScalarProperty Name="eFy_Material" ColumnName="eFy_Material" />
+                <ScalarProperty Name="Fu_Material" ColumnName="Fu_Material" />
+                <ScalarProperty Name="Fy_Material" ColumnName="Fy_Material" />
+                <ScalarProperty Name="T_Material" ColumnName="T_Material" />
+                <ScalarProperty Name="V_Material" ColumnName="V_Material" />
+                <ScalarProperty Name="E_Material" ColumnName="E_Material" />
+                <ScalarProperty Name="TipoMaterial" ColumnName="TipoMaterial" />
+                <ScalarProperty Name="NombreMaterial" ColumnName="NombreMaterial" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cargas_Automaticas">
+            <EntityTypeMapping TypeName="APISAPModel.Cargas_Automatica">
+              <MappingFragment StoreEntitySet="Cargas Automaticas">
+                <ScalarProperty Name="R_Equipos" ColumnName="R Equipos" />
+                <ScalarProperty Name="R_Porticos" ColumnName="R Porticos" />
+                <ScalarProperty Name="Factor_direccion" ColumnName="Factor_direccion" />
+                <ScalarProperty Name="Factor_rafaga" ColumnName="Factor_rafaga" />
+                <ScalarProperty Name="Factor_topografia" ColumnName="Factor_topografia" />
+                <ScalarProperty Name="Factor_importancia" ColumnName="Factor_importancia" />
+                <ScalarProperty Name="Tipo_exposicion" ColumnName="Tipo_exposicion" />
+                <ScalarProperty Name="Velocidad_viento" ColumnName="Velocidad_viento" />
+                <ScalarProperty Name="K_exponente" ColumnName="K_exponente" />
+                <ScalarProperty Name="Cortante_basal" ColumnName="Cortante_basal" />
+                <ScalarProperty Name="id_caso" ColumnName="id caso" />
+                <ScalarProperty Name="Id_subestacion" ColumnName="Id subestacion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Casos_de_Combinaciones">
+            <EntityTypeMapping TypeName="APISAPModel.Casos_de_Combinacione">
+              <MappingFragment StoreEntitySet="Casos de Combinaciones">
+                <ScalarProperty Name="id_subestacion" ColumnName="id subestacion" />
+                <ScalarProperty Name="Factor_de_modificacion" ColumnName="Factor de modificacion" />
+                <ScalarProperty Name="Caso" ColumnName="Caso" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Combinacion" ColumnName="Combinacion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Combinaciones">
+            <EntityTypeMapping TypeName="APISAPModel.Combinacione">
+              <MappingFragment StoreEntitySet="Combinaciones">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="id_subestacion" ColumnName="id_subestacion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipos_de_cargas">
+            <EntityTypeMapping TypeName="APISAPModel.Tipos_de_carga">
+              <MappingFragment StoreEntitySet="Tipos de carga">
+                <ScalarProperty Name="id_subestacion" ColumnName="id_subestacion" />
+                <ScalarProperty Name="Automatico" ColumnName="Automatico" />
+                <ScalarProperty Name="multiplicadorPP" ColumnName="multiplicadorPP" />
+                <ScalarProperty Name="Clase" ColumnName="Clase" />
+                <ScalarProperty Name="Convencion" ColumnName="Convencion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Combinacionespernosoequipos">
+            <EntityTypeMapping TypeName="APISAPModel.Combinacionespernosoequipos">
+              <MappingFragment StoreEntitySet="Combinacionespernosoequipos">
+                <ScalarProperty Name="Caso" ColumnName="Caso" />
+                <ScalarProperty Name="M3" ColumnName="M3" />
+                <ScalarProperty Name="M2" ColumnName="M2" />
+                <ScalarProperty Name="M1" ColumnName="M1" />
+                <ScalarProperty Name="F3" ColumnName="F3" />
+                <ScalarProperty Name="F2" ColumnName="F2" />
+                <ScalarProperty Name="F1" ColumnName="F1" />
+                <ScalarProperty Name="Combinacion" ColumnName="Combinacion" />
+                <ScalarProperty Name="Joint" ColumnName="Joint" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Combinacionesservicios">
+            <EntityTypeMapping TypeName="APISAPModel.Combinacionesservicio">
+              <MappingFragment StoreEntitySet="Combinacionesservicio">
+                <ScalarProperty Name="Caso" ColumnName="Caso" />
+                <ScalarProperty Name="M3" ColumnName="M3" />
+                <ScalarProperty Name="M2" ColumnName="M2" />
+                <ScalarProperty Name="M1" ColumnName="M1" />
+                <ScalarProperty Name="F3" ColumnName="F3" />
+                <ScalarProperty Name="F2" ColumnName="F2" />
+                <ScalarProperty Name="F1" ColumnName="F1" />
+                <ScalarProperty Name="Combinacion" ColumnName="Combinacion" />
+                <ScalarProperty Name="Joint" ColumnName="Joint" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Combinacionesultimas">
+            <EntityTypeMapping TypeName="APISAPModel.Combinacionesultima">
+              <MappingFragment StoreEntitySet="Combinacionesultimas">
+                <ScalarProperty Name="Caso" ColumnName="Caso" />
+                <ScalarProperty Name="M3" ColumnName="M3" />
+                <ScalarProperty Name="M2" ColumnName="M2" />
+                <ScalarProperty Name="M1" ColumnName="M1" />
+                <ScalarProperty Name="F3" ColumnName="F3" />
+                <ScalarProperty Name="F2" ColumnName="F2" />
+                <ScalarProperty Name="F1" ColumnName="F1" />
+                <ScalarProperty Name="Combinacion" ColumnName="Combinacion" />
+                <ScalarProperty Name="Joint" ColumnName="Joint" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="resultadosdiseño">
+            <EntityTypeMapping TypeName="APISAPModel.resultadosdiseño">
+              <MappingFragment StoreEntitySet="resultadosdiseño">
+                <ScalarProperty Name="caso" ColumnName="caso" />
+                <ScalarProperty Name="Mensaje_de_error" ColumnName="Mensaje de error" />
+                <ScalarProperty Name="tipo_de_relacion" ColumnName="tipo de relacion" />
+                <ScalarProperty Name="Relacion" ColumnName="Relacion" />
+                <ScalarProperty Name="Seccion" ColumnName="Seccion" />
+                <ScalarProperty Name="Elemento" ColumnName="Elemento" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

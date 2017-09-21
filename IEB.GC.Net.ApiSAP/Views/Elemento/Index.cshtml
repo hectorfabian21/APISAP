@@ -1,0 +1,94 @@
+﻿@model IEnumerable<IEB.GC.Net.ApiSAP.Models.Elemento>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Elementos</h2>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h3>Información General</h3>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","Inicio")">Inicio</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Detalles","Inicio", new {id=int.Parse(TempData.Peek("id").ToString())})">Detalle subestación</a>
+            </li>
+            <li>
+                <a href = "@Url.Action("ingresarcaso", "Inicio", new { id = int.Parse(TempData.Peek("id_caso").ToString()) })" > Detalle caso </a>
+            </li>
+
+            <li>
+                <a href="@Url.Action("Index","Materials", new { id=int.Parse(TempData.Peek("id").ToString())})">Material</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index","Perfiles", new {id=int.Parse(TempData.Peek("id").ToString())})">Perfiles</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index","Cargas_Automatica", new { id_subestacion=int.Parse(ViewData["id_caso"].ToString())})">Cargas Automaticas</a>
+            </li>
+            <li>
+                <strong class="active">Elementos</strong>
+            </li>
+            <li>
+                <a href="@Url.Action("Index","CARGAS_DE_CONEXIÓN", new { id=int.Parse(TempData.Peek("id_caso").ToString())})">Cargas de conexion</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index","Ensamble_subestacion", new { id=int.Parse(TempData.Peek("id_caso").ToString())})">Ensamble</a>
+            </li>
+           
+        </ol>
+        <p></p>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Crear nuevo elemento", "Create") |
+    <a href='@Url.Action("Index","APISAP2000", Model)'>Abrir SAP</a>
+</p>
+
+<table class="table text-center">
+    <tr>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Id_Elemento)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.TipoElemento)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.NumeroCuerpos)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.NivelTension)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Elemento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoElemento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroCuerpos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NivelTension)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |                
+                @Html.ActionLink("Borrar", "Delete", new { id = item.Id })|
+                @*<a href='@Url.Action("Index","Cuerpo", new {IdElemento= item.Id, NumeroCuerpo= item.NumeroCuerpos})' onclick="window.open('@Url.Action("Index","Cuerpo", new {IdElemento= item.Id, NumeroCuerpo= item.NumeroCuerpos})','popup','width=800,height=800,scrollbars=no,resizable=no'); return false;" target="popup"> Agregar Cuerpos</a>*@
+                <a href='@Url.Action("Index","Cuerpo", new {IdElemento= item.Id})'> Agregar Cuerpos</a>
+            </td>
+        </tr>
+    }
+
+</table>
+<div>
+    <a href="@Url.Action("ingresarcaso","Inicio", new {id=int.Parse(ViewData["id_caso"].ToString()) })">Regresar</a>
+</div>

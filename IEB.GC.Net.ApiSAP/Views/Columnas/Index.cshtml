@@ -1,0 +1,54 @@
+﻿@model IEnumerable<IEB.GC.Net.ApiSAP.Models.Elemento>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create") |
+    <a href='@Url.Action("Index","APISAP2000", Model)'>Abrir SAP</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Elemento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoElemento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumeroCuerpos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NivelTension)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id_Elemento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoElemento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumeroCuerpos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NivelTension)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })|
+            <a href='@Url.Action("Index","Cuerpo", new {IdElemento= item.Id, NumeroCuerpo= item.NumeroCuerpos})'> Agregar Cuerpos</a>
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,158 @@
+﻿@model IEnumerable<IEB.GC.Net.ApiSAP.Models.Cargas_Automatica>
+
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Cargas automaticas</h2>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h3>Información General</h3>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","Inicio")">Inicio</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Detalles","Inicio", new {id=int.Parse(TempData.Peek("id").ToString())})">Detalle subestación</a>
+            </li>
+            @{
+                if (int.Parse(TempData.Peek("id_caso").ToString()) != 0)
+                {
+                    <li>
+                        <a href = "@Url.Action("ingresarcaso", "Inicio", new { id = int.Parse(TempData.Peek("id_caso").ToString()) })" > Detalle caso </a >
+                    </li>
+                }
+            }
+            <li>
+                <a href="@Url.Action("Index","Materials", new { id=int.Parse(TempData.Peek("id").ToString())})">Material</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index","Perfiles", new {id=int.Parse(TempData.Peek("id").ToString())})">Perfiles</a>
+            </li>
+            <li>
+                <strong class="active">Cargas automaticas</strong>
+            </li>
+            @{
+                if (int.Parse(TempData.Peek("id_caso").ToString()) == 0)
+                {
+                   
+                }
+                else
+                {
+                    <li>
+                        <a href="@Url.Action("Index","Elemento", new { sid=int.Parse(TempData.Peek("id_caso").ToString())})">Elementos</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index","CARGAS_DE_CONEXIÓN", new { id=int.Parse(TempData.Peek("id_caso").ToString())})">Cargas de conexion</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index","Ensamble_subestacion", new { id=int.Parse(TempData.Peek("id_caso").ToString())})">Ensamble</a>
+                    </li>
+                }
+
+
+            }
+           
+        </ol>
+        <p></p>
+    </div>
+</div>
+
+<h3>Parametros de sismo y viento</h3>
+
+
+ <div class="row">
+        <div class="col-lg-12">
+            
+            <table class="table text-center">
+                <tr  class="text-center">
+                    <th>
+                        @Html.DisplayNameFor(model => model.Cortante_basal)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.K_exponente)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Velocidad_viento)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Tipo_exposicion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Factor_importancia)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Factor_topografia)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Factor_rafaga)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Factor_direccion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.R_Porticos)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.R_Equipos)
+                    </th>
+                    
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cortante_basal)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.K_exponente)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Velocidad_viento)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tipo_exposicion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Factor_importancia)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Factor_topografia)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Factor_rafaga)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Factor_direccion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.R_Porticos)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.R_Equipos)
+                        </td>
+                        
+                        <td>
+                            @Html.ActionLink("Editar", "Edit", new { id = item.Id }) 
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+     <div class="col-lg-12">
+         <div class="col-lg-4">
+             @Html.Action("ListarTipos", "Cargas_Automatica")
+         </div>
+         <div class="col-lg-8">
+             @Html.Action("Listarcombinaciones", "Cargas_Automatica")
+         </div>
+     </div>
+
+
+    </div>
+
+<div>
+    <a href="@Url.Action("Detalles","Inicio", new {id=int.Parse(TempData.Peek("id").ToString())})">Regresar</a>
+</div>

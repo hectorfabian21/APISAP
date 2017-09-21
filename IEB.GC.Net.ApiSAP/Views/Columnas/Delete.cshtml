@@ -1,0 +1,56 @@
+﻿@model IEB.GC.Net.ApiSAP.Models.Elemento
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Elemento</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Elemento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Elemento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoElemento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoElemento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroCuerpos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroCuerpos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubestacionSAP.Revisor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubestacionSAP.Revisor)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

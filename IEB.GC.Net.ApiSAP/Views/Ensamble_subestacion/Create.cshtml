@@ -1,0 +1,109 @@
+﻿@model IEB.GC.Net.ApiSAP.Models.Ensamble_subestacion
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Crear subensamble</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Subensamble</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+       
+        @Html.HiddenFor(model => model.id_Subestacion)  
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.id_Caso)
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.Elemento, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Elemento, (SelectList)ViewBag.ListaElementos, "Seleccionar Elemento", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Elemento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.X, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.X, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.X, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Y, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Y, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Y, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Z, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Z, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Z, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group ocultable">
+            @Html.LabelFor(model => model.Orientacion_viga, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10"> 
+                @Html.DropDownListFor(model => model.Orientacion_viga, new SelectList(new List<Object>
+                { new {value="X",text="X" },
+                  new {value="Y", text="Y" }}, "value", "text"),
+                  new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Orientacion_viga, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Regresar", "Index", new { id = int.Parse(TempData.Peek("id_caso").ToString()) })
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".ocultable").each(function () {
+                $(this).addClass("hidden");
+                $("#Orientacion_viga").val("") // aplicar para cada elemento que se oculta
+            });
+
+            $("#Elemento").change(function () {
+                var elemento = $("#Elemento").val();
+                if (elemento == "") {
+                    $(".ocultable").each(function () {
+                        $(this).addClass("hidden");
+                        $("#Orientacion_viga").val("") // aplicar para cada elemento que se oculta
+                    });
+                } else if (elemento.startsWith("V") || elemento.startsWith("v") ){
+                    $(".ocultable").each(function () {
+                        $(this).removeClass("hidden");
+                    });
+                } else {
+                    $(".ocultable").each(function () {
+                        $(this).addClass("hidden");
+                        $("#Orientacion_viga").val("") // aplicar para cada elemento que se oculta
+                    });
+                }
+            });
+        });
+    </script>
+
+    }

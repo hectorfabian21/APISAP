@@ -1,0 +1,109 @@
+﻿@model IEnumerable<IEB.GC.Net.ApiSAP.Models.CARGAS_DE_CONEXIÓN>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Cargas de conexion</h2>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h3>Información General</h3>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","Inicio")">Inicio</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Detalles","Inicio", new {id=int.Parse(TempData.Peek("id").ToString())})">Detalle subestación</a>
+            </li>
+            <li>
+                <a href = "@Url.Action("ingresarcaso", "Inicio", new { id = int.Parse(TempData.Peek("id_caso").ToString()) })"> Detalle caso </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index","Materials", new { id=int.Parse(TempData.Peek("id").ToString())})">Material</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index","Perfiles", new {id=int.Parse(TempData.Peek("id").ToString())})">Perfiles</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index","Cargas_Automatica", new { id_subestacion=int.Parse(TempData.Peek("id").ToString())})">Cargas Automaticas</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index","Elemento", new { sid=int.Parse(TempData.Peek("id_caso").ToString())})">Elementos</a>
+            </li>
+            <li>                
+                <strong class="active">Cargas de conexion</strong>
+            </li>
+            <li>
+                <a href="@Url.Action("Index","Ensamble_subestacion", new { id=int.Parse(TempData.Peek("id_caso").ToString())})">Ensamble</a>
+            </li>
+            
+        </ol>
+        <p></p>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Crear nueva carga", "Create", new { id = int.Parse(TempData.Peek("id").ToString()) })
+</p>
+<table class="table text-center">
+    <tr>
+        <th  class="text-center">
+            @Html.DisplayNameFor(model => model.Templa_o_guarda)            
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Peso___kg_)          
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Corto_Transversal__kg_)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Corto_Longitudinal__kg_)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Viento_Transversal__kg_)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Viento_Longitudinal__kg_)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Tiro__kg_)           
+        </th>
+       
+        
+        <th></th>
+    </tr>
+        
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Templa_o_guarda)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Peso___kg_)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Corto_Transversal__kg_)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Corto_Longitudinal__kg_)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Viento_Transversal__kg_)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Viento_Longitudinal__kg_)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tiro__kg_)
+        </td>        
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |            
+            @Html.ActionLink("Borrar", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+<div>
+    <a href="@Url.Action("ingresarcaso","Inicio", new {id=int.Parse(TempData.Peek("id_caso").ToString())})">Regresar</a>
+</div>

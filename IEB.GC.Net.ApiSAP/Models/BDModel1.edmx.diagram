@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5b0a71ae6bf34bbca1eac10b7c9dc495" Name="Diagram1">
+        <EntityTypeShape EntityType="APISAPModel.CuerposDeElemento" Width="1.5" PointX="5.25" PointY="1.125" />
+        <EntityTypeShape EntityType="APISAPModel.Elemento" Width="1.5" PointX="3" PointY="3.125" />
+        <EntityTypeShape EntityType="APISAPModel.Ensamble_subestacion" Width="1.5" PointX="5.375" PointY="6.125" />
+        <EntityTypeShape EntityType="APISAPModel.Perfile" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="APISAPModel.Punto" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="APISAPModel.SubestacionSAP" Width="1.5" PointX="0.75" PointY="3.25" />
+        <AssociationConnector Association="APISAPModel.FK_CuerpoToElemento" />
+        <AssociationConnector Association="APISAPModel.FK_ElementoToSubestacion" />
+        <AssociationConnector Association="APISAPModel.FK_EnsambleToElementos" />
+        <EntityTypeShape EntityType="APISAPModel.elementos_cargado" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="APISAPModel.Carga" Width="1.5" PointX="8" PointY="4.5" />
+        <EntityTypeShape EntityType="APISAPModel.CARGAS_DE_CONEXIÓN" Width="1.5" PointX="3" PointY="7.125" />
+        <AssociationConnector Association="APISAPModel.FK_CargaToCargaconexion" />
+        <AssociationConnector Association="APISAPModel.FK_CargaToEnsamble" />
+        <AssociationConnector Association="APISAPModel.FK_ConexionTosubestacion" />
+        <EntityTypeShape EntityType="APISAPModel.Caso" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="APISAPModel.FK_CasosToSubestacion" />
+        <EntityTypeShape EntityType="APISAPModel.Material" Width="1.5" PointX="7.375" PointY="8.75" />
+        <EntityTypeShape EntityType="APISAPModel.Cargas_Automatica" Width="1.5" PointX="10.25" PointY="1.75" />
+        <EntityTypeShape EntityType="APISAPModel.Casos_de_Combinacione" Width="1.5" PointX="9.375" PointY="8.75" />
+        <EntityTypeShape EntityType="APISAPModel.Combinacione" Width="1.5" PointX="3.375" PointY="11.75" />
+        <EntityTypeShape EntityType="APISAPModel.Tipos_de_carga" Width="1.5" PointX="11.375" PointY="6.75" />
+        <AssociationConnector Association="APISAPModel.FK_cargaautoTocarso" />
+        <AssociationConnector Association="APISAPModel.FK_cargaautoToSubestacion" />
+        <EntityTypeShape EntityType="APISAPModel.Combinacionespernosoequipos" Width="1.5" PointX="19.125" PointY="0.625" />
+        <EntityTypeShape EntityType="APISAPModel.Combinacionesservicio" Width="1.5" PointX="17.5" PointY="0.625" />
+        <EntityTypeShape EntityType="APISAPModel.Combinacionesultima" Width="1.5" PointX="15.875" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="APISAPModel.resultadosdiseño" Width="1.5" PointX="20.75" PointY="0.625" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

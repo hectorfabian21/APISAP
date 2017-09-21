@@ -1,0 +1,50 @@
+﻿@model IEB.GC.Net.ApiSAP.Models.Elemento
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Elemento</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Elemento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Elemento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoElemento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoElemento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroCuerpos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroCuerpos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubestacionSAP.Revisor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubestacionSAP.Revisor)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

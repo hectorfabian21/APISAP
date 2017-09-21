@@ -1,0 +1,99 @@
+﻿@model IEnumerable<IEB.GC.Net.ApiSAP.Models.CuerposDeElemento>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Cuerpos de columna</h2>
+
+<p>
+
+    <div class="col-md-3"> 
+        <a id="CrearCuerpo" href="@Url.Action("Crear")">Crear nuevo</a>    
+    </div>   
+</p>
+
+<table class="table" id="TablaCuerpo">
+    <thead>
+        <tr>            
+            <th>
+                @Html.DisplayNameFor(model => model.TipoDeElemento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ancho_inferior)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Largo_Inferior)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ancho_superior)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Largo_Superior)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Altura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nivel_de_tension)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>                
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoDeElemento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ancho_inferior)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Largo_Inferior)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ancho_superior)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Largo_Superior)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Altura)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nivel_de_tension)
+                </td>
+                <td>
+                    <a href='@Url.Action("Editar","Cuerpo",new {id = item.Id_Cuerpo })'>Editar</a> |
+                    <a href="@Url.Action("Borrar", "Cuerpo", new { id = item.Id_Cuerpo})">Borrar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="col-md-3">
+    <a href="@Url.Action("Index","Elemento", new { sid=int.Parse(TempData.Peek("id_caso").ToString())})">Regresar</a>     
+</div>  
+
+@section Scripts{
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var numeroCuerpo = parseInt(@TempData.Peek("NumeroCuerpo"));
+            var nFilas = $("#TablaCuerpo tbody tr").length;
+            console.log("filas: " + nFilas);
+
+            $("#CrearCuerpo").click(function (event){                
+                if (nFilas >= numeroCuerpo) {
+                    alert("No se pueden agregar mas cuerpos");
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+            });
+
+        });
+    </script>
+ }

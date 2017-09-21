@@ -1,0 +1,57 @@
+﻿@model IEnumerable<IEB.GC.Net.ApiSAP.Models.Carga>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Cargas</h2>
+
+<p>
+    @Html.ActionLink("Agregar carga", "Create", new { id_ensamble = int.Parse(TempData.Peek("id_em").ToString()) })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Templa_o_guarda)
+        </th>        
+        <th>
+            @Html.DisplayNameFor(model => model.Orientacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Posicion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Separacion_diferentes)
+        </th>
+                
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Templa_o_guarda)
+        </td>               
+        <td>
+            @Html.DisplayFor(modelItem => item.Orientacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Posicion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Separacion_diferentes)
+        </td>
+        
+       
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |            
+            @Html.ActionLink("Borrar", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+<div>
+   
+    <a href='@Url.Action("Index","Ensamble_subestacion", new { id = int.Parse(TempData.Peek("id_caso").ToString()) })'>Regresar</a>
+</div>

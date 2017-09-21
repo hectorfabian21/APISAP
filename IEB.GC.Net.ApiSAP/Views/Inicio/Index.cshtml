@@ -1,0 +1,79 @@
+﻿@model IEnumerable<IEB.GC.Net.ApiSAP.Models.SubestacionSAP>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+
+<div class="col-lg-12 text-center">
+    <img src="~/img/imagen.jpg" style="width:75%" />    
+</div>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h3>Información General</h3>
+        <ol class="breadcrumb">
+            <li>
+                <i>Inicio</i>
+            </li>
+
+        </ol>
+        <p></p>
+    </div>
+    <div class="col-lg-2"></div>
+</div>
+
+<h2>Subestaciones</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Revisor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Aprobador)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreProyecto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreSubestacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreModelo)
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Revisor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Aprobador)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreProyecto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreSubestacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreModelo)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Editar", "editar", new { id=item.Id }) |             
+            @Html.ActionLink("Ingresar", "Detalles", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+<p>
+    @Html.ActionLink("Crear Subestacion nueva", "Crear")
+</p>

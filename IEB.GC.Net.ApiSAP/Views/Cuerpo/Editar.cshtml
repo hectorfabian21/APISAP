@@ -1,0 +1,311 @@
+﻿@model IEB.GC.Net.ApiSAP.Models.CuerposDeElemento
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h2>Editar</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>CuerposDeElemento</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id_Cuerpo)
+        @Html.HiddenFor(model => model.Id_Elemento)
+        <div class="form-group">
+            @Html.LabelFor(model => model.TipoDeElemento, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TipoDeElemento, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.TipoDeElemento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group ocultable anchoInferior">
+            @Html.LabelFor(model => model.Ancho_inferior, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Ancho_inferior, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Ancho_inferior, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group ocultable largoInferior">
+            @Html.LabelFor(model => model.Largo_Inferior, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Largo_Inferior, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Largo_Inferior, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group ocultable anchoSuperior">
+            @Html.LabelFor(model => model.Ancho_superior, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Ancho_superior, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Ancho_superior, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group ocultable largoSuperior">
+            @Html.LabelFor(model => model.Largo_Superior, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Largo_Superior, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Largo_Superior, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group ocultable Altura">
+            @Html.LabelFor(model => model.Altura, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Altura, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Altura, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group ocultable Nivel_de_tension">
+            @Html.LabelFor(model => model.Nivel_de_tension, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nivel_de_tension, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nivel_de_tension, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group ocultable Tipo_de_diagonal">
+            @Html.LabelFor(model => model.Tipo_de_diagonal, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Tipo_de_diagonal, new { htmlAttributes = new { @class = "form-control", @Style = "display:none" } })
+                @Html.DropDownListFor(model => model.Tipo_de_diagonal, new SelectList(new List<Object>
+                { new {value="Z",text="Z" },
+                  new {value="X", text="X" }}, "value", "text"),
+                  new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Tipo_de_diagonal, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group ocultable Division_adicional">
+            @Html.LabelFor(model => model.Division_adicional, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Division_adicional, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Division_adicional, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group ocultable PerfilMontante">
+            @Html.LabelFor(model => model.PerfilMontante, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.PerfilMontante, new { htmlAttributes = new { @class = "form-control", @Style = "display:none" } })*@
+                @Html.DropDownListFor(model => model.PerfilMontante, (SelectList)ViewBag.ListaPerfiles, "Por defecto", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PerfilMontante, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group ocultable PerfilDiagonarl">
+            @Html.LabelFor(model => model.PerfilDiagonarl, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.PerfilDiagonarl, new { htmlAttributes = new { @class = "form-control", @Style = "display:none" } })*@
+                @Html.DropDownListFor(model => model.PerfilDiagonarl, (SelectList)ViewBag.ListaPerfiles, "Por defecto", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PerfilDiagonarl, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group ocultable perfilMontanteViga">
+            @Html.LabelFor(model => model.PerfilMontanteViga, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                 @*@Html.EditorFor(model => model.PerfilMontanteViga, new { htmlAttributes = new { @class = "form-control", @Style = "display:none" } })*@
+                @Html.DropDownListFor(model => model.PerfilMontanteViga, (SelectList)ViewBag.ListaPerfiles, "Por defecto", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PerfilMontanteViga, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group ocultable PerfilDiagonalViga">
+            @Html.LabelFor(model => model.PerfilDiagonalViga, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.PerfilDiagonalViga, new { htmlAttributes = new { @class = "form-control", @Style = "display:none" } })*@
+                @Html.DropDownListFor(model => model.PerfilDiagonalViga, (SelectList)ViewBag.ListaPerfiles, "Por defecto", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PerfilDiagonalViga, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group ocultable PerfilCierre">
+            @Html.LabelFor(model => model.PerfilCierre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @* @Html.EditorFor(model => model.PerfilCierre, new { htmlAttributes = new { @class = "form-control", @Style = "display:none" } })*@
+                @Html.DropDownListFor(model => model.PerfilCierre, (SelectList)ViewBag.ListaPerfiles, "Por defecto", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PerfilCierre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group ocultable PerfilMontanteCastillete">
+            @Html.LabelFor(model => model.PerfilMontanteCastillete, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+               @* @Html.EditorFor(model => model.PerfilMontanteCastillete, new { htmlAttributes = new { @class = "form-control", @Style = "display:none" } })*@
+                @Html.DropDownListFor(model => model.PerfilMontanteCastillete, (SelectList)ViewBag.ListaPerfiles, "Por defecto", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PerfilMontanteCastillete, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group ocultable PerfilDiagonalCastillete">
+            @Html.LabelFor(model => model.PerfilDiagonalCastillete, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.PerfilDiagonalCastillete, new { htmlAttributes = new { @class = "form-control", @Style = "display:none" } })*@
+                @Html.DropDownListFor(model => model.PerfilDiagonalCastillete, (SelectList)ViewBag.ListaPerfiles, "Por defecto", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PerfilDiagonalCastillete, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Regresar", "Index", new { IdElemento = int.Parse(TempData.Peek("IdElemento").ToString()) })
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Change();
+            //inicia la verificacion de evento del cambio del control desplegable de tipo de elemento
+            function Change() {
+                var tipoElemento = $("#TipoDeElemento").val();
+                if (tipoElemento == "") {
+                    $(".ocultable").each(function () {
+                        $(this).addClass("hidden");
+                    });
+                } else {
+                    if (tipoElemento == "Cuerpo de transicion") {
+                        $(".anchoInferior").removeClass("hidden");
+                        $(".largoInferior").removeClass("hidden");
+                        $(".anchoSuperior").removeClass("hidden");
+                        $(".largoSuperior").removeClass("hidden");
+                        $(".Altura").removeClass("hidden");
+                        $(".Nivel_de_tension").addClass("hidden");
+                        $(".Tipo_de_diagonal").removeClass("hidden");
+                        $(".Division_adicional").removeClass("hidden");
+                        $(".PerfilMontante").removeClass("hidden");
+                        $(".PerfilDiagonarl").removeClass("hidden");
+                        $(".perfilMontanteViga").addClass("hidden");
+                        $(".PerfilDiagonalViga").addClass("hidden");
+                        $(".PerfilCierre").addClass("hidden");
+                        $(".PerfilMontanteCastillete").addClass("hidden");
+                        $(".PerfilDiagonalCastillete").addClass("hidden");
+                        $("#PerfilMontanteViga").val("");
+                        $("#PerfilDiagonalViga").val("");
+                        $("#PerfilCierre").val("");
+                        $("#PerfilMontanteCastillete").val("");
+                        $("#PerfilDiagonalCastillete").val("");
+
+                    } else if (tipoElemento == "Cuerpo de conexion viga") {
+                        $(".anchoInferior").removeClass("hidden");
+                        $(".largoInferior").removeClass("hidden");
+                        $("#Ancho_superior").val($("#Ancho_inferior").val())
+                        $("#Largo_Superior").val($("#Largo_Inferior").val())
+                        $(".anchoSuperior").addClass("hidden");
+                        $(".largoSuperior").addClass("hidden");
+                        $(".Altura").removeClass("hidden");
+                        $(".Nivel_de_tension").addClass("hidden");
+                        $(".Tipo_de_diagonal").removeClass("hidden");
+                        $(".Division_adicional").removeClass("hidden");
+                        $(".PerfilMontante").removeClass("hidden");
+                        $(".PerfilDiagonarl").removeClass("hidden");
+                        $(".perfilMontanteViga").removeClass("hidden");
+                        $(".PerfilDiagonalViga").removeClass("hidden");
+                        $(".PerfilCierre").addClass("hidden");
+                        $(".PerfilMontanteCastillete").addClass("hidden");
+                        $(".PerfilDiagonalCastillete").addClass("hidden");
+                        $("#PerfilCierre").val("");
+                        $("#PerfilMontanteCastillete").val("");
+                        $("#PerfilDiagonalCastillete").val("");
+
+                    }
+                    else if (tipoElemento == "Cuerpo de castillete") {
+                        $(".anchoInferior").removeClass("hidden");
+                        $(".largoInferior").removeClass("hidden");
+                        $(".anchoSuperior").addClass("hidden");
+                        $("#Ancho_superior").val(0) // aplicar para cada elemento que se oculta
+                        $(".largoSuperior").addClass("hidden");
+                        $("#Largo_Superior").val(0) // aplicar para cada elemento que se oculta
+                        $(".Altura").removeClass("hidden");
+                        $(".Nivel_de_tension").addClass("hidden");
+                        $(".Tipo_de_diagonal").removeClass("hidden");
+                        $(".Division_adicional").removeClass("hidden");
+                        $(".PerfilMontante").addClass("hidden");
+                        $(".PerfilDiagonarl").addClass("hidden");
+                        $(".perfilMontanteViga").addClass("hidden");
+                        $(".PerfilDiagonalViga").addClass("hidden");
+                        $(".PerfilCierre").addClass("hidden");
+                        $(".PerfilMontanteCastillete").removeClass("hidden");
+                        $(".PerfilDiagonalCastillete").removeClass("hidden");
+                        $("#PerfilMontante").val("");
+                        $("#PerfilDiagonarl").val("");
+                        $("#PerfilMontanteViga").val("");
+                        $("#PerfilDiagonalViga").val("");
+                        $("#PerfilCierre").val("");
+                    }
+                    //else if (tipoElemento == "Cuerpo de transicion viga") {
+                    //    $(".anchoInferior").removeClass("hidden");
+                    //    $(".largoInferior").removeClass("hidden");
+                    //    $(".anchoSuperior").removeClass("hidden");
+                    //    $(".largoSuperior").removeClass("hidden");
+                    //    $(".Altura").removeClass("hidden");
+                    //    $(".Nivel_de_tension").addClass("hidden");
+                    //    $(".Tipo_de_diagonal").removeClass("hidden");
+                    //    $(".Division_adicional").removeClass("hidden");
+                    //    $(".PerfilMontante").removeClass("hidden");
+                    //    $(".PerfilDiagonarl").addClass("hidden");
+                    //    $(".perfilMontanteViga").removeClass("hidden");
+                    //    $(".PerfilDiagonalViga").removeClass("hidden");
+                    //    $(".PerfilCierre").removeClass("hidden");
+                    //    $(".PerfilMontanteCastillete").addClass("hidden");
+                    //    $(".PerfilDiagonalCastillete").addClass("hidden");
+                    //    $("#PerfilMontante").val("");
+                    //    $("#PerfilDiagonarl :selected").text("Por defecto");
+                    //    $("#PerfilMontanteCastillete :selected").text("Por defecto");
+                    //    $("#PerfilDiagonalCastillete :selected").text("Por defecto");
+                    //}
+                    else if (tipoElemento == "Cuerpo viga") {
+                        $(".anchoInferior").removeClass("hidden");
+                        $(".largoInferior").removeClass("hidden");
+                        $("#Ancho_superior").val($("#Ancho_inferior").val())
+                        $("#Largo_Superior").val($("#Largo_Inferior").val())
+                        $(".anchoSuperior").addClass("hidden");
+                        $(".largoSuperior").addClass("hidden");
+                        $(".Altura").removeClass("hidden");
+                        $(".Nivel_de_tension").addClass("hidden");
+                        $(".Tipo_de_diagonal").removeClass("hidden");
+                        $(".Division_adicional").removeClass("hidden");
+                        $(".PerfilMontante").addClass("hidden");
+                        $(".PerfilDiagonarl").addClass("hidden");
+                        $(".perfilMontanteViga").removeClass("hidden");
+                        $(".PerfilDiagonalViga").removeClass("hidden");
+                        $(".PerfilCierre").addClass("hidden");
+                        $(".PerfilMontanteCastillete").addClass("hidden");
+                        $(".PerfilDiagonalCastillete").addClass("hidden");
+                        $("#PerfilMontante").val("");
+                        $("#PerfilDiagonarl").val("");
+                        $("#PerfilMontanteCastillete").val("");
+                        $("#PerfilDiagonalCastillete").val("");
+                        $("#PerfilCierre").val("");
+                    }
+                }
+            };
+            $("#Ancho_inferior").change(function () {
+                if (($("#TipoDeElemento").val() == "Cuerpo de conexion viga") || ($("#TipoDeElemento").val() == "Cuerpo viga")) {
+                    $("#Ancho_superior").val($("#Ancho_inferior").val())
+                }
+            });
+            $("#Largo_Inferior").change(function () {
+                if (($("#TipoDeElemento").val() == "Cuerpo de conexion viga") || ($("#TipoDeElemento").val() == "Cuerpo viga")) {
+                    $("#Largo_Superior").val($("#Largo_Inferior").val())
+                }
+            });
+        });
+    </script>
+
+}

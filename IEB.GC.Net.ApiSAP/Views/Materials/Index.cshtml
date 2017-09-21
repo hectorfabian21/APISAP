@@ -1,0 +1,136 @@
+﻿@model IEnumerable<IEB.GC.Net.ApiSAP.Models.Material>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Materiales</h2>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h3>Información General</h3>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Index","Inicio")">Inicio</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Detalles","Inicio", new {id=int.Parse(TempData.Peek("id").ToString())})">Detalle subestación</a>
+            </li>
+            @{ 
+                if (int.Parse(TempData.Peek("id_caso").ToString()) != 0)
+              {
+                <li>
+                    <a href = "@Url.Action("ingresarcaso","Inicio", new { id=int.Parse(TempData.Peek("id_caso").ToString())})" > Detalle caso </a >
+                </li>
+              }
+            }
+            
+            <li>
+                <strong class="active">Material</strong>
+            </li>
+            <li>
+                <a href="@Url.Action("Index","Perfiles", new {id=int.Parse(TempData.Peek("id").ToString())})">Perfiles</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index","Cargas_Automatica", new { id_subestacion=int.Parse(TempData.Peek("id").ToString())})">Cargas Automaticas</a>
+            </li>
+            @{
+                if (int.Parse(TempData.Peek("id_caso").ToString()) == 0)
+                {
+                  
+                }
+                else
+                {
+                    <li>
+                        <a href="@Url.Action("Index","Elemento", new { sid=int.Parse(TempData.Peek("id_caso").ToString())})">Elementos</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index","CARGAS_DE_CONEXIÓN", new { id=int.Parse(TempData.Peek("id_caso").ToString())})">Cargas de conexion</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index","Ensamble_subestacion", new { id=int.Parse(TempData.Peek("id_caso").ToString())})">Ensamble</a>
+                    </li>
+                }
+
+
+            }
+
+        </ol>
+        <p></p>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Crear un nuevo Material", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreMaterial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoMaterial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.E_Material)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.V_Material)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.T_Material)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fy_Material)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fu_Material)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.eFy_Material)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.eFu_Material)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreMaterial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoMaterial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.E_Material)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.V_Material)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.T_Material)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fy_Material)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fu_Material)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.eFy_Material)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.eFu_Material)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new {id=item.Id }) |            
+            @Html.ActionLink("Borrar", "Delete", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+
+<div>
+    <a href="@Url.Action("Detalles","Inicio", new {id=int.Parse(TempData.Peek("id").ToString())})">Regresar</a>
+</div>

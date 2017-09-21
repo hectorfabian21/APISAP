@@ -1,0 +1,68 @@
+﻿@model IEB.GC.Net.ApiSAP.Models.Elemento
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Editar</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Elemento</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TipoElemento, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.TipoElemento, new SelectList(new List<Object>
+                { new {value="Columna Portico",text="Columna Portico" },
+                  new {value="Viga Portico", text="Viga Portico" },
+                  new {value="Soporte Equipo", text="Soporte Equipo" }}, "value", "text"),
+                  new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TipoElemento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NumeroCuerpos, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NumeroCuerpos, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NumeroCuerpos, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.Id_Subestacion)
+        @Html.HiddenFor(model => model.Caso)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NivelTension, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.NivelTension, new SelectList(new List<Object>
+                { new {value="34.5 kV",text= "34.5 kV" },
+                  new {value="60 kV",text= "60 kV" },
+                  new {value="110 kV", text= "110 kV" },
+                  new {value="115 kV", text= "115 kV" },
+                  new {value="220 kV", text= "220 kV" },
+                  new {value="230 kV", text= "230 kV" },
+                  new {value="500 kV", text= "500 kV" } }, "value", "text"),
+                  new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.NivelTension, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Regresar", "Index", new {sid= int.Parse(TempData.Peek("id_caso").ToString()) })
+</div>
