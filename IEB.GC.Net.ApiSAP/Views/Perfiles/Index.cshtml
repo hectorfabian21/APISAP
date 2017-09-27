@@ -60,12 +60,12 @@
 <p>
     @Html.ActionLink("Crear nuevo perfil", "Create", new {sid= int.Parse(TempData.Peek("id").ToString()) })
 </p>
-<table class="table">
+<table class="table text-center">
     <tr>
-        <th>
+        <th class="text-center">
             @Html.DisplayNameFor(model => model.Nombre_del_perfil)
         </th>
-        <th>
+        <th class="text-center">
             @Html.DisplayNameFor(model => model.Material_del_perfil)
         </th>      
        

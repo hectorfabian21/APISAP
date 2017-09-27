@@ -11,12 +11,15 @@ namespace IEB.GC.Net.ApiSAP.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Combinacione
     {
         public int Id { get; set; }
+        [Display(Name = "Nombre")]
         public string Nombre { get; set; }
         public int id_subestacion { get; set; }
+        [Display(Name = "Descripcion")]
         public string Descripcion { get; set; }
     }
 }

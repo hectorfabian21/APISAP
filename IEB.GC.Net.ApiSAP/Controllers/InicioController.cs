@@ -13,6 +13,7 @@ namespace IEB.GC.Net.ApiSAP.Controllers
     {
         public static APISAPEntities1 entidadesBD = new APISAPEntities1();
         private APISAPEntities1 db = new APISAPEntities1();
+        public static Repositorio Repositori = new Repositorio();
         // GET: Inicio
         public ActionResult Index()
         {
@@ -185,6 +186,19 @@ namespace IEB.GC.Net.ApiSAP.Controllers
             model.nombre_caso = modelo.nombre_caso;
             model.descripcion_caso = modelo.descripcion_caso;
             return View(model);
+        }
+
+        public ActionResult borrarcaso(int id)
+        {
+            Repositori.borrarcaso(id);
+            return RedirectToAction("Detalles", "Inicio", new { id = int.Parse(TempData.Peek("id").ToString()) });
+        }
+
+        public ActionResult borrarsubestacion(int id)
+        {
+            Repositori.borrarsubestacion(id);
+
+            return RedirectToAction("Index", "Inicio");
         }
 
         #endregion

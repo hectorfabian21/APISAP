@@ -262,7 +262,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="img\imagen.jpg" />
+    <Content Include="img\c. castillete.JPG" />
+    <Content Include="img\C. transicion.JPG" />
+    <Content Include="img\C. vigaconexion.JPG" />
+    <Content Include="img\c.viga.JPG" />
+    <Content Include="img\Cuerpos.JPG" />
+    <Content Include="img\Elementos.JPG" />
+    <Content Include="img\Logo.jpg" />
     <Content Include="Models\BDModel1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BDModel1.edmx</DependentUpon>
@@ -400,7 +406,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50252</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50253/</IISUrl>
+          <IISUrl>http://localhost:50255/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

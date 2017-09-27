@@ -70,28 +70,6 @@
 
                 }
                 <br />
-                if (Model.estadoreaccionesservicio == true)
-                {
-                    <div class="row text-center">
-                        <button onclick="myApp.showPleaseWait()" type="submit" id="btnReacciones" class="form-control btn btn-info" style="width:50%">Reacciones</button>
-                    </div>
-
-                }
-                else
-                {
-                    <div class="row text-center">
-                        <a href="#" class="form-control btn btn-info disabled" style="width:50%">Reacciones</a>
-                    </div>
-                }
-                <br />
-    
-        }
-        
-    </div>
-
-
-    <div class="col-md-6 text-center">
-        @{
             if (Model.estadocorrerdiseño == true)
             {
                 <div class="row">
@@ -105,7 +83,50 @@
                 </div>
             }
             <br />
-            if (Model.estadoresultadosdiseño == true)
+            if (Model.estadoreaccionesservicio == true)
+            {
+                    <div class="row text-center">
+                        <button onclick="myApp.showPleaseWait()" type="submit" id="btnReacciones" class="form-control btn btn-info" style="width:50%">Reacciones</button>
+                    </div>
+
+                }
+                else
+                {
+                    <div class="row text-center">
+                        <a href="#" class="form-control btn btn-info disabled" style="width:50%">Reacciones</a>
+                    </div>
+                }
+                <br />
+            if (Model.estadosalir == true)
+            {               
+
+                    <div class="row">
+                        <a href="@Url.Action("salirsap","CargaSap", new {id=int.Parse(TempData.Peek("id_caso").ToString())})" class="form-control btn btn-info" style="width:50%">Cerrar SAP2000</a>
+                    </div>
+                    <br />
+
+               
+            }
+            else
+            {               
+
+                    <div class="row">
+                        <a href="#" class="form-control btn btn-info disabled" style="width:50%">Cerrar SAP2000</a>
+                    </div>
+                    <br />
+            }
+
+        }
+        
+    </div>
+
+
+    <div class="col-md-6 text-center">
+        <img src="~/img/Logo.jpg" style="width:100%" />
+
+        @{
+            
+            @*if (Model.estadoresultadosdiseño == true)
             {
                 <div class="row">
                     <a href="@Url.Action("resultadosdiseño","CargaSap")" class="form-control btn btn-info" style="width:50%">Resultados de diseño</a>
@@ -117,7 +138,7 @@
                     <a href="#" class="form-control btn btn-info disabled" style="width:50%">Resultados de diseño</a>
                 </div>
             }
-            <br />
+            <br />*@
         }
 
         
@@ -129,39 +150,12 @@
 
 
 <div class="row">
-    <div class="col-md-6 text-center">
+    <div class="col-md-12 text-center">
         <div class="row">
             <a href="@Url.Action("ingresarcaso","Inicio", new {id=int.Parse(TempData.Peek("id_caso").ToString())})" class="form-control btn btn-info" style="width:25%">Regresar</a>
         </div>
         <br /> 
     </div>
-
-    @{
-        if (Model.estadosalir == true)
-        {
-            <div class="col-md-6 text-center">
-
-                <div class="row">
-                    <a href="@Url.Action("salirsap","CargaSap", new {id=int.Parse(TempData.Peek("id_caso").ToString())})" class="form-control btn btn-info" style="width:25%">Cerrar SAP2000</a>
-                </div>
-                <br />
-
-            </div>
-        }
-        else
-        {
-            <div class="col-md-6 text-center">
-
-                <div class="row">
-                    <a href="#" class="form-control btn btn-info disabled" style="width:25%">Cerrar SAP2000</a>
-                </div>
-                <br />
-
-            </div>
-        }
-    }
-    
-
 </div>
 
  
@@ -182,6 +176,8 @@
     </div>
 </div>
  
+
+
 
 
 @section Scripts {

@@ -11,18 +11,26 @@ namespace IEB.GC.Net.ApiSAP.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Carga
     {
         public int Id { get; set; }
         public int Id_Ensamble { get; set; }
         public int Id_Carga_de_conexion { get; set; }
+        [Display(Name = "Templa o Guarda")]
         public string Templa_o_guarda { get; set; }
+        [Display(Name = "Numero de fases")]
         public double Numero_de_fases { get; set; }
+        [Display(Name = "Separacion de fases")]
         public double Separacion_de_fases { get; set; }
+        [Display(Name = "Orientacion")]
         public double Orientacion { get; set; }
+        [Display(Name = "Posicion")]
         public string Posicion { get; set; }
+        [Display(Name = "Separacion diferente")]
         public string Separacion_diferentes { get; set; }
+        [Display(Name = "Orden")]
         public double Orden { get; set; }
     
         public virtual CARGAS_DE_CONEXIÓN CARGAS_DE_CONEXIÓN { get; set; }

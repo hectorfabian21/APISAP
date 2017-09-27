@@ -24,6 +24,7 @@
         
         <td>
             @Html.ActionLink("Editar", "editarcaso", new { id=item.Id }) |
+            @Html.ActionLink("Borrar", "borrarcaso", new { id = item.Id })|            
             @Html.ActionLink("Ingresar", "ingresarcaso", new { id = item.Id }) 
         </td>
     </tr>

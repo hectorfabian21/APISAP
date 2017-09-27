@@ -80,10 +80,34 @@
     
     <script type="text/javascript">
         $(document).ready(function () {
-            $(".ocultable").each(function () {
-                $(this).addClass("hidden");
-                $("#Orientacion_viga").val("") // aplicar para cada elemento que se oculta
-            });
+            var elemento = $("#Elemento").val();
+            if (elemento == "") {
+                $(".ocultable").each(function () {
+                    $(this).addClass("hidden");
+                    $("#Orientacion_viga").val("") // aplicar para cada elemento que se oculta
+                });
+            }
+            else
+            {
+                var elemento = $("#Elemento").val();
+                if (elemento == "") {
+                    $(".ocultable").each(function () {
+                        $(this).addClass("hidden");
+                        $("#Orientacion_viga").val("") // aplicar para cada elemento que se oculta
+                    });
+                } else if (elemento.startsWith("V") || elemento.startsWith("v")) {
+                    $(".ocultable").each(function () {
+                        $(this).removeClass("hidden");
+                    });
+                } else {
+                    $(".ocultable").each(function () {
+                        $(this).addClass("hidden");
+                        $("#Orientacion_viga").val("") // aplicar para cada elemento que se oculta
+                    });
+                }
+
+
+            }
 
             $("#Elemento").change(function () {
                 var elemento = $("#Elemento").val();

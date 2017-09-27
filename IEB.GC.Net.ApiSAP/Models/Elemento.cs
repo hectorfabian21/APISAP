@@ -11,7 +11,8 @@ namespace IEB.GC.Net.ApiSAP.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Elemento
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,11 +23,16 @@ namespace IEB.GC.Net.ApiSAP.Models
         }
     
         public int Id { get; set; }
+        [Display(Name = "Id de elemento")]
         public string Id_Elemento { get; set; }
+        [Display(Name = "Tipo de elemento")]
         public string TipoElemento { get; set; }
+        [Display(Name = "Numero de cuerpos")]
         public int NumeroCuerpos { get; set; }
         public int Id_Subestacion { get; set; }
+        [Display(Name = "Nivel de Tension")]
         public string NivelTension { get; set; }
+
         public int Caso { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

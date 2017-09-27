@@ -11,18 +11,28 @@ namespace IEB.GC.Net.ApiSAP.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Perfile
     {
         public int ID_perfil { get; set; }
+        [Display(Name = "Nombre")]
         public string Nombre_del_perfil { get; set; }
+        [Display(Name = "Material")]
         public string Material_del_perfil { get; set; }
+        [Display(Name = "Tipo de perfil")]
         public string Tipo_del_perfil { get; set; }
+        [Display(Name = "Uso")]
         public string Uso_del_perfil { get; set; }
+        [Display(Name = "Nivel de tension")]
         public string Nivel_de_tensio { get; set; }
+        [Display(Name = "T3 (mm)")]
         public double t3___mm_ { get; set; }
+        [Display(Name = "T2 (mm)")]
         public double t2__mm_ { get; set; }
+        [Display(Name = "Tf (mm)")]
         public double tf__mm_ { get; set; }
+        [Display(Name = "Tw (mm)")]
         public double tw__mm_ { get; set; }
         public Nullable<double> t2b__mm_ { get; set; }
         public Nullable<double> tfb__mm_ { get; set; }

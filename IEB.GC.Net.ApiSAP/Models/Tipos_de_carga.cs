@@ -11,14 +11,20 @@ namespace IEB.GC.Net.ApiSAP.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Tipos_de_carga
     {
         public int Id { get; set; }
+        [Display(Name = "Nombre")]
         public string Nombre { get; set; }
+        [Display(Name = "Convencion")]
         public string Convencion { get; set; }
+        [Display(Name = "Clase")]
         public string Clase { get; set; }
+        [Display(Name = "Multiplicador de peso")]
         public double multiplicadorPP { get; set; }
+        [Display(Name = "Automatico")]
         public string Automatico { get; set; }
         public int id_subestacion { get; set; }
     }

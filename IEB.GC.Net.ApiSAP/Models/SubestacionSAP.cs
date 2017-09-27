@@ -11,7 +11,8 @@ namespace IEB.GC.Net.ApiSAP.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class SubestacionSAP
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -26,9 +27,13 @@ namespace IEB.GC.Net.ApiSAP.Models
         public int Id { get; set; }
         public string Revisor { get; set; }
         public string Aprobador { get; set; }
+        [Display(Name = "Nombre de proyecto")]
         public string NombreProyecto { get; set; }
+        [Display(Name = "Nombre de subestacion")]
         public string NombreSubestacion { get; set; }
+        [Display(Name = "Nombre del modelo")]
         public string NombreModelo { get; set; }
+
         public Nullable<int> Id_Subestacion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

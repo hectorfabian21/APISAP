@@ -5,188 +5,213 @@
 }
 
 <h2>Agregar nuevo cuerpo</h2>
-
+<h4>Cuerpo</h4>
 <span class="success" style="color:green">
     @TempData["guardado"].ToString()
 </span>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+<div class="col-md-12">
 
-    <div class="form-horizontal">
-        <h4>Cuerpo</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-       @Html.HiddenFor(model => model.Id_Elemento)
+    <div class="col-md-6">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TipoDeElemento, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.TipoDeElemento, new SelectList(new List<Object>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id_Elemento)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TipoDeElemento, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        @Html.DropDownListFor(model => model.TipoDeElemento, new SelectList(new List<Object>
                 {
                   new {value="",text="Seleccione una opción" },
                   new {value="Cuerpo de transicion",text="Cuerpo de transicion" },
                   new {value="Cuerpo de conexion viga", text="Cuerpo de conexion viga" },
-                  new {value="Cuerpo de Castillete", text="Cuerpo de Castillete" },                  
+                  new {value="Cuerpo de castillete", text="Cuerpo de castillete" },
                   new {value="Cuerpo viga", text="Cuerpo viga" }}, "value", "text"),
                   new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.TipoDeElemento, "", new { @class = "text-danger"})                
-            </div>
-        </div>
+                        @Html.ValidationMessageFor(model => model.TipoDeElemento, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group ocultable anchoInferior">
-            @Html.LabelFor(model => model.Ancho_inferior, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Ancho_inferior, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Ancho_inferior, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group ocultable anchoInferior">
+                    @Html.LabelFor(model => model.Ancho_inferior, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.Ancho_inferior, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Ancho_inferior, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group ocultable largoInferior">
-            @Html.LabelFor(model => model.Largo_Inferior, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Largo_Inferior, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Largo_Inferior, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group ocultable largoInferior">
+                    @Html.LabelFor(model => model.Largo_Inferior, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.Largo_Inferior, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Largo_Inferior, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group ocultable anchoSuperior">
-            @Html.LabelFor(model => model.Ancho_superior, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Ancho_superior, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Ancho_superior, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group ocultable anchoSuperior">
+                    @Html.LabelFor(model => model.Ancho_superior, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.Ancho_superior, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Ancho_superior, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group ocultable largoSuperior">
-            @Html.LabelFor(model => model.Largo_Superior, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Largo_Superior, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Largo_Superior, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group ocultable largoSuperior">
+                    @Html.LabelFor(model => model.Largo_Superior, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.Largo_Superior, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Largo_Superior, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group ocultable Altura">
-            @Html.LabelFor(model => model.Altura, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Altura, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Altura, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group ocultable Altura">
+                    @Html.LabelFor(model => model.Altura, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.Altura, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Altura, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group ocultable Nivel_de_tension">
-            @Html.LabelFor(model => model.Nivel_de_tension, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nivel_de_tension, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nivel_de_tension, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group ocultable Nivel_de_tension">
+                    @Html.LabelFor(model => model.Nivel_de_tension, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.Nivel_de_tension, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Nivel_de_tension, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group ocultable Tipo_de_diagonal">
-            @Html.LabelFor(model => model.Tipo_de_diagonal, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-               @Html.DropDownListFor(model => model.Tipo_de_diagonal, new SelectList(new List<Object>
+                <div class="form-group ocultable Tipo_de_diagonal">
+                    @Html.LabelFor(model => model.Tipo_de_diagonal, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        @Html.DropDownListFor(model => model.Tipo_de_diagonal, new SelectList(new List<Object>
                 { new {value="Z",text="Z" },
                   new {value="X", text="X" }}, "value", "text"),
                   new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Tipo_de_diagonal, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        @Html.ValidationMessageFor(model => model.Tipo_de_diagonal, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group ocultable Division_adicional">
-            @Html.LabelFor(model => model.Division_adicional, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Division_adicional, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Division_adicional, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group ocultable Division_adicional">
+                    @Html.LabelFor(model => model.Division_adicional, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.Division_adicional, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Division_adicional, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group ocultable PerfilMontante">
-            @Html.LabelFor(model => model.PerfilMontante, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @*@Html.EditorFor(model => model.PerfilMontante, new { htmlAttributes = new { @class = "form-control" } })*@
-                @Html.DropDownListFor(model => model.PerfilMontante, (SelectList)ViewBag.ListaPerfiles, "Por defecto", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.PerfilMontante, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group ocultable PerfilMontante">
+                    @Html.LabelFor(model => model.PerfilMontante, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        @*@Html.EditorFor(model => model.PerfilMontante, new { htmlAttributes = new { @class = "form-control" } })*@
+                        @Html.DropDownListFor(model => model.PerfilMontante, (SelectList)ViewBag.ListaPerfiles, "Por defecto", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.PerfilMontante, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group ocultable PerfilDiagonarl">
-            @Html.LabelFor(model => model.PerfilDiagonarl, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @*@Html.EditorFor(model => model.PerfilDiagonarl, new { htmlAttributes = new { @class = "form-control" } })*@
-                @Html.DropDownListFor(model => model.PerfilDiagonarl, (SelectList)ViewBag.ListaPerfiles, "Por defecto", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.PerfilDiagonarl, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group ocultable PerfilDiagonarl">
+                    @Html.LabelFor(model => model.PerfilDiagonarl, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        @*@Html.EditorFor(model => model.PerfilDiagonarl, new { htmlAttributes = new { @class = "form-control" } })*@
+                        @Html.DropDownListFor(model => model.PerfilDiagonarl, (SelectList)ViewBag.ListaPerfiles, "Por defecto", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.PerfilDiagonarl, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group ocultable perfilMontanteViga">
-            @Html.LabelFor(model => model.PerfilMontanteViga, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-               @* @Html.EditorFor(model => model.PerfilMontanteViga, new { htmlAttributes = new { @class = "form-control" } })*@
-                @Html.DropDownListFor(model => model.PerfilMontanteViga, (SelectList)ViewBag.ListaPerfiles, "Por defecto", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.PerfilMontanteViga, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group ocultable perfilMontanteViga">
+                    @Html.LabelFor(model => model.PerfilMontanteViga, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        @* @Html.EditorFor(model => model.PerfilMontanteViga, new { htmlAttributes = new { @class = "form-control" } })*@
+                        @Html.DropDownListFor(model => model.PerfilMontanteViga, (SelectList)ViewBag.ListaPerfiles, "Por defecto", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.PerfilMontanteViga, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group ocultable PerfilDiagonalViga">
-            @Html.LabelFor(model => model.PerfilDiagonalViga, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-               @* @Html.EditorFor(model => model.PerfilDiagonalViga, new { htmlAttributes = new { @class = "form-control" } })*@
-                @Html.DropDownListFor(model => model.PerfilDiagonalViga, (SelectList)ViewBag.ListaPerfiles, "Por defecto", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.PerfilDiagonalViga, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group ocultable PerfilDiagonalViga">
+                    @Html.LabelFor(model => model.PerfilDiagonalViga, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        @* @Html.EditorFor(model => model.PerfilDiagonalViga, new { htmlAttributes = new { @class = "form-control" } })*@
+                        @Html.DropDownListFor(model => model.PerfilDiagonalViga, (SelectList)ViewBag.ListaPerfiles, "Por defecto", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.PerfilDiagonalViga, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group ocultable PerfilCierre">
-            @Html.LabelFor(model => model.PerfilCierre, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-               @* @Html.EditorFor(model => model.PerfilCierre, new { htmlAttributes = new { @class = "form-control" } })*@
-                @Html.DropDownListFor(model => model.PerfilCierre, (SelectList)ViewBag.ListaPerfiles, "Por defecto", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.PerfilCierre, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group ocultable PerfilCierre">
+                    @Html.LabelFor(model => model.PerfilCierre, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        @* @Html.EditorFor(model => model.PerfilCierre, new { htmlAttributes = new { @class = "form-control" } })*@
+                        @Html.DropDownListFor(model => model.PerfilCierre, (SelectList)ViewBag.ListaPerfiles, "Por defecto", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.PerfilCierre, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group ocultable PerfilMontanteCastillete">
-            @Html.LabelFor(model => model.PerfilMontanteCastillete, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @*@Html.EditorFor(model => model.PerfilMontanteCastillete, new { htmlAttributes = new { @class = "form-control" } })*@
-                @Html.DropDownListFor(model => model.PerfilMontanteCastillete, (SelectList)ViewBag.ListaPerfiles, "Por defecto", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.PerfilMontanteCastillete, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group ocultable PerfilMontanteCastillete">
+                    @Html.LabelFor(model => model.PerfilMontanteCastillete, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        @*@Html.EditorFor(model => model.PerfilMontanteCastillete, new { htmlAttributes = new { @class = "form-control" } })*@
+                        @Html.DropDownListFor(model => model.PerfilMontanteCastillete, (SelectList)ViewBag.ListaPerfiles, "Por defecto", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.PerfilMontanteCastillete, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group ocultable PerfilDiagonalCastillete">
-            @Html.LabelFor(model => model.PerfilDiagonalCastillete, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @*@Html.EditorFor(model => model.PerfilDiagonalCastillete, new { htmlAttributes = new { @class = "form-control" } })*@
-                @Html.DropDownListFor(model => model.PerfilDiagonalCastillete, (SelectList)ViewBag.ListaPerfiles, "Por defecto", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.PerfilDiagonalCastillete, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group ocultable PerfilDiagonalCastillete">
+                    @Html.LabelFor(model => model.PerfilDiagonalCastillete, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        @*@Html.EditorFor(model => model.PerfilDiagonalCastillete, new { htmlAttributes = new { @class = "form-control" } })*@
+                        @Html.DropDownListFor(model => model.PerfilDiagonalCastillete, (SelectList)ViewBag.ListaPerfiles, "Por defecto", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.PerfilDiagonalCastillete, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        @Html.HiddenFor(model=> model.Id_Elemento)
+                @Html.HiddenFor(model => model.Id_Elemento)
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input id="CrearCuerpo" type="submit" value="Guardar" class="btn btn-default" />
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input id="CrearCuerpo" type="submit" value="Guardar" class="btn btn-default" />
+                    </div>
+                </div>
             </div>
+        }
+
+        <div>
+            @Html.ActionLink("Regresar", "Index", new { IdElemento = int.Parse(TempData.Peek("IdElemento").ToString()) })
         </div>
     </div>
-}
+    <div class="col-md-6">
+        <div class="ocultable Cuerpos">
+            <img src="~/img/Cuerpos.JPG" style="width:100%" />
+        </div>
+        <div class="ocultable Ctransicion">
+            <img src="~/img/C. transicion.JPG" style="width:70%"/>
+        </div>
+        <div class="ocultable vigaconexion">
+            <img src="~/img/C. vigaconexion.JPG" style="width:100%"/>
+        </div>
+        <div class="ocultable castillete">
+            <img src="~/img/c. castillete.JPG" style="width:100%" />
+        </div>
+        <div class="ocultable viga">
+            <img src="~/img/c.viga.JPG" style="width:100%"/>
+        </div>            
+    </div>
 
-<div>
-    @Html.ActionLink("Regresar", "Index",new { IdElemento = int.Parse(TempData.Peek("IdElemento").ToString()) })
+
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-    <script type="text/javascript">
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        <script type="text/javascript">
         $(document).ready(function () {
             var tipoElemento = $("#TipoDeElemento").val();
             if (tipoElemento==""){
                 $(".ocultable").each(function () {
                     $(this).addClass("hidden");
+                    $(".Cuerpos").removeClass("hidden");
                 });
             } else {
                 if (tipoElemento == "Cuerpo de transicion") {
@@ -210,8 +235,15 @@
                     $("#PerfilCierre").val("");
                     $("#PerfilMontanteCastillete").val("");
                     $("#PerfilDiagonalCastillete").val("");
+                    $(".Cuerpos").addClass("hidden");
+                    $(".Ctransicion").removeClass("hidden");
+                    $(".vigaconexion").addClass("hidden");
+                    $(".castillete").addClass("hidden");
+                    $(".viga").addClass("hidden");
+                    
 
-                } else if (tipoElemento == "Cuerpo de conexion viga") {
+                }
+                else if (tipoElemento == "Cuerpo de conexion viga") {
                     $(".anchoInferior").removeClass("hidden");
                     $(".largoInferior").removeClass("hidden");
                     $("#Ancho_superior").val($("#Ancho_inferior").val())
@@ -310,6 +342,7 @@
                 if (tipoElemento == "") {
                     $(".ocultable").each(function () {
                         $(this).addClass("hidden");
+                        $(".Cuerpos").removeClass("hidden");
                     });
                 } else {
                     if (tipoElemento == "Cuerpo de transicion") {
@@ -333,6 +366,11 @@
                         $("#PerfilCierre").val("");
                         $("#PerfilMontanteCastillete").val("");
                         $("#PerfilDiagonalCastillete").val("");
+                        $(".Cuerpos").addClass("hidden");
+                        $(".Ctransicion").removeClass("hidden");
+                        $(".vigaconexion").addClass("hidden");
+                        $(".castillete").addClass("hidden");
+                        $(".viga").addClass("hidden");
 
                     } else if (tipoElemento == "Cuerpo de conexion viga") {
                         $(".anchoInferior").removeClass("hidden");
@@ -355,6 +393,11 @@
                         $("#PerfilCierre").val("");
                         $("#PerfilMontanteCastillete").val("");
                         $("#PerfilDiagonalCastillete").val("");
+                        $(".Cuerpos").addClass("hidden");
+                        $(".Ctransicion").addClass("hidden");
+                        $(".vigaconexion").removeClass("hidden");
+                        $(".castillete").addClass("hidden");
+                        $(".viga").addClass("hidden");
 
                     }
                     else if (tipoElemento == "Cuerpo de castillete") {
@@ -380,6 +423,12 @@
                         $("#PerfilMontanteViga").val("");
                         $("#PerfilDiagonalViga").val("");
                         $("#PerfilCierre").val("");
+                        $(".Cuerpos").addClass("hidden");
+                        $(".Ctransicion").addClass("hidden");
+                        $(".vigaconexion").addClass("hidden");
+                        $(".castillete").removeClass("hidden");
+                        $(".viga").addClass("hidden");
+
                     }
                     //else if (tipoElemento == "Cuerpo de transicion viga") {
                     //    $(".anchoInferior").removeClass("hidden");
@@ -425,6 +474,11 @@
                         $("#PerfilMontanteCastillete").val("");
                         $("#PerfilDiagonalCastillete").val("");
                         $("#PerfilCierre").val("");
+                        $(".Cuerpos").addClass("hidden");
+                        $(".Ctransicion").addClass("hidden");
+                        $(".vigaconexion").addClass("hidden");
+                        $(".castillete").addClass("hidden");
+                        $(".viga").removeClass("hidden");
                     }
                 }
             });
@@ -450,6 +504,6 @@
                 }
             });
         });
-    </script>
+        </script>
 
-}
+    }

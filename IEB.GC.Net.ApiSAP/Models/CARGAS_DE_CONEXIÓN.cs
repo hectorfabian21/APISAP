@@ -11,7 +11,8 @@ namespace IEB.GC.Net.ApiSAP.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class CARGAS_DE_CONEXIÓN
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,12 +22,19 @@ namespace IEB.GC.Net.ApiSAP.Models
         }
     
         public int Id { get; set; }
+        [Display(Name = "Templa o Guarda")]
         public string Templa_o_guarda { get; set; }
+        [Display(Name = "Peso (kg)")]
         public double Peso___kg_ { get; set; }
+        [Display(Name = "Corto transversal (kg)")]
         public double Corto_Transversal__kg_ { get; set; }
+        [Display(Name = "Corto longitudinal (kg)")]
         public double Corto_Longitudinal__kg_ { get; set; }
+        [Display(Name = "Viento transversal (kg)")]
         public double Viento_Transversal__kg_ { get; set; }
+        [Display(Name = "Viento longitudinal (kg)")]
         public double Viento_Longitudinal__kg_ { get; set; }
+        [Display(Name = "Tiro (kg)")]
         public double Tiro__kg_ { get; set; }
         public int Id_Subestacion { get; set; }
         public int Id_Caso { get; set; }

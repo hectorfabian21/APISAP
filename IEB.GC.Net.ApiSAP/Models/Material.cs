@@ -11,18 +11,28 @@ namespace IEB.GC.Net.ApiSAP.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Material
     {
         public int Id { get; set; }
+        [Display(Name = "Nombre del material")]
         public string NombreMaterial { get; set; }
+        [Display(Name = "Tipo de  material")]
         public string TipoMaterial { get; set; }
+        [Display(Name = "Modulo de elasticidad (kg/mm^2)")]
         public double E_Material { get; set; }
+        [Display(Name = "Modulo de Poisson")]
         public double V_Material { get; set; }
+        [Display(Name = "Coeficiente termico")]
         public double T_Material { get; set; }
+        [Display(Name = "Esfuerzo de fluencia (kg/mm^2)")]
         public double Fy_Material { get; set; }
+        [Display(Name = "Esfuerzo ultimo (kg/mm^2)")]
         public double Fu_Material { get; set; }
+        [Display(Name = "Esfuerzo de fluencia esperado (kg/mm^2)")]
         public double eFy_Material { get; set; }
+        [Display(Name = "Esfuerzo ultimo esperado (kg/mm^2)")]
         public double eFu_Material { get; set; }
     }
 }

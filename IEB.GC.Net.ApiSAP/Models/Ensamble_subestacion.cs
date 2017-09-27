@@ -11,7 +11,8 @@ namespace IEB.GC.Net.ApiSAP.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Ensamble_subestacion
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,13 +23,18 @@ namespace IEB.GC.Net.ApiSAP.Models
     
         public int Id { get; set; }
         public int id_Subestacion { get; set; }
+        [Display(Name = "Tipo de elemento")]
         public string Tipo_de_elemento { get; set; }
+        [Display(Name = "Elemento")]
         public string Elemento { get; set; }
+        [Display(Name = "Id elemento")]
         public int Id_Elemento { get; set; }
         public double X { get; set; }
         public double Y { get; set; }
         public double Z { get; set; }
+        [Display(Name = "Divisiones")]
         public int Divisiones { get; set; }
+        [Display(Name = "Orientacion de viga")]
         public string Orientacion_viga { get; set; }
         public int id_Caso { get; set; }
     

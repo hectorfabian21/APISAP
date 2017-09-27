@@ -11,7 +11,8 @@ namespace IEB.GC.Net.ApiSAP.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Caso
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,7 +22,9 @@ namespace IEB.GC.Net.ApiSAP.Models
         }
     
         public int Id { get; set; }
+        [Display(Name = "Nombre de Caso")]
         public string nombre_caso { get; set; }
+        [Display(Name = "Descripcion de caso")]
         public string descripcion_caso { get; set; }
         public Nullable<int> id_subestacion { get; set; }
     

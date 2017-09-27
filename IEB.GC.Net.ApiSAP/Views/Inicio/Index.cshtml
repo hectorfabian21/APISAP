@@ -7,7 +7,7 @@
 <br />
 
 <div class="col-lg-12 text-center">
-    <img src="~/img/imagen.jpg" style="width:75%" />    
+    <img src="~/img/Logo.jpg" style="width:75%" />    
 </div>
 
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -67,7 +67,8 @@
         </td>
         
         <td>
-            @Html.ActionLink("Editar", "editar", new { id=item.Id }) |             
+            @Html.ActionLink("Editar", "editar", new { id=item.Id }) | 
+            @Html.ActionLink("Borrar", "borrarsubestacion", new { id = item.Id })|
             @Html.ActionLink("Ingresar", "Detalles", new { id = item.Id })
         </td>
     </tr>
