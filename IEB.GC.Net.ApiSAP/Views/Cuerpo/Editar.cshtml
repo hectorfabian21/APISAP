@@ -77,8 +77,7 @@
 
                 <div class="form-group ocultable Tipo_de_diagonal">
                     @Html.LabelFor(model => model.Tipo_de_diagonal, htmlAttributes: new { @class = "control-label col-md-6" })
-                    <div class="col-md-6">
-                        @Html.EditorFor(model => model.Tipo_de_diagonal, new { htmlAttributes = new { @class = "form-control", @Style = "display:none" } })
+                    <div class="col-md-6">                        
                         @Html.DropDownListFor(model => model.Tipo_de_diagonal, new SelectList(new List<Object>
                 { new {value="Z",text="Z" },
                   new {value="X", text="X" }}, "value", "text"),

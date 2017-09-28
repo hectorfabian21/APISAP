@@ -16,29 +16,7 @@ namespace IEB.GC.Net.ApiSAP.Models
         List<Cuerpo> lista = new List<Cuerpo>();
         APISAPEntities1 entidadesBD = new APISAPEntities1();
                 
-        //public void agregar(Cuerpo cuerpo)
-        //{
-        //    lista.Add(cuerpo);
-        //}
-
-        //public List<Cuerpo> Consultar()
-        //{
-        //    return lista;
-        //}
-
-        //public void Editar(int idCuerpo, Cuerpo cuerpo)
-        //{
-        //    Cuerpo cuerpoViejo = lista.Find(x => x.id_Cuerpo == idCuerpo);
-        //    lista.Remove(cuerpoViejo);
-        //    lista.Add(cuerpo);
-
-        //}
-
-        //public void Borrar(int idCuerpo)
-        //{
-        //    Cuerpo cuerpoViejo = lista.Find(x => x.id_Cuerpo == idCuerpo);
-        //    lista.Remove(cuerpoViejo);
-        //}
+       
 
         #region Operaciones BD
 
@@ -811,7 +789,6 @@ namespace IEB.GC.Net.ApiSAP.Models
            
             int i = 0;
             
-
             dx = Math.Abs(A1.X - A2.X) / (nd + cuerpo.Division_adicional);
             dy = Math.Abs(A1.Y - A2.Y) / (nd + cuerpo.Division_adicional);
             dz = Math.Abs(A1.Z - A2.Z) / (nd + cuerpo.Division_adicional);
@@ -853,7 +830,7 @@ namespace IEB.GC.Net.ApiSAP.Models
                 i++;
             }//creacion de puntos 
             List<Punto> P_principales = new List<Punto>();
-            P_principales = entidadesBD.Puntos.ToList();
+            P_principales = entidadesBD.Puntos.AsNoTracking().ToList();
             Borrar_puntos();
             foreach (Punto P in P_principales)
             {
@@ -929,8 +906,8 @@ namespace IEB.GC.Net.ApiSAP.Models
                                 Kmajor = 0;
                                 Kminor = 0;
                             }
-                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 17, 0.999);
-                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 18, 0.999);
+                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 17, 0.99);
+                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 18, 0.99);
                             ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 19, Kmajor);
                             ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 20, Kminor);
 
@@ -967,8 +944,8 @@ namespace IEB.GC.Net.ApiSAP.Models
                                 Kmajor = 0;
                                 Kminor = 0;
                             }
-                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 17, 0.999);
-                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 18, 0.999);
+                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 17, 0.99);
+                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 18, 0.99);
                             ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 19, Kmajor);
                             ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 20, Kminor);
 
@@ -1073,8 +1050,8 @@ namespace IEB.GC.Net.ApiSAP.Models
 
                                 }
                             }
-                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 17, 0.999);
-                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 18, 0.999);
+                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 17, 0.99);
+                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 18, 0.99);
                             ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 19, Kmajor);
                             ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 20, Kminor);
 
@@ -1140,8 +1117,8 @@ namespace IEB.GC.Net.ApiSAP.Models
 
                                 }
                             }
-                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 17, 0.999);
-                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 18, 0.999);
+                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 17, 0.99);
+                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 18, 0.99);
                             ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 19, Kmajor);
                             ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 20, Kminor);
 
@@ -1336,9 +1313,9 @@ namespace IEB.GC.Net.ApiSAP.Models
                             }
                             else
                             {
-                                Y2 = referencia.Y;
-                                X2 = ((Y2 - Pun1.Y) / Dy1) * Dx1 + Pun1.X;
-                                Z2 = ((Y2 - Pun1.Y) / Dy1) * Dz1 + Pun1.Z;
+                                Y1 = referencia.Y;
+                                X1= ((Y1 - Pun1.Y) / Dy1) * Dx1 + Pun1.X;
+                                Z1 = ((Y1 - Pun1.Y) / Dy1) * Dz1 + Pun1.Z;
                             }
                             L11 = Math.Sqrt(Math.Pow(Pun1.X - Pun2.X, 2) + Math.Pow(Pun1.Y - Pun2.Y, 2) + Math.Pow(Pun1.Z - Pun2.Z, 2));
                             L21 =Math.Max( Math.Sqrt(Math.Pow(Pun1.X - X1, 2) + Math.Pow(Pun1.Y - Y1, 2) + Math.Pow(Pun1.Z - Z1, 2)), Math.Sqrt(Math.Pow(X1 - Pun2.X, 2) + Math.Pow(Y1 - Pun2.Y, 2) + Math.Pow(Z1 - Pun2.Z, 2)));
@@ -1380,8 +1357,8 @@ namespace IEB.GC.Net.ApiSAP.Models
                                 }
                                 else if (Lr > 120 && Lr < 200)
                                 {
-                                    Kmajor = 1;
-                                    Kminor = 1;
+                                    Kmajor = 1 * K11;
+                                    Kminor = 1 * K11;
 
                                 }
                                 else
@@ -1391,12 +1368,12 @@ namespace IEB.GC.Net.ApiSAP.Models
 
                                 }
                             }
-                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 17, 0.999);
-                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 18, 0.999);
+                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 17, 0.99);
+                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 18, 0.99);
                             ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 19, Kmajor);
                             ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 20, Kminor);
-                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(Dx, 17, 0.999);
-                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(Dx, 18, 0.999);
+                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(Dx, 17, 0.99);
+                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(Dx, 18, 0.99);
                             ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(Dx, 19, Kmajor);
                             ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(Dx, 20, Kminor);
 
@@ -1415,7 +1392,7 @@ namespace IEB.GC.Net.ApiSAP.Models
 
                             if (Lr <= 120)
                             {
-                                KLr = 30 + 0.75 * Lr;
+                                KLr = 60 + 0.5 * Lr;
                                 Kmajor = KLr / Lr;
                                 Kminor = KLr / Lr;
 
@@ -1432,8 +1409,8 @@ namespace IEB.GC.Net.ApiSAP.Models
                                 Kmajor = 0;
                                 Kminor = 0;
                             }
-                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 17, 0.999);
-                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 18, 0.999);
+                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 17, 0.99);
+                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 18, 0.99);
                             ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 19, Kmajor);
                             ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 20, Kminor);
 
@@ -1441,10 +1418,7 @@ namespace IEB.GC.Net.ApiSAP.Models
                             #endregion
 
                         }//definicion de K para diagonales en Z
-
-
-
-
+                        
                     }
                     else
                     {
@@ -1518,9 +1492,9 @@ namespace IEB.GC.Net.ApiSAP.Models
                             }
                             else
                             {
-                                Y2 = referencia.Y;
-                                X2 = ((Y2 - Pun1.Y) / Dy1) * Dx1 + Pun1.X;
-                                Z2 = ((Y2 - Pun1.Y) / Dy1) * Dz1 + Pun1.Z;
+                                Y1 = referencia.Y;
+                                X1 = ((Y1 - Pun1.Y) / Dy1) * Dx1 + Pun1.X;
+                                Z1 = ((Y1 - Pun1.Y) / Dy1) * Dz1 + Pun1.Z;
                             }
                             L11 = Math.Sqrt(Math.Pow(Pun1.X - Pun2.X, 2) + Math.Pow(Pun1.Y - Pun2.Y, 2) + Math.Pow(Pun1.Z - Pun2.Z, 2));
                             L21 = Math.Max(Math.Sqrt(Math.Pow(Pun1.X - X1, 2) + Math.Pow(Pun1.Y - Y1, 2) + Math.Pow(Pun1.Z - Z1, 2)), Math.Sqrt(Math.Pow(X1 - Pun2.X, 2) + Math.Pow(Y1 - Pun2.Y, 2) + Math.Pow(Z1 - Pun2.Z, 2)));
@@ -1562,8 +1536,8 @@ namespace IEB.GC.Net.ApiSAP.Models
                                 }
                                 else if (Lr > 120 && Lr < 200)
                                 {
-                                    Kmajor = 1;
-                                    Kminor = 1;
+                                    Kmajor = 1 * K11;
+                                    Kminor = 1 * K11;
 
                                 }
                                 else
@@ -1573,12 +1547,12 @@ namespace IEB.GC.Net.ApiSAP.Models
 
                                 }
                             }
-                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 17, 0.999);
-                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 18, 0.999);
+                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 17, 0.99);
+                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 18, 0.99);
                             ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 19, Kmajor);
                             ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 20, Kminor);
-                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(Dx, 17, 0.999);
-                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(Dx, 18, 0.999);
+                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(Dx, 17, 0.99);
+                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(Dx, 18, 0.99);
                             ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(Dx, 19, Kmajor);
                             ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(Dx, 20, Kminor);
 
@@ -1597,7 +1571,7 @@ namespace IEB.GC.Net.ApiSAP.Models
 
                             if (Lr <= 120)
                             {
-                                KLr = 30 + 0.75 * Lr;
+                                KLr = 60 + 0.5 * Lr;
                                 Kmajor = KLr / Lr;
                                 Kminor = KLr / Lr;
 
@@ -1614,8 +1588,8 @@ namespace IEB.GC.Net.ApiSAP.Models
                                 Kmajor = 0;
                                 Kminor = 0;
                             }
-                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 17, 0.999);
-                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 18, 0.999);
+                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 17, 0.99);
+                            ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 18, 0.99);
                             ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 19, Kmajor);
                             ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 20, Kminor);
 
@@ -1673,7 +1647,38 @@ namespace IEB.GC.Net.ApiSAP.Models
                     string P1 = "" + referencia.Id + c1 + "1" + referencia.Divisiones;
                     string P2 = "" + referencia.Id + c2 + "1" + referencia.Divisiones;
                     string M = "" + referencia.Id + "MV" + (i + 1 + referencia.Divisiones);
-                    ret = subestacion.FrameObj.AddByPoint(P1, P2, ref M, Montante_viga.Nombre_del_perfil, M);
+                    ret = subestacion.FrameObj.AddByPoint(P1, P2, ref M, Montante_viga.Nombre_del_perfil, M);                    
+                    #region asignacion de K
+                    double L11, Kmajor, Kminor, Lr, KLr;
+                    Punto Pun1 = P_principales.Find(x => x.Name.Equals(P1));
+                    Punto Pun2 = P_principales.Find(x => x.Name.Equals(P2));
+                    L11 = Math.Sqrt(Math.Pow(Pun1.X - Pun2.X, 2) + Math.Pow(Pun1.Y - Pun2.Y, 2) + Math.Pow(Pun1.Z - Pun2.Z, 2));
+
+                    Lr = (L11 / Montante_viga.Rz__mm_.Value);
+                    if (Lr <= 120)
+                    {
+                        Kmajor = 1;
+                        Kminor = 1;
+
+                    }
+                    else if (Lr > 120 && Lr < 250)
+                    {
+                        KLr = 46.2 + 0.615 * Lr;
+                        Kmajor = 1;
+                        Kminor = 1;
+
+                    }
+                    else
+                    {
+                        Kmajor = 0;
+                        Kminor = 0;
+                    }
+                    ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 17, 0.99);
+                    ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 18, 0.99);
+                    ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 19, Kmajor);
+                    ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 20, Kminor);
+
+                    #endregion
                     ret = subestacion.FrameObj.SetReleases(M, ref II, ref JJ, ref Valorinicio, ref Valorfinal, tipo);
                     ret = subestacion.FrameObj.SetGroupAssign(M, "Montante Viga");
                     ret = subestacion.FrameObj.SetGroupAssign(M, referencia.Elemento);
@@ -1683,6 +1688,37 @@ namespace IEB.GC.Net.ApiSAP.Models
                     P2 = "" + referencia.Id + c2 + "1" + (nd + referencia.Divisiones);
                     M = "" + referencia.Id + "MV" + (i + 1 + (nd + referencia.Divisiones));
                     ret = subestacion.FrameObj.AddByPoint(P1, P2, ref M, Montante_viga.Nombre_del_perfil, M);
+                    #region asignacion de K
+                    
+                    Pun1 = P_principales.Find(x => x.Name.Equals(P1));
+                    Pun2 = P_principales.Find(x => x.Name.Equals(P2));
+                    L11 = Math.Sqrt(Math.Pow(Pun1.X - Pun2.X, 2) + Math.Pow(Pun1.Y - Pun2.Y, 2) + Math.Pow(Pun1.Z - Pun2.Z, 2));
+
+                    Lr = (L11 / Montante_viga.Rz__mm_.Value);
+                    if (Lr <= 120)
+                    {
+                        Kmajor = 1;
+                        Kminor = 1;
+
+                    }
+                    else if (Lr > 120 && Lr < 250)
+                    {
+                       
+                        Kmajor = 1;
+                        Kminor = 1;
+
+                    }
+                    else
+                    {
+                        Kmajor = 0;
+                        Kminor = 0;
+                    }
+                    ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 17, 0.99);
+                    ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 18, 0.99);
+                    ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 19, Kmajor);
+                    ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 20, Kminor);
+
+                    #endregion
                     ret = subestacion.FrameObj.SetReleases(M, ref II, ref JJ, ref Valorinicio, ref Valorfinal, tipo);
                     ret = subestacion.FrameObj.SetLocalAxes(M, 270);
                     ret = subestacion.FrameObj.SetGroupAssign(M, "Montante Viga");
@@ -1721,6 +1757,84 @@ namespace IEB.GC.Net.ApiSAP.Models
                     string P2 = "" + referencia.Id + c2 + "1" + referencia.Divisiones;
                     string M = "" + referencia.Id + 2 + "MV" + (i + 1 + referencia.Divisiones);
                     ret = subestacion.FrameObj.AddByPoint(P1, P2, ref M, Diagonal_viga.Nombre_del_perfil, M);
+                    //*************************************
+                    #region asignacion de K
+                    double a, b, a1, b1, a2, b2, L11, L21, L31, L41, L12, L22, L32, L42, Dx1, Dx2, Dy1, Dy2, Dz1, Dz2, X1 = 1, X2, Y1 = 1, Y2, Z1 = 1, Z2, K11, K21, K12, K22, Kmajor, Kminor, Lr, KLr;
+                    Punto Pun1 = P_principales.Find(x => x.Name.Equals(P1));
+                    Punto Pun2 = P_principales.Find(x => x.Name.Equals(P2));
+                    K21 = Diagonal_viga.Rz__mm_.Value / Diagonal_viga.R33__mm_.Value;
+                    Dx1 = (Pun1.X - Pun2.X);
+                    Dy1 = (Pun1.Y - Pun2.Y);
+                    Dz1 = (Pun1.Z - Pun2.Z);
+                    if (Dx1 > Dy1)
+                    {
+                        X1 = referencia.X;
+                        Y1 = ((X1 - Pun1.X) / Dx1) * Dy1 + Pun1.Y;
+                        Z1 = ((X1 - Pun1.X) / Dx1) * Dz1 + Pun1.Z;
+                    }
+                    else
+                    {
+                        Y1 = referencia.Y;
+                        X1 = ((Y1 - Pun1.Y) / Dy1) * Dx1 + Pun1.X;
+                        Z1 = ((Y1 - Pun1.Y) / Dy1) * Dz1 + Pun1.Z;
+                    }
+                    L11 = Math.Sqrt(Math.Pow(Pun1.X - Pun2.X, 2) + Math.Pow(Pun1.Y - Pun2.Y, 2) + Math.Pow(Pun1.Z - Pun2.Z, 2));
+                    L21 = Math.Max(Math.Sqrt(Math.Pow(Pun1.X - X1, 2) + Math.Pow(Pun1.Y - Y1, 2) + Math.Pow(Pun1.Z - Z1, 2)), Math.Sqrt(Math.Pow(X1 - Pun2.X, 2) + Math.Pow(Y1 - Pun2.Y, 2) + Math.Pow(Z1 - Pun2.Z, 2)));
+                    L31 = Math.Sqrt(Math.Pow(X1 - Pun2.X, 2) + Math.Pow(Y1 - Pun2.Y, 2) + Math.Pow(Z1 - Pun2.Z, 2));
+                    K11 = L21 / L11;
+                    if (K21 > K11)
+                    {
+                        Lr = (K21 * L11 / Diagonal_viga.Rz__mm_.Value);
+
+                        if (Lr <= 120)
+                        {
+                            KLr = 30 + 0.75 * Lr;
+                            Kmajor = KLr / Lr;
+                            Kminor = KLr / Lr;
+
+                        }
+                        else if (Lr > 120 && Lr < 200)
+                        {
+
+                            Kmajor = 1;
+                            Kminor = 1;
+
+                        }
+                        else
+                        {
+                            Kmajor = 0;
+                            Kminor = 0;
+                        }
+                    }
+                    else
+                    {
+                        Lr = (K11 * L11 / Diagonal_viga.Rz__mm_.Value);
+                        if (Lr <= 120)
+                        {
+                            KLr = 30 + 0.75 * Lr;
+                            Kmajor = (KLr / Lr) * K11;
+                            Kminor = (KLr / Lr) * K11;
+
+                        }
+                        else if (Lr > 120 && Lr < 200)
+                        {
+                            Kmajor = 1 * K11;
+                            Kminor = 1 * K11;
+
+                        }
+                        else
+                        {
+                            Kmajor = 0;
+                            Kminor = 0;
+
+                        }
+                    }
+                    ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 17, 0.99);
+                    ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 18, 0.99);
+                    ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 19, Kmajor);
+                    ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 20, Kminor);                   
+                    #endregion
+
                     ret = subestacion.FrameObj.SetReleases(M, ref II, ref JJ, ref Valorinicio, ref Valorfinal, tipo);
                     if (i == 1)
                     {
@@ -1735,6 +1849,12 @@ namespace IEB.GC.Net.ApiSAP.Models
                     P2 = "" + referencia.Id + c2 + "1" + (nd + referencia.Divisiones);
                     M = "" + referencia.Id + "DV" + (i + 1 + (nd + referencia.Divisiones));
                     ret = subestacion.FrameObj.AddByPoint(P1, P2, ref M, Diagonal_viga.Nombre_del_perfil, M);
+                    #region asignacion de K
+                    ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 17, 0.99);
+                    ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 18, 0.99);
+                    ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 19, Kmajor);
+                    ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 20, Kminor);
+                    #endregion
                     ret = subestacion.FrameObj.SetReleases(M, ref II, ref JJ, ref Valorinicio, ref Valorfinal, tipo);
                     if (i == 1)
                     {
@@ -1876,1136 +1996,12 @@ namespace IEB.GC.Net.ApiSAP.Models
             return referencia;
 
         }
-
-        public Ensamble_subestacion crear_cuerpo1(CuerposDeElemento cuerpo, Ensamble_subestacion referencia, cSapModel subestacion,int n)
-        {
-            int ret = 0;
-            #region grupos particulares
-            ret = subestacion.GroupDef.SetGroup(referencia.Elemento);
-            ret = subestacion.GroupDef.SetGroup(referencia.Elemento + referencia.Id);
-            #endregion
-            #region definicion de perfiles para el cuerpo
-            double CcM, CcD, CcMV, CcDV, CcMC, CcDC;
-            Perfile Montante, Diagonal, Montante_viga, Diagonal_viga, Montante_Castillete, Diagonal_castillete;
-            if (string.IsNullOrWhiteSpace(cuerpo.PerfilMontante))
-            {
-                Montante = entidadesBD.Perfiles.ToList().Find(x => (x.Nivel_de_tensio.Equals(cuerpo.Nivel_de_tension) && x.Uso_del_perfil.Equals("Montante")));
-                Material acero = entidadesBD.Materials.ToList().Find(x => x.NombreMaterial.Equals(Montante.Material_del_perfil));
-                CcM = Math.PI * Math.Sqrt((2 * acero.E_Material) / (acero.Fy_Material));
-            }
-            else
-            {
-                Montante = entidadesBD.Perfiles.ToList().Find(x => (x.id_subestacion == referencia.id_Subestacion && x.Nombre_del_perfil.Equals(cuerpo.PerfilMontante)));
-                Material acero = entidadesBD.Materials.ToList().Find(x => x.NombreMaterial.Equals(Montante.Material_del_perfil));
-                CcM = Math.PI * Math.Sqrt((2 * acero.E_Material) / (acero.Fy_Material));
-            }
-
-            if (string.IsNullOrWhiteSpace(cuerpo.PerfilDiagonarl))
-            {
-                Diagonal = entidadesBD.Perfiles.ToList().Find(x => (x.Nivel_de_tensio.Equals(cuerpo.Nivel_de_tension) && x.Uso_del_perfil.Equals("Diagonal")));
-                Material acero = entidadesBD.Materials.ToList().Find(x => x.NombreMaterial.Equals(Diagonal.Material_del_perfil));
-                CcD = Math.PI * Math.Sqrt((2 * acero.E_Material) / (acero.Fy_Material));
-            }
-            else
-            {
-                Diagonal = entidadesBD.Perfiles.ToList().Find(x => (x.id_subestacion == referencia.id_Subestacion && x.Nombre_del_perfil.Equals(cuerpo.PerfilDiagonarl)));
-                Material acero = entidadesBD.Materials.ToList().Find(x => x.NombreMaterial.Equals(Diagonal.Material_del_perfil));
-                CcD = Math.PI * Math.Sqrt((2 * acero.E_Material) / (acero.Fy_Material));
-            }
-
-            if (string.IsNullOrWhiteSpace(cuerpo.PerfilMontanteViga))
-            {
-                 Montante_viga = entidadesBD.Perfiles.ToList().Find(x => (x.Nivel_de_tensio.Equals(cuerpo.Nivel_de_tension) && x.Uso_del_perfil.Equals("Montante Viga")));
-                Material acero = entidadesBD.Materials.ToList().Find(x => x.NombreMaterial.Equals(Montante_viga.Material_del_perfil));
-                CcMV = Math.PI * Math.Sqrt((2 * acero.E_Material) / (acero.Fy_Material));
-            }
-            else
-            {
-                Montante_viga = entidadesBD.Perfiles.ToList().Find(x => (x.id_subestacion == referencia.id_Subestacion && x.Nombre_del_perfil.Equals(cuerpo.PerfilMontanteViga)));
-                Material acero = entidadesBD.Materials.ToList().Find(x => x.NombreMaterial.Equals(Montante_viga.Material_del_perfil));
-                CcMV = Math.PI * Math.Sqrt((2 * acero.E_Material) / (acero.Fy_Material));
-            }
-
-            if (string.IsNullOrWhiteSpace(cuerpo.PerfilDiagonalViga))
-            {
-                Diagonal_viga = entidadesBD.Perfiles.ToList().Find(x => (x.Nivel_de_tensio.Equals(cuerpo.Nivel_de_tension) && x.Uso_del_perfil.Equals("Diagonal viga")));
-                Material acero = entidadesBD.Materials.ToList().Find(x => x.NombreMaterial.Equals(Diagonal_viga.Material_del_perfil));
-                CcDV = Math.PI * Math.Sqrt((2 * acero.E_Material) / (acero.Fy_Material));
-            }
-            else
-            {
-                Diagonal_viga = entidadesBD.Perfiles.ToList().Find(x => (x.id_subestacion == referencia.id_Subestacion && x.Nombre_del_perfil.Equals(cuerpo.PerfilDiagonalViga)));
-                Material acero = entidadesBD.Materials.ToList().Find(x => x.NombreMaterial.Equals(Diagonal_viga.Material_del_perfil));
-                CcDV = Math.PI * Math.Sqrt((2 * acero.E_Material) / (acero.Fy_Material));
-            }
-
-            if (string.IsNullOrWhiteSpace(cuerpo.PerfilMontanteCastillete))
-            {
-                Montante_Castillete = entidadesBD.Perfiles.ToList().Find(x => (x.Nivel_de_tensio.Equals(cuerpo.Nivel_de_tension) && x.Uso_del_perfil.Equals("Montante Castillete")));
-                Material acero = entidadesBD.Materials.ToList().Find(x => x.NombreMaterial.Equals(Montante_Castillete.Material_del_perfil));
-                CcMC = Math.PI * Math.Sqrt((2 * acero.E_Material) / (acero.Fy_Material));
-            }
-            else
-            {
-                Montante_Castillete = entidadesBD.Perfiles.ToList().Find(x => (x.id_subestacion == referencia.id_Subestacion && x.Nombre_del_perfil.Equals(cuerpo.PerfilMontanteCastillete)));
-                Material acero = entidadesBD.Materials.ToList().Find(x => x.NombreMaterial.Equals(Montante_Castillete.Material_del_perfil));
-                CcMC = Math.PI * Math.Sqrt((2 * acero.E_Material) / (acero.Fy_Material));
-            }
-
-            if (string.IsNullOrWhiteSpace(cuerpo.PerfilDiagonalCastillete))
-            {
-                Diagonal_castillete = entidadesBD.Perfiles.ToList().Find(x => (x.Nivel_de_tensio.Equals(cuerpo.Nivel_de_tension) && x.Uso_del_perfil.Equals("Diagonal castillete")));
-                Material acero = entidadesBD.Materials.ToList().Find(x => x.NombreMaterial.Equals(Diagonal_castillete.Material_del_perfil));
-                CcDC = Math.PI * Math.Sqrt((2 * acero.E_Material) / (acero.Fy_Material));
-            }
-            else
-            {
-                Diagonal_castillete = entidadesBD.Perfiles.ToList().Find(x => (x.id_subestacion == referencia.id_Subestacion && x.Nombre_del_perfil.Equals(cuerpo.PerfilDiagonalCastillete)));
-                Material acero = entidadesBD.Materials.ToList().Find(x => x.NombreMaterial.Equals(Diagonal_castillete.Material_del_perfil));
-                CcDC = Math.PI * Math.Sqrt((2 * acero.E_Material) / (acero.Fy_Material));
-            }
-            #endregion
-            #region PUNTOS PRINCIPALES DEL CUERPO A CREAR
-            Punto Point = new Punto();
-
-            Punto A1 = new Punto();
-            Punto A2 = new Punto();
-            Punto B1 = new Punto();
-            Punto B2 = new Punto();
-            Punto C1 = new Punto();
-            Punto C2 = new Punto();
-            Punto D1 = new Punto();
-            Punto D2 = new Punto();
-
-
-            A1.Name = "" + cuerpo.Id_Cuerpo + "A10";
-            A1.X = referencia.X - cuerpo.Ancho_inferior * 0.5; ;
-            A1.Y = referencia.Y - cuerpo.Largo_Inferior * 0.5;
-            A1.Z = referencia.Z;
-            A1.MyName = "" + cuerpo.Id_Cuerpo + "A10";
-            A1.IdCuerpo = cuerpo.Id_Cuerpo;
-            
-            A2.Name = "" + cuerpo.Id_Cuerpo + "A2";
-            A2.X = referencia.X - cuerpo.Ancho_superior * 0.5;
-            A2.Y = referencia.Y - cuerpo.Largo_Superior * 0.5;
-            A2.Z = referencia.Z + cuerpo.Altura;
-            A2.MyName = "" + cuerpo.Id_Cuerpo + "A2";
-            A2.IdCuerpo = cuerpo.Id_Cuerpo;
-            
-            B1.Name = "" + cuerpo.Id_Cuerpo + "B10";
-            B1.X = referencia.X + cuerpo.Ancho_inferior * 0.5; ;
-            B1.Y = referencia.Y - cuerpo.Largo_Inferior * 0.5;
-            B1.Z = referencia.Z;
-            B1.MyName = "" + cuerpo.Id_Cuerpo + "B10";
-            B1.IdCuerpo = cuerpo.Id_Cuerpo;
-            
-            B2.Name = "" + cuerpo.Id_Cuerpo + "B2";
-            B2.X = referencia.X + cuerpo.Ancho_superior * 0.5;
-            B2.Y = referencia.Y - cuerpo.Largo_Superior * 0.5;
-            B2.Z = referencia.Z + cuerpo.Altura;
-            B2.MyName = "" + cuerpo.Id_Cuerpo + "B2";
-            B2.IdCuerpo = cuerpo.Id_Cuerpo;
-            
-            C1.Name = "" + cuerpo.Id_Cuerpo + "C10";
-            C1.X = referencia.X + cuerpo.Ancho_inferior * 0.5; ;
-            C1.Y = referencia.Y + cuerpo.Largo_Inferior * 0.5;
-            C1.Z = referencia.Z;
-            C1.MyName = "" + cuerpo.Id_Cuerpo + "C10";
-            C1.IdCuerpo = cuerpo.Id_Cuerpo;
-            
-            C2.Name = "" + cuerpo.Id_Cuerpo + "C2";
-            C2.X = referencia.X + cuerpo.Ancho_superior * 0.5;
-            C2.Y = referencia.Y + cuerpo.Largo_Superior * 0.5;
-            C2.Z = referencia.Z + cuerpo.Altura;
-            C2.MyName = "" + cuerpo.Id_Cuerpo + "C2";
-            C2.IdCuerpo = cuerpo.Id_Cuerpo;
-            
-            D1.Name = "" + cuerpo.Id_Cuerpo + "D10";
-            D1.X = referencia.X - cuerpo.Ancho_inferior * 0.5; ;
-            D1.Y = referencia.Y + cuerpo.Largo_Inferior * 0.5;
-            D1.Z = referencia.Z;
-            D1.MyName = "" + cuerpo.Id_Cuerpo + "D10";
-            D1.IdCuerpo = cuerpo.Id_Cuerpo;
-            
-            D2.Name = "" + cuerpo.Id_Cuerpo + "D2";
-            D2.X = referencia.X - cuerpo.Ancho_superior * 0.5;
-            D2.Y = referencia.Y + cuerpo.Largo_Superior * 0.5;
-            D2.Z = referencia.Z + cuerpo.Altura;
-            D2.MyName = "" + cuerpo.Id_Cuerpo + "D2";
-            D2.IdCuerpo = cuerpo.Id_Cuerpo;
-            #endregion
-            #region definicion de longitud de montantes y diagonal del cuerpo
-            double Lm, nd, ld, dx = 0, dy = 0, dz = 0, X, Y, Z, ld1, ld2,Lrz1,Lrx1, Lrz2, Lrx2,Lrz3, Lrx3, Lm1, Lm2, Lm3, ldmax;
-            Lm = Math.Sqrt(Math.Pow(A1.X - A2.X, 2) + Math.Pow(A1.Y - A2.Y, 2) + Math.Pow(A1.Z - A2.Z, 2));            
-            if (cuerpo.TipoDeElemento.Equals("Cuerpo de Castillete"))
-            {
-                #region definicion de numero de tramos de montante en el cuerpo
-                if (cuerpo.Tipo_de_diagonal.Equals("X"))
-                {   
-                    Lrz1 = CcMC;
-                    Lrz2 = (CcMC - 46.2) / 0.615;
-
-                    if(Lrz1<=120)
-                    {
-                        Lm1 = Lrz1 * Montante_Castillete.Rz__mm_.Value;
-                    }
-                    else
-                    {
-                        Lm1=Lrz2* Montante_Castillete.Rz__mm_.Value;
-                    }                    
-                    nd = Math.Round((Lm  / Lm1) + 0.499);
-                }
-                else
-                {
-                    double c1 = Montante_Castillete.Rz__mm_.Value / Montante_Castillete.R22__mm_.Value;
-                    Lrz1 = CcMC;
-                    Lrz2 = (CcMC - 46.2) / 0.615;
-                    if (Lrz1 <= 120)
-                    {
-                        Lm1 = Lrz1 * Montante_Castillete.Rz__mm_.Value*2;
-                        Lm2 = Lrz1* Montante_Castillete.Rz__mm_.Value * c1;
-                        Lm3 = Math.Min(Lm1, Lm2);
-                    }
-                    else
-                    {
-                        Lm1 = Lrz2 * Montante_Castillete.Rz__mm_.Value*2;
-                        Lm2 = Lrz2 * Montante_Castillete.Rz__mm_.Value * c1;
-                        Lm3 = Math.Min(Lm1, Lm2);
-                    }
-                    nd = Math.Round((Lm/Lm3) + 0.499);
-                }
-                #endregion
-                #region definicion de longitud de diagonal
-                ld = 100000;
-                ldmax = 10000;
-                while (ld > ldmax)
-                {
-                    dx = Math.Abs(A1.X - A2.X) / (nd+ cuerpo.Division_adicional);
-                    dy = Math.Abs(A1.Y - A2.Y) / (nd + cuerpo.Division_adicional);
-                    dz = Math.Abs(A1.Z - A2.Z) / (nd + cuerpo.Division_adicional);
-                    X = A1.X + dx;
-                    Y = A1.Y + dy;
-                    Z = A1.Z + dz;
-                    double[,] V1 = new double[3, 2];
-                    double[,] V2 = new double[3, 2];
-                    double[] L1 = new double[3];
-                    double[] L2 = new double[3];
-                    double r1, r2;
-                    double c1 = Diagonal_castillete.Rz__mm_.Value / Diagonal_castillete.R22__mm_.Value;
-                    double ldmax1, ldmax2;
-                    V1[0, 0] = B1.X - X;
-                    V1[1, 0] = B1.Y - Y;
-                    V1[2, 0] = B1.Z - Z;
-                    V1[0, 1] = A1.X+(B1.X - A1.X)*0.5;
-                    V1[1, 1] = (((V1[0, 1]- X)/ V1[0, 0])* V1[1, 0])+Y;
-                    V1[2, 1] = (((V1[0, 1] - X) / V1[0, 0]) * V1[2, 0]) + Z;
-                    L1[0] = Math.Sqrt(Math.Pow(B1.X - X, 2) + Math.Pow(B1.Y - Y, 2) + Math.Pow(B1.Z - Z, 2));
-                    L1[1] = Math.Sqrt(Math.Pow(V1[0, 1] - X, 2) + Math.Pow(V1[1, 1] - Y, 2) + Math.Pow(V1[2, 1] - Z, 2));
-                    L1[2] = Math.Sqrt(Math.Pow(V1[0, 1] - B1.X, 2) + Math.Pow(V1[1, 1] - B1.Y, 2) + Math.Pow(V1[2, 1] - B1.Z, 2));
-                    r1 = L1[2] / L1[0];
-                    
-                    if (cuerpo.Tipo_de_diagonal.Equals("X"))
-                    {
-                        Lrz1 = (CcDC - 60) / 0.5;
-                        Lrz2 = CcDC;
-                        Lrz3= (CcDC - 30) / (0.75*r1);
-                        if (Lrz1 <= 120 && Lrz1<Lrz3)
-                        {
-                            Lm1 = Lrz1 * Diagonal_castillete.Rz__mm_.Value/c1;
-                            Lm2 = Lrz1 * Diagonal_castillete.Rz__mm_.Value / r1;   
-                            
-                            ldmax1 = Math.Min(Lm1, Lm2);
-                        }
-                        else if (Lrz3 <= 120 && Lrz3 < Lrz1)
-                        {
-                            Lm1 = Lrz1 * Diagonal_castillete.Rz__mm_.Value / c1;
-                            Lm2 = Lrz3 * Diagonal_castillete.Rz__mm_.Value ;
-                            ldmax1 = Math.Min(Lm1, Lm2);
-                        }
-                        else
-                        {
-                            Lm1 = Lrz2 * Diagonal_castillete.Rz__mm_.Value/c1;
-                            Lm2 = Lrz2 * Diagonal_castillete.Rz__mm_.Value / r1;
-                            ldmax1 = Math.Min(Lm1, Lm2);
-                        }
-                    }
-                    else
-                    {
-                        Lrz1 = (CcDC - 60) / 0.5;
-                        Lrz2 = CcDC;
-                        if (Lrz1 <= 120)
-                        {
-                            Lm1 = Lrz1 * Diagonal_castillete.Rz__mm_.Value;
-                        }
-                        else
-                        {
-                            Lm1 = Lrz2 * Diagonal_castillete.Rz__mm_.Value;
-                        }
-                        ldmax1 = Lm1;
-                    }
-                    V2[0, 0] = D1.X - X;
-                    V2[1, 0] = D1.Y - Y;
-                    V2[2, 0] = D1.Z - Z;
-                    V2[1, 1] = A1.Y + (D1.Y - A1.Y) * 0.5;
-                    V2[0, 1] = (((V2[1, 1] - Y) / V2[1, 0]) * V2[0, 0]) + X;
-                    V2[2, 1] = (((V2[1, 1] - Y) / V2[1, 0]) * V2[2, 0]) + Z;
-                    L2[0]= Math.Sqrt(Math.Pow(D1.X - X, 2) + Math.Pow(D1.Y - Y, 2) + Math.Pow(D1.Z - Z, 2));
-                    L2[1] = Math.Sqrt(Math.Pow(V2[0, 1] - X, 2) + Math.Pow(V2[1, 1] - Y, 2) + Math.Pow(V2[2, 1] - Z, 2));
-                    L2[2] = Math.Sqrt(Math.Pow(D1.X - V2[0, 1], 2) + Math.Pow(D1.Y - V2[1, 1], 2) + Math.Pow(D1.Z - V2[2, 1], 2));
-                    r2 = L2[2] / L2[0];
-                    if (cuerpo.Tipo_de_diagonal.Equals("X"))
-                    {
-                        Lrz1 = (CcDC - 60) / 0.5;
-                        Lrz2 = CcDC;
-                        Lrz3 = (CcDC - 30) / (0.75 * r2);
-                        if (Lrz1 <= 120 && Lrz1 < Lrz3)
-                        {
-                            Lm1 = Lrz1 * Diagonal_castillete.Rz__mm_.Value / c1;
-                            Lm2 = Lrz1 * Diagonal_castillete.Rz__mm_.Value / r2;
-
-                            ldmax2 = Math.Min(Lm1, Lm2);
-                        }
-                        else if (Lrz3 <= 120 && Lrz3 < Lrz1)
-                        {
-                            Lm1 = Lrz1 * Diagonal_castillete.Rz__mm_.Value / c1;
-                            Lm2 = Lrz3 * Diagonal_castillete.Rz__mm_.Value;
-                            ldmax2 = Math.Min(Lm1, Lm2);
-                        }
-                        else
-                        {
-                            Lm1 = Lrz2 * Diagonal_castillete.Rz__mm_.Value / c1;
-                            Lm2 = Lrz2 * Diagonal_castillete.Rz__mm_.Value / r2;
-                            ldmax2 = Math.Min(Lm1, Lm2);
-                        }
-                    }
-                    else
-                    {
-                        Lrz1 = (CcDC - 60) / 0.5;
-                        Lrz2 = CcDC;
-                        if (Lrz1 <= 120)
-                        {
-                            Lm1 = Lrz1 * Diagonal_castillete.Rz__mm_.Value;
-                        }
-                        else
-                        {
-                            Lm1 = Lrz2 * Diagonal_castillete.Rz__mm_.Value;
-                        }
-                        ldmax2 = Lm1;
-                    }
-                    ldmax = Math.Min(ldmax1, ldmax2);                    
-                    ld = Math.Max(L1[0], L2[0]);
-                    if (ld > ldmax)
-                    {
-                        nd = nd + 1;
-                    }
-                }//definicion de longitud de diagonal
-                #endregion
-            }
-            else
-            {
-                #region definicion de numero de tramos de montante en el cuerpo
-                if (cuerpo.Tipo_de_diagonal.Equals("X"))
-                {
-                    Lrz1 = CcM;
-                    Lrz2 = (CcM - 46.2) / 0.615;
-
-                    if (Lrz1 <= 120)
-                    {
-                        Lm1 = Lrz1 * Montante.Rz__mm_.Value;
-                    }
-                    else
-                    {
-                        Lm1 = Lrz2 * Montante.Rz__mm_.Value;
-                    }
-                    nd = Math.Round((Lm / Lm1) + 0.499);
-                }
-                else
-                {
-                    double c1 = Montante.Rz__mm_.Value / Montante.R22__mm_.Value;
-                    Lrz1 = CcM;
-                    Lrz2 = (CcM - 46.2) / 0.615;
-                    if (Lrz1 <= 120)
-                    {
-                        Lm1 = Lrz1 * Montante.Rz__mm_.Value * 2;
-                        Lm2 = Lrz1 * Montante.Rz__mm_.Value * c1;
-                        Lm3 = Math.Min(Lm1, Lm2);
-                    }
-                    else
-                    {
-                        Lm1 = Lrz2 * Montante.Rz__mm_.Value * 2;
-                        Lm2 = Lrz2 * Montante.Rz__mm_.Value * c1;
-                        Lm3 = Math.Min(Lm1, Lm2);
-                    }
-                    nd = Math.Round((Lm / Lm3) + 0.499);
-                }
-                #endregion
-                #region definicion de longitud de diagonal
-                ld = 100000;
-                ldmax = 10000;
-              while (ld > ldmax)
-              {
-                dx = Math.Abs(A1.X - A2.X) / (nd + cuerpo.Division_adicional);
-                dy = Math.Abs(A1.Y - A2.Y) / (nd + cuerpo.Division_adicional);
-                dz = Math.Abs(A1.Z - A2.Z) / (nd + cuerpo.Division_adicional);
-                X = A1.X + dx;
-                Y = A1.Y + dy;
-                Z = A1.Z + dz;
-
-
-                    double[,] V1 = new double[3, 2];
-                    double[,] V2 = new double[3, 2];
-                    double[] L1 = new double[3];
-                    double[] L2 = new double[3];
-                    double r1, r2;
-                    double c1 = Diagonal.Rz__mm_.Value / Diagonal.R22__mm_.Value;
-                    double ldmax1, ldmax2;
-                    V1[0, 0] = B1.X - X;
-                    V1[1, 0] = B1.Y - Y;
-                    V1[2, 0] = B1.Z - Z;
-                    V1[0, 1] = A1.X + (B1.X - A1.X) * 0.5;
-                    V1[1, 1] = (((V1[0, 1] - X) / V1[0, 0]) * V1[1, 0]) + Y;
-                    V1[2, 1] = (((V1[0, 1] - X) / V1[0, 0]) * V1[2, 0]) + Z;
-                    L1[0] = Math.Sqrt(Math.Pow(B1.X - X, 2) + Math.Pow(B1.Y - Y, 2) + Math.Pow(B1.Z - Z, 2));
-                    L1[1] = Math.Sqrt(Math.Pow(V1[0, 1] - X, 2) + Math.Pow(V1[1, 1] - Y, 2) + Math.Pow(V1[2, 1] - Z, 2));
-                    L1[2] = Math.Sqrt(Math.Pow(V1[0, 1] - B1.X, 2) + Math.Pow(V1[1, 1] - B1.Y, 2) + Math.Pow(V1[2, 1] - B1.Z, 2));
-                    r1 = L1[2] / L1[0];
-
-                    if (cuerpo.Tipo_de_diagonal.Equals("X"))
-                    {
-                        Lrz1 = (CcD - 60) / 0.5;
-                        Lrz2 = CcD;
-                        Lrz3 = (CcD - 30) / (0.75 * r1);
-                        if (Lrz1 <= 120 && Lrz1 < Lrz3)
-                        {
-                            Lm1 = Lrz1 * Diagonal.Rz__mm_.Value / c1;
-                            Lm2 = Lrz1 * Diagonal.Rz__mm_.Value / r1;
-
-                            ldmax1 = Math.Min(Lm1, Lm2);
-                        }
-                        else if (Lrz3 <= 120 && Lrz3 < Lrz1)
-                        {
-                            Lm1 = Lrz1 * Diagonal.Rz__mm_.Value / c1;
-                            Lm2 = Lrz3 * Diagonal.Rz__mm_.Value;
-                            ldmax1 = Math.Min(Lm1, Lm2);
-                        }
-                        else
-                        {
-                            Lm1 = Lrz2 * Diagonal.Rz__mm_.Value / c1;
-                            Lm2 = Lrz2 * Diagonal.Rz__mm_.Value / r1;
-                            ldmax1 = Math.Min(Lm1, Lm2);
-                        }
-                    }
-                    else
-                    {
-                        Lrz1 = (CcD - 60) / 0.5;
-                        Lrz2 = CcD;
-                        if (Lrz1 <= 120)
-                        {
-                            Lm1 = Lrz1 * Diagonal.Rz__mm_.Value;
-                        }
-                        else
-                        {
-                            Lm1 = Lrz2 * Diagonal.Rz__mm_.Value;
-                        }
-                        ldmax1 = Lm1;
-                    }
-                    V2[0, 0] = D1.X - X;
-                    V2[1, 0] = D1.Y - Y;
-                    V2[2, 0] = D1.Z - Z;
-                    V2[1, 1] = A1.Y + (D1.Y - A1.Y) * 0.5;
-                    V2[0, 1] = (((V2[1, 1] - Y) / V2[1, 0]) * V2[0, 0]) + X;
-                    V2[2, 1] = (((V2[1, 1] - Y) / V2[1, 0]) * V2[2, 0]) + Z;
-                    L2[0] = Math.Sqrt(Math.Pow(D1.X - X, 2) + Math.Pow(D1.Y - Y, 2) + Math.Pow(D1.Z - Z, 2));
-                    L2[1] = Math.Sqrt(Math.Pow(V2[0, 1] - X, 2) + Math.Pow(V2[1, 1] - Y, 2) + Math.Pow(V2[2, 1] - Z, 2));
-                    L2[2] = Math.Sqrt(Math.Pow(D1.X - V2[0, 1], 2) + Math.Pow(D1.Y - V2[1, 1], 2) + Math.Pow(D1.Z - V2[2, 1], 2));
-                    r2 = L2[2] / L2[0];
-                    if (cuerpo.Tipo_de_diagonal.Equals("X"))
-                    {
-                        Lrz1 = (CcD - 60) / 0.5;
-                        Lrz2 = CcD;
-                        Lrz3 = (CcD - 30) / (0.75 * r2);
-                        if (Lrz1 <= 120 && Lrz1 < Lrz3)
-                        {
-                            Lm1 = Lrz1 * Diagonal.Rz__mm_.Value / c1;
-                            Lm2 = Lrz1 * Diagonal.Rz__mm_.Value / r2;
-
-                            ldmax2 = Math.Min(Lm1, Lm2);
-                        }
-                        else if (Lrz3 <= 120 && Lrz3 < Lrz1)
-                        {
-                            Lm1 = Lrz1 * Diagonal.Rz__mm_.Value / c1;
-                            Lm2 = Lrz3 * Diagonal.Rz__mm_.Value;
-                            ldmax2 = Math.Min(Lm1, Lm2);
-                        }
-                        else
-                        {
-                            Lm1 = Lrz2 * Diagonal.Rz__mm_.Value / c1;
-                            Lm2 = Lrz2 * Diagonal.Rz__mm_.Value / r2;
-                            ldmax2 = Math.Min(Lm1, Lm2);
-                        }
-                    }
-                    else
-                    {
-                        Lrz1 = (CcD - 60) / 0.5;
-                        Lrz2 = CcD;
-                        if (Lrz1 <= 120)
-                        {
-                            Lm1 = Lrz1 * Diagonal.Rz__mm_.Value;
-                        }
-                        else
-                        {
-                            Lm1 = Lrz2 * Diagonal.Rz__mm_.Value;
-                        }
-                        ldmax2 = Lm1;
-                    }
-
-                    ldmax = Math.Min(ldmax1, ldmax2);
-                    ld = Math.Max(L1[0], L2[0]);
-                    if (ld > ldmax)
-                    {
-                        nd = nd + 1;
-                    }
-              }//definicion de longitud de diagonal
-                #endregion
-            }
-            #endregion
-            #region creacion de puntos 
-            int i = 0;
-            nd = nd + cuerpo.Division_adicional;
-            while (i < nd + 1)
-            {
-                Point.Name = "" + referencia.Id + "A1" + (i+referencia.Divisiones);
-                Point.X = A1.X + dx * (i);
-                Point.Y = A1.Y + dy * (i);
-                Point.Z = A1.Z + dz * (i);
-                Point.MyName = "" + referencia.Id + "A1" + (i + referencia.Divisiones);
-                Point.IdCuerpo = cuerpo.Id_Cuerpo;
-                agregar_punto(Point);
-
-                Point.Name = "" + referencia.Id + "B1" + (i + referencia.Divisiones);
-                Point.X = B1.X - dx * (i);
-                Point.Y = B1.Y + dy * (i);
-                Point.Z = B1.Z + dz * (i);
-                Point.MyName = "" + referencia.Id + "B1" + (i + referencia.Divisiones);
-                Point.IdCuerpo = cuerpo.Id_Cuerpo;
-                agregar_punto(Point);
-
-                Point.Name = "" + referencia.Id + "C1" + (i + referencia.Divisiones);
-                Point.X = C1.X - dx * (i);
-                Point.Y = C1.Y - dy * (i);
-                Point.Z = C1.Z + dz * (i);
-                Point.MyName = "" + referencia.Id + "C1" + (i + referencia.Divisiones);
-                Point.IdCuerpo = cuerpo.Id_Cuerpo;
-                agregar_punto(Point);
-
-                Point.Name = "" + referencia.Id + "D1" + (i + referencia.Divisiones);
-                Point.X = D1.X + dx * (i);
-                Point.Y = D1.Y - dy * (i);
-                Point.Z = D1.Z + dz * (i);
-                Point.MyName = "" + referencia.Id + "D1" + (i + referencia.Divisiones);
-                Point.IdCuerpo = cuerpo.Id_Cuerpo;
-                agregar_punto(Point);
-                i++;
-            }//creacion de puntos 
-            List<Punto> P_principales = new List<Punto>();
-            P_principales = entidadesBD.Puntos.ToList();
-            Borrar_puntos();
-            foreach (Punto P in P_principales)
-            {
-                string name = P.Name.ToString();//debido al error no me dejaba pasar un parametro q era llave, 
-                                                //entonces asigne el valor a una variable temporal
-                ret = subestacion.PointObj.AddCartesian(P.X, P.Y, P.Z, ref name, P.MyName);//revisae error de ref P.Name 
-                                                                                           //-> La variable name es la de arriba
-            }
-            #endregion
-
-
-
-            i = 0;
-            while (i < 4)
-            {
-                double ang=0;
-                
-                string c1 = "";
-                if (i == 0)
-                {
-                    c1 = "A";
-                    ang = 90;
-                    
-                }
-                else if (i == 1)
-                {
-                    c1 = "B";
-                    ang = 180;
-                }
-                else if (i == 2)
-                {
-                    c1 = "C";
-                    ang = 270;
-                }
-                else if (i == 3)
-                {
-                    c1 = "D";
-                    ang = 0;
-                }
-                int j = 0;                
-
-                while(j<nd)
-                {
-                    string P2, P1;
-
-                 if (cuerpo.Tipo_de_diagonal.Equals("X"))
-                 {
-                        P1 = "" + referencia.Id + c1 + "1" + (referencia.Divisiones + j);
-                        P2 = "" + referencia.Id + c1 + "1" + (referencia.Divisiones + j+ 1);
-                        string M = "" + referencia.Id + "M" + (i + 1 + referencia.Divisiones) + j;
-                        if (cuerpo.TipoDeElemento.Equals("Cuerpo de Castillete"))
-                        {
-                            ret = subestacion.FrameObj.AddByPoint(P1, P2, ref M, Montante_Castillete.Nombre_del_perfil, M);
-                            ret = subestacion.FrameObj.SetLocalAxes(M, 225);
-                            ret = subestacion.FrameObj.SetGroupAssign(M, "Montante Castillete");
-                            ret = subestacion.FrameObj.SetGroupAssign(M, referencia.Elemento);
-                            ret = subestacion.FrameObj.SetGroupAssign(M, referencia.Elemento+referencia.Id);
-                        }
-                        else
-                        {
-                            ret = subestacion.FrameObj.AddByPoint(P1, P2, ref M, Montante.Nombre_del_perfil, M);
-                            if (cuerpo.Ancho_inferior!=cuerpo.Ancho_superior || cuerpo.Largo_Inferior!=cuerpo.Largo_Superior)
-                            {
-                                ret = subestacion.FrameObj.SetLocalAxes(M, 225);
-                            }
-                            else
-                            {
-                                ret = subestacion.FrameObj.SetLocalAxes(M, ang);
-                            }                            
-                            ret = subestacion.FrameObj.SetGroupAssign(M, "Montante");
-                            ret = subestacion.FrameObj.SetGroupAssign(M, referencia.Elemento);
-                            ret = subestacion.FrameObj.SetGroupAssign(M, referencia.Elemento+referencia.Id);
-                        }
-                        j = j + 1;
-
-                    }//montantes para diagonales en X
-                 else
-                 {
-                    P1 = "" + referencia.Id + c1 + "1" + (referencia.Divisiones+j);
-                    
-                    if(nd==1 || j+1==nd || j+2>=nd)
-                        {
-                            P2 = "" + referencia.Id + c1 + "1" + (referencia.Divisiones + nd);
-                        }//definicion de punto final de montante del ultimo tramo
-                    else
-                        {
-                            P2 = "" + referencia.Id + c1 + "1" + (referencia.Divisiones + j + 2);
-                        }//definicion de punto final de montante difernete a la del ultimo tramo
-
-
-                    if (cuerpo.TipoDeElemento.Equals("Cuerpo de Castillete"))
-                    {
-                            if (j >= nd || j+2>=nd)
-                            {
-                                P2 = "" + referencia.Id + "D1" + (nd + referencia.Divisiones);                                
-                            }
-                            else
-                            {
-                                P2 = "" + referencia.Id + c1 + "1" + (referencia.Divisiones + j + 2);
-                            }
-                            
-                    }//definicion del punto final del castillete
-                    string M = "" + referencia.Id + "M" + (i + 1 + referencia.Divisiones)+j;
-
-
-                    if (cuerpo.TipoDeElemento.Equals("Cuerpo de Castillete"))//montantes de columnas del caestillete
-                        {
-                        ret = subestacion.FrameObj.AddByPoint(P1, P2, ref M, Montante_Castillete.Nombre_del_perfil, M);
-                        ret = subestacion.FrameObj.SetLocalAxes(M, 225);
-                        ret = subestacion.FrameObj.SetGroupAssign(M, "Montante Castillete");
-                        ret = subestacion.FrameObj.SetGroupAssign(M, referencia.Elemento);
-                        ret = subestacion.FrameObj.SetGroupAssign(M, referencia.Elemento+referencia.Id);
-                        }
-                    else
-                    {
-                        ret = subestacion.FrameObj.AddByPoint(P1, P2, ref M, Montante.Nombre_del_perfil, M);
-                            if (cuerpo.Ancho_inferior != cuerpo.Ancho_superior || cuerpo.Largo_Inferior != cuerpo.Largo_Superior)
-                            {
-                                ret = subestacion.FrameObj.SetLocalAxes(M, 225);
-                            }//rotacion de ejes si es seccion variable
-                            else
-                            {
-                                ret = subestacion.FrameObj.SetLocalAxes(M, ang);
-                            }//rotacion de ejes si es seccion constante
-                            ret = subestacion.FrameObj.SetGroupAssign(M, "Montante");
-                        ret = subestacion.FrameObj.SetGroupAssign(M, referencia.Elemento);
-                        ret = subestacion.FrameObj.SetGroupAssign(M, referencia.Elemento+referencia.Id);
-                    }//montantes de columnas diferentes al castillete
-                        j = j + 2;
-
-
-                 }//montantes para diagonales en Z
-                   
-                }
-
-
-
-                i++;
-            }//creacion de montantes
-            i = 0;            
-            while (i < 4)
-            {
-                string c1 = "";
-                string c2 = "";
-                string P1 = "";
-                string P2 = "";
-                string P3 = "";
-                string P4 = "";
-                string D = "";
-                string Dx = "";
-                double angulo = 0;
-                if (i == 0)
-                {
-                    c1 = "A";
-                    c2 = "B";
-                    if (cuerpo.Ancho_inferior != cuerpo.Ancho_superior || cuerpo.Largo_Inferior != cuerpo.Largo_Superior)
-                    {
-                        angulo = Math.Atan(cuerpo.Altura / (cuerpo.Largo_Inferior - cuerpo.Largo_Superior)) * 180 / Math.PI;
-                    }
-                       
-
-                }
-                else if (i == 1)
-                {
-                    c1 = "B";
-                    c2 = "C";
-                    if (cuerpo.Ancho_inferior != cuerpo.Ancho_superior || cuerpo.Largo_Inferior != cuerpo.Largo_Superior)
-                    {
-                        angulo = Math.Atan(cuerpo.Altura / (cuerpo.Ancho_inferior - cuerpo.Ancho_superior)) * 180 / Math.PI;
-                    }
-                }
-                else if (i == 2)
-                {
-                    c1 = "C";
-                    c2 = "D";
-                    if (cuerpo.Ancho_inferior != cuerpo.Ancho_superior || cuerpo.Largo_Inferior != cuerpo.Largo_Superior)
-                    {
-                        angulo = Math.Atan(cuerpo.Altura / (cuerpo.Largo_Inferior - cuerpo.Largo_Superior)) * 180 / Math.PI;
-                    }
-                }
-                else if (i == 3)
-                {
-                    c1 = "D";
-                    c2 = "A";
-                    if (cuerpo.Ancho_inferior != cuerpo.Ancho_superior || cuerpo.Largo_Inferior != cuerpo.Largo_Superior)
-                    {
-                        angulo = Math.Atan(cuerpo.Altura / (cuerpo.Ancho_inferior - cuerpo.Ancho_superior)) * 180 / Math.PI;
-                    }
-                }
-                double j = 0;
-                while (j < nd)
-                {
-                   
-                    if ((j % 2) == 0)
-                    {
-                        P1 = "" + referencia.Id + c1 + "" + 1 + "" + (j+referencia.Divisiones);
-                        P2 = "" + referencia.Id + c2 + "" + 1 + "" + (j + 1+referencia.Divisiones);
-                        if (cuerpo.TipoDeElemento.Equals("Cuerpo de Castillete") && j==nd-1)
-                        {
-                            P2 = "" + referencia.Id + c2 + "" + 1 + "" + (j  + referencia.Divisiones);
-                        }
-                        D = "" + referencia.Id + "D" + i + (j + 1+referencia.Divisiones);
-                        if (cuerpo.Tipo_de_diagonal.Equals("X"))
-                        {
-                            P3 = "" + referencia.Id + c2 + "" + 1 + "" + (j + referencia.Divisiones);
-                            P4 = "" + referencia.Id + c1 + "" + 1 + "" + (j + 1 + referencia.Divisiones);
-                            if (cuerpo.TipoDeElemento.Equals("Cuerpo de Castillete") && j == nd - 1)
-                            {
-                                P4 = "" + referencia.Id + c2 + "" + 1 + "" + (j + referencia.Divisiones);
-                            }
-                            Dx = "" + referencia.Id + "D" + i + (j + 1 + referencia.Divisiones)+2;
-
-                        }
-
-                    }
-                    else
-                    {
-                        P1 = "" + referencia.Id + c2 + "" + 1 + "" + (j+referencia.Divisiones);
-                        P2 = "" + referencia.Id + c1 + "" + 1 + "" + (j + 1+referencia.Divisiones);
-                        if (cuerpo.TipoDeElemento.Equals("Cuerpo de Castillete") && j == nd - 1)
-                        {
-                            P2 = "" + referencia.Id + c1 + "" + 1 + "" + (j + referencia.Divisiones);
-                        }
-                        D = "" + referencia.Id + "D" + i + (j + 1+referencia.Divisiones);
-                        if (cuerpo.Tipo_de_diagonal.Equals("X"))
-                        {
-                            P3 = "" + referencia.Id + c1 + "" + 1 + "" + (j + referencia.Divisiones);
-                            P4 = "" + referencia.Id + c2 + "" + 1 + "" + (j + 1 + referencia.Divisiones);
-                            if (cuerpo.TipoDeElemento.Equals("Cuerpo de Castillete"))
-                            {
-                                P4 = "" + referencia.Id + c1 + "" + 1 + "" + (j + referencia.Divisiones);
-                            }
-                            Dx = "" + referencia.Id + "D" + i + (j + 1 + referencia.Divisiones)+2;
-
-
-                        }
-                    }
-
-                    if (cuerpo.TipoDeElemento.Equals("Cuerpo de Castillete"))
-                    {
-                        bool[] II = new bool[6];
-                        bool[] JJ = new bool[6];
-                        double[] Valorinicio = new double[6];
-                        double[] Valorfinal = new double[6];
-                        eItemType tipo = eItemType.Objects;
-                        II[3] = true;
-                        II[4] = true;
-                        II[5] = true;
-                        JJ[4] = true;
-                        JJ[5] = true;
-                        
-                        ret = subestacion.FrameObj.AddByPoint(P1, P2, ref D, Diagonal_castillete.Nombre_del_perfil, D);
-                        ret = subestacion.FrameObj.SetReleases(D, ref II, ref JJ, ref Valorinicio, ref Valorfinal, tipo);
-                        if (cuerpo.Ancho_inferior != cuerpo.Ancho_superior || cuerpo.Largo_Inferior != cuerpo.Largo_Superior)
-                        {
-                            if ((j % 2) == 0)
-                            {
-                                ret = subestacion.FrameObj.SetLocalAxes(D, angulo);
-                            }
-                            else
-                            {
-                                ret = subestacion.FrameObj.SetLocalAxes(D,  angulo+45);
-                            }
-
-                        }
-                        ret = subestacion.FrameObj.SetGroupAssign(D, "Diagonal castillete");
-                        ret = subestacion.FrameObj.SetGroupAssign(D, referencia.Elemento);
-                        ret = subestacion.FrameObj.SetGroupAssign(D, referencia.Elemento+referencia.Id);
-                        if (cuerpo.Tipo_de_diagonal.Equals("X"))
-                        {
-                            ret = subestacion.FrameObj.AddByPoint(P3, P4, ref Dx, Diagonal_castillete.Nombre_del_perfil, Dx);
-                            if (cuerpo.Ancho_inferior != cuerpo.Ancho_superior || cuerpo.Largo_Inferior != cuerpo.Largo_Superior)
-                            {
-                                if ((j % 2) == 0)
-                                {
-                                    ret = subestacion.FrameObj.SetLocalAxes(Dx, (90 - angulo + 180));
-                                }
-                                else
-                                {
-                                    ret = subestacion.FrameObj.SetLocalAxes(Dx, (angulo));
-                                }
-
-                            }
-                            ret = subestacion.FrameObj.SetGroupAssign(Dx, "Diagonal castillete");
-                            ret = subestacion.FrameObj.SetGroupAssign(Dx, referencia.Elemento+referencia.Id);
-                        }
-
-                    }
-                    else
-                    {
-                        bool[] II = new bool[6];
-                        bool[] JJ = new bool[6];
-                        double[] Valorinicio = new double[6];
-                        double[] Valorfinal = new double[6];
-                        eItemType tipo = eItemType.Objects;
-                        II[3] = true;
-                        II[4] = true;
-                        II[5] = true;
-                        JJ[4] = true;
-                        JJ[5] = true;
-                        ret = subestacion.FrameObj.AddByPoint(P1, P2, ref D, Diagonal.Nombre_del_perfil, D);
-                        ret = subestacion.FrameObj.SetReleases(D, ref II, ref JJ, ref Valorinicio, ref Valorfinal, tipo);
-
-                        if (cuerpo.Ancho_inferior != cuerpo.Ancho_superior || cuerpo.Largo_Inferior != cuerpo.Largo_Superior)
-                        {
-                            if ((j % 2) == 0)
-                            {
-                                ret = subestacion.FrameObj.SetLocalAxes(D, angulo);
-                            }
-                            else
-                            {
-                                ret = subestacion.FrameObj.SetLocalAxes(D, (90-angulo+180));
-                            }
-                                
-                        }
-                        ret = subestacion.FrameObj.SetGroupAssign(D, "Diagonal");
-                        ret = subestacion.FrameObj.SetGroupAssign(D, referencia.Elemento);
-                        ret = subestacion.FrameObj.SetGroupAssign(D, referencia.Elemento+referencia.Id);
-
-                        if (cuerpo.Tipo_de_diagonal.Equals("X"))
-                        {
-                            ret = subestacion.FrameObj.AddByPoint(P3, P4, ref Dx, Diagonal.Nombre_del_perfil, Dx);
-                            ret = subestacion.FrameObj.SetReleases(Dx, ref II, ref JJ, ref Valorinicio, ref Valorfinal, tipo);
-                            if (cuerpo.Ancho_inferior != cuerpo.Ancho_superior || cuerpo.Largo_Inferior != cuerpo.Largo_Superior)
-                            {
-                                if ((j % 2) == 0)
-                                {
-                                    ret = subestacion.FrameObj.SetLocalAxes(Dx, (90 - angulo + 180));
-                                }
-                                else
-                                {
-                                    ret = subestacion.FrameObj.SetLocalAxes(Dx, (angulo));
-                                }
-
-                            }
-                            ret = subestacion.FrameObj.SetGroupAssign(Dx, "Diagonal");
-                            ret = subestacion.FrameObj.SetGroupAssign(Dx, referencia.Elemento);
-                            ret = subestacion.FrameObj.SetGroupAssign(Dx, referencia.Elemento+referencia.Id);
-
-                        }
-                    }
-                    
-                                      
-                    j++;
-                }
-
-
-                i++;
-            }//creacion de diagonales
-            //perfiles de la conexion viga
-            if(cuerpo.TipoDeElemento.Equals("Cuerpo Conexión Viga"))
-            {
-                 i = 0;
-                while (i < 4)
-                {
-                    bool[] II = new bool[6];
-                    bool[] JJ = new bool[6];
-                    double[] Valorinicio = new double[6];
-                    double[] Valorfinal = new double[6];
-                    eItemType tipo = eItemType.Objects;
-                    II[3] = true;
-                    II[4] = true;
-                    II[5] = true;
-                    JJ[4] = true;
-                    JJ[5] = true;
-                    string c1 = "";
-                    string c2 = "";
-                    if (i == 0)
-                    {
-                        c1 = "A";
-                        c2 = "B";
-                    }
-                    else if (i == 1)
-                    {
-                        c1 = "B";
-                        c2 = "C";
-                    }
-                    else if (i == 2)
-                    {
-                        c1 = "C";
-                        c2 = "D";
-                    }
-                    else if (i == 3)
-                    {
-                        c1 = "D";
-                        c2 = "A";
-                    }
-
-                    string P1 = "" + referencia.Id + c1 + "1" + referencia.Divisiones;
-                    string P2 = "" + referencia.Id + c2 + "1" + referencia.Divisiones;
-                    string M = "" + referencia.Id + "MV" + (i + 1 + referencia.Divisiones);
-                    ret = subestacion.FrameObj.AddByPoint(P1, P2, ref M, Montante_viga.Nombre_del_perfil, M);
-                    ret = subestacion.FrameObj.SetReleases(M, ref II, ref JJ, ref Valorinicio, ref Valorfinal, tipo);
-                    ret = subestacion.FrameObj.SetGroupAssign(M, "Montante Viga");
-                    ret = subestacion.FrameObj.SetGroupAssign(M, referencia.Elemento);
-                    ret = subestacion.FrameObj.SetGroupAssign(M, referencia.Elemento+referencia.Id);
-
-                    P1 = "" + referencia.Id + c1 + "1" + (nd + referencia.Divisiones);
-                    P2 = "" + referencia.Id + c2 + "1" + (nd + referencia.Divisiones);
-                    M = "" + referencia.Id + "MV" + (i + 1 + (nd + referencia.Divisiones));
-                    ret = subestacion.FrameObj.AddByPoint(P1, P2, ref M, Montante_viga.Nombre_del_perfil, M);
-                    ret = subestacion.FrameObj.SetReleases(M, ref II, ref JJ, ref Valorinicio, ref Valorfinal, tipo);
-                    ret = subestacion.FrameObj.SetLocalAxes(M, 270);
-                    ret = subestacion.FrameObj.SetGroupAssign(M, "Montante Viga");
-                    ret = subestacion.FrameObj.SetGroupAssign(M, referencia.Elemento);
-                    ret = subestacion.FrameObj.SetGroupAssign(M, referencia.Elemento+referencia.Id);
-                    i++;
-                }//Montantes de conexion viga
-
-                i = 0;
-                while (i < 2)
-                {
-                    bool[] II = new bool[6];
-                    bool[] JJ = new bool[6];
-                    double[] Valorinicio = new double[6];
-                    double[] Valorfinal = new double[6];
-                    eItemType tipo = eItemType.Objects;
-                    II[3] = true;
-                    II[4] = true;
-                    II[5] = true;
-                    JJ[4] = true;
-                    JJ[5] = true;
-                    string c1 = "";
-                    string c2 = "";
-                    if (i == 0)
-                    {
-                        c1 = "A";
-                        c2 = "C";
-                    }
-                    else if (i == 1)
-                    {
-                        c1 = "B";
-                        c2 = "D";
-                    }
-                    
-                    string P1 = "" + referencia.Id + c1 + "1" + referencia.Divisiones;
-                    string P2 = "" + referencia.Id + c2 + "1" + referencia.Divisiones;
-                    string M = "" + referencia.Id + 2 + "MV" + (i + 1 + referencia.Divisiones);
-                    ret = subestacion.FrameObj.AddByPoint(P1, P2, ref M, Diagonal_viga.Nombre_del_perfil, M);
-                    ret = subestacion.FrameObj.SetReleases(M, ref II, ref JJ, ref Valorinicio, ref Valorfinal, tipo);
-                    if (i==1)
-                    {
-                        double ang = 180;
-                        ret = subestacion.FrameObj.SetLocalAxes(M, ang);
-                    }
-                    ret = subestacion.FrameObj.SetGroupAssign(M, "Diagonal viga");
-                    ret = subestacion.FrameObj.SetGroupAssign(M, referencia.Elemento);
-                    ret = subestacion.FrameObj.SetGroupAssign(M, referencia.Elemento+referencia.Id);
-
-                    P1 = "" + referencia.Id + c1 + "1" + (nd + referencia.Divisiones);
-                    P2 = "" + referencia.Id + c2 + "1" + (nd + referencia.Divisiones);
-                    M = "" + referencia.Id + "DV" + (i + 1 + (nd + referencia.Divisiones));
-                    ret = subestacion.FrameObj.AddByPoint(P1, P2, ref M, Diagonal_viga.Nombre_del_perfil, M);
-                    ret = subestacion.FrameObj.SetReleases(M, ref II, ref JJ, ref Valorinicio, ref Valorfinal, tipo);
-                    if (i == 1)
-                    {
-                        double ang = 180;
-                        ret = subestacion.FrameObj.SetLocalAxes(M, ang);
-                    }
-                    ret = subestacion.FrameObj.SetGroupAssign(M, "Diagonal viga");
-                    ret = subestacion.FrameObj.SetGroupAssign(M, referencia.Elemento);
-                    ret = subestacion.FrameObj.SetGroupAssign(M, referencia.Elemento+referencia.Id);
-                    i++;
-                }//diagonales de conexion viga
-
-            }//creacion de montantes y diagonales de la conexion de viga
-
-            if (n==1)
-            {
-                bool[] Value = new bool[6];
-                
-                for (i = 0; i <= 2; i++)
-                {
-                    Value[i] = true;
-                }
-
-                for (i = 3; i <= 5; i++)
-                {
-                    Value[i] = false;
-                }
-                i = 0;
-                while(i<4)
-                {
-                    string c1 = "";
-                    if (i == 0)
-                    {
-                        c1 = "A";
-                    }
-                    else if (i == 1)
-                    {
-                        c1 = "B";
-                    }
-                    else if (i == 2)
-                    {
-                        c1 = "C";
-                    }
-                    else if (i == 3)
-                    {
-                        c1 = "D";
-                    }
-                    string P1;
-                    P1 = "" + referencia.Id + c1 + "1" + (referencia.Divisiones);
-                    ret = subestacion.PointObj.SetRestraint(P1, ref Value);
-                    ret = subestacion.PointObj.SetGroupAssign(P1, "Apoyos");
-                    i++;
-                }
-
-
-            }//agregar apoyos
-
-            if (cuerpo.TipoDeElemento.Equals("Cuerpo de Castillete"))
-            {
-                string P2;
-                P2 = "" + referencia.Id + "D1" + (nd + referencia.Divisiones);
-                
-                //***************************************
-                List<Carga> cargas_subensambles = entidadesBD.Cargas.ToList();
-                List<Carga> carga_castillete = cargas_subensambles.FindAll(x => x.Id_Ensamble == referencia.Id);
-                if (carga_castillete.Count != 0)
-                {
-                    double[] PP, CTV, VV, CTH, VH, CMM;
-                    double CTX=0,CTY=0,VX=0,VY=0;
-                    PP = new double[6];
-                    CTV = new double[6];
-                    CMM = new double[6];
-                    VV = new double[6];
-                    CTH = new double[6];
-                    VH = new double[6];
-                    #region carga de guardas
-                    List<CARGAS_DE_CONEXIÓN> conexion = entidadesBD.CARGAS_DE_CONEXIÓN.ToList();
-                    foreach (Carga car in carga_castillete)
-                    {
-                        CARGAS_DE_CONEXIÓN tendido1 = conexion.Find(x => x.Id == car.Id_Carga_de_conexion);
-                        PP[2] = PP[2] - tendido1.Peso___kg_;
-                        CMM[2] = -150;
-                        if((car.Orientacion>=45 && car.Orientacion < 135) ||(car.Orientacion >= 225 && car.Orientacion < 315))
-                        {
-
-                            CTX = tendido1.Tiro__kg_ * Math.Cos(car.Orientacion * Math.PI / 180);
-                            CTY = tendido1.Tiro__kg_ * Math.Sin(car.Orientacion * Math.PI / 180);
-                            VX = tendido1.Viento_Transversal__kg_ *Math.Sin(car.Orientacion * Math.PI / 180) + tendido1.Viento_Longitudinal__kg_ *Math.Cos(car.Orientacion * Math.PI / 180);
-                            VY = tendido1.Viento_Transversal__kg_ * Math.Cos(car.Orientacion * Math.PI / 180) + tendido1.Viento_Longitudinal__kg_ * Math.Sin(car.Orientacion * Math.PI / 180);
-
-                            if (Math.Abs(CTV[1] * 1.1 + VV[1] * 1.2) < Math.Abs(CTY * 1.1 + VY * 1.2))
-                            {
-                                CTV[1] = CTY;
-                                VV[1] = VY;
-                            }
-
-                            CTV[0] = CTV[0] + Math.Abs(CTX);
-                            VV[0] = VV[0] + Math.Abs(VX);
-
-
-                        }//orientacion en dirrecion y
-                        else
-                        {
-                            CTX = tendido1.Tiro__kg_ * Math.Cos(car.Orientacion * Math.PI / 180);
-                            CTY = tendido1.Tiro__kg_ * Math.Sin(car.Orientacion * Math.PI / 180);
-                            VX = tendido1.Viento_Transversal__kg_ *Math.Sin(car.Orientacion * Math.PI / 180) + tendido1.Viento_Longitudinal__kg_ *Math.Cos(car.Orientacion * Math.PI / 180);
-                            VY = tendido1.Viento_Transversal__kg_ *Math.Cos(car.Orientacion * Math.PI / 180) + tendido1.Viento_Longitudinal__kg_ * Math.Sin(car.Orientacion * Math.PI / 180);
-
-                            if (Math.Abs(CTH[1] * 1.1 + VH[1] * 1.2) < Math.Abs(CTX * 1.1 + VX * 1.2))
-                            {
-                                CTH[0] = CTX;
-                                VH[0] = VX;
-                            }
-
-                            CTH[1] = CTH[1] + Math.Abs(CTY);
-                            VH[1] = VH[1] + Math.Abs(VY);
-
-                        }//orientacion en dirrecion X
-                        
-                    }
-                    ret = subestacion.PointObj.SetLoadForce(P2, "PP", ref PP);
-                    ret = subestacion.PointObj.SetLoadForce(P2, "CMM", ref CMM);
-                    ret = subestacion.PointObj.SetLoadForce(P2, "CT", ref CTV);
-                    ret = subestacion.PointObj.SetLoadForce(P2, "CVcx", ref VV);
-                    ret = subestacion.PointObj.SetLoadForce(P2, "CT", ref CTH);
-                    ret = subestacion.PointObj.SetLoadForce(P2, "CVcy", ref VH);
-                    
-                    #endregion
-                }
-
-
-
-
-            }//CARGA DE CASTILLETE
-            referencia.Z = referencia.Z + cuerpo.Altura;
-            referencia.Divisiones = referencia.Divisiones + int.Parse(nd.ToString());
-            return referencia;
-
-        }
-
+        
         public void crear_columna( Ensamble_subestacion Referencia, cSapModel subestacion)
         {
             List<CuerposDeElemento> cuerpo = new List<CuerposDeElemento>();
-           cuerpo = entidadesBD.CuerposDeElementoes.ToList().FindAll(x => x.Id_Elemento == Referencia.Id_Elemento);
+
+           cuerpo = entidadesBD.CuerposDeElementoes.AsNoTracking().ToList().FindAll(x => x.Id_Elemento == Referencia.Id_Elemento);
 
             int n = 1;
             foreach (CuerposDeElemento cue in cuerpo)
@@ -3539,10 +2535,7 @@ namespace IEB.GC.Net.ApiSAP.Models
                     }
 
                 }
-
-
-
-
+                
             }
             else
             {
@@ -3551,7 +2544,6 @@ namespace IEB.GC.Net.ApiSAP.Models
                 Lm3 = Math.Min(Lm1, Lm2);
                 ld = 190 * Diagonal_viga.Rz__mm_.Value;
                 nd = Math.Round((Lm / Lm3) + 0.49);
-
                 double a, a1, a2, L11, L12;
                 a = 201;
                 while (a >= 200)
@@ -3669,7 +2661,37 @@ namespace IEB.GC.Net.ApiSAP.Models
                         string M = "" + referencia.Id + "M" + (i + 1 + referencia.Divisiones) + j;
                         
                             ret = subestacion.FrameObj.AddByPoint(P1, P2, ref M, Montante_viga.Nombre_del_perfil, M);
-                            ret = subestacion.FrameObj.SetLocalAxes(M, ang);
+                        #region asignacion de K
+                        double L11, Kmajor, Kminor, Lr, KLr;
+                        Punto Pun1 = P_principales.Find(x => x.Name.Equals(P1));
+                        Punto Pun2 = P_principales.Find(x => x.Name.Equals(P2));
+                        L11 = Math.Sqrt(Math.Pow(Pun1.X - Pun2.X, 2) + Math.Pow(Pun1.Y - Pun2.Y, 2) + Math.Pow(Pun1.Z - Pun2.Z, 2));
+                        Lr = (L11 / Montante_viga.Rz__mm_.Value);
+                        if (Lr <= 120)
+                        {
+                            Kmajor = 1;
+                            Kminor = 1;
+
+                        }
+                        else if (Lr > 120 && Lr < 250)
+                        {
+                            KLr = 46.2 + 0.615 * Lr;
+                            Kmajor = KLr / Lr;
+                            Kminor = KLr / Lr;
+
+                        }
+                        else
+                        {
+                            Kmajor = 0;
+                            Kminor = 0;
+                        }
+                        ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 17, 0.99);
+                        ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 18, 0.99);
+                        ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 19, Kmajor);
+                        ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 20, Kminor);
+
+                        #endregion
+                        ret = subestacion.FrameObj.SetLocalAxes(M, ang);
                             ret = subestacion.FrameObj.SetGroupAssign(M, "Montante Viga");
                             ret = subestacion.FrameObj.SetGroupAssign(M, referencia.Elemento);
                             ret = subestacion.FrameObj.SetGroupAssign(M, referencia.Elemento+referencia.Id);
@@ -3690,7 +2712,66 @@ namespace IEB.GC.Net.ApiSAP.Models
                         
                         string M = "" + referencia.Id + "M" + (i + 1 + referencia.Divisiones) + j;                        
                             ret = subestacion.FrameObj.AddByPoint(P1, P2, ref M, Montante_viga.Nombre_del_perfil, M);
-                            ret = subestacion.FrameObj.SetLocalAxes(M, ang);
+                        #region asignacion de K
+                        double a, b, a1, b1, a2, b2, L11, L21, L31, L41, L12, L22, L32, L42, Dx1, Dx2, Dy1, Dy2, Dz1, Dz2, X1, X2, Y1, Y2, Z1, Z2, K11, K21, K12, K22, Kmajor, Kminor, Lr, KLr;
+                        Punto Pun1 = P_principales.Find(x => x.Name.Equals(P1));
+                        Punto Pun2 = P_principales.Find(x => x.Name.Equals(P2));
+                        K21 = Montante_viga.Rz__mm_.Value / Montante_viga.R33__mm_.Value;
+                        L11 = Math.Sqrt(Math.Pow(Pun1.X - Pun2.X, 2) + Math.Pow(Pun1.Y - Pun2.Y, 2) + Math.Pow(Pun1.Z - Pun2.Z, 2));
+                        L21 = L11 * 0.5;
+                        if (K21 > 0.5)
+                        {
+                            Lr = (K21 * L11 / Montante_viga.Rz__mm_.Value);
+
+                            if (Lr <= 120)
+                            {
+                                Kmajor = 1;
+                                Kminor = 1;
+
+                            }
+                            else if (Lr > 120 && Lr < 250)
+                            {
+                                KLr = 46.2 + 0.615 * Lr;
+                                Kmajor = KLr / Lr;
+                                Kminor = KLr / Lr;
+
+                            }
+                            else
+                            {
+                                Kmajor = 0;
+                                Kminor = 0;
+                            }
+                        }
+                        else
+                        {
+                            Lr = (0.5 * L11 / Montante_viga.Rz__mm_.Value);
+                            if (Lr <= 120)
+                            {
+                                Kmajor = 1 * 0.5;
+                                Kminor = 1 * 0.5;
+
+                            }
+                            else if (Lr > 120 && Lr < 250)
+                            {
+                                KLr = 46.2 + 0.615 * Lr;
+                                Kmajor = (KLr / Lr) * 0.5;
+                                Kminor = (KLr / Lr) * 0.5;
+
+                            }
+                            else
+                            {
+                                Kmajor = 0;
+                                Kminor = 0;
+
+                            }
+                        }
+                        ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 17, 0.99);
+                        ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 18, 0.99);
+                        ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 19, Kmajor);
+                        ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 20, Kminor);
+
+                        #endregion
+                        ret = subestacion.FrameObj.SetLocalAxes(M, ang);
                             ret = subestacion.FrameObj.SetGroupAssign(M, "Montante Viga");
                             ret = subestacion.FrameObj.SetGroupAssign(M, referencia.Elemento);
                             ret = subestacion.FrameObj.SetGroupAssign(M, referencia.Elemento + referencia.Id);
@@ -3802,7 +2883,135 @@ namespace IEB.GC.Net.ApiSAP.Models
                         ret = subestacion.FrameObj.SetGroupAssign(Dx, referencia.Elemento);
                         ret = subestacion.FrameObj.SetGroupAssign(D, referencia.Elemento + referencia.Id);
                     }
-                    
+
+
+                    //***************************************************
+                    if (cuerpo.Tipo_de_diagonal.Equals("X"))
+                    {
+                        #region asignacion de K
+                        double a, b, a1, b1, a2, b2, L11, L21, L31, L41, L12, L22, L32, L42, Dx1, Dx2, Dy1, Dy2, Dz1, Dz2, X1 = 1, X2, Y1 = 1, Y2, Z1 = 1, Z2, K11, K21, K12, K22, Kmajor, Kminor, Lr, KLr;
+                        Punto Pun1 = P_principales.Find(x => x.Name.Equals(P1));
+                        Punto Pun2 = P_principales.Find(x => x.Name.Equals(P2));
+                        K21 = Diagonal_viga.Rz__mm_.Value / Diagonal_viga.R33__mm_.Value;
+                        Dx1 = (Pun1.X - Pun2.X);
+                        Dy1 = (Pun1.Y - Pun2.Y);
+                        Dz1 = (Pun1.Z - Pun2.Z);
+                        if (Dx1 > Dy1)
+                        {
+                            X1 = referencia.X;
+                            Y1 = ((X1 - Pun1.X) / Dx1) * Dy1 + Pun1.Y;
+                            Z1 = ((X1 - Pun1.X) / Dx1) * Dz1 + Pun1.Z;
+                        }
+                        else
+                        {
+                            Y1 = referencia.Y;
+                            X1 = ((Y1 - Pun1.Y) / Dy1) * Dx1 + Pun1.X;
+                            Z1 = ((Y1 - Pun1.Y) / Dy1) * Dz1 + Pun1.Z;
+                        }
+                        L11 = Math.Sqrt(Math.Pow(Pun1.X - Pun2.X, 2) + Math.Pow(Pun1.Y - Pun2.Y, 2) + Math.Pow(Pun1.Z - Pun2.Z, 2));
+                        L21 = Math.Max(Math.Sqrt(Math.Pow(Pun1.X - X1, 2) + Math.Pow(Pun1.Y - Y1, 2) + Math.Pow(Pun1.Z - Z1, 2)), Math.Sqrt(Math.Pow(X1 - Pun2.X, 2) + Math.Pow(Y1 - Pun2.Y, 2) + Math.Pow(Z1 - Pun2.Z, 2)));
+                        L31 = Math.Sqrt(Math.Pow(X1 - Pun2.X, 2) + Math.Pow(Y1 - Pun2.Y, 2) + Math.Pow(Z1 - Pun2.Z, 2));
+                        K11 = L21 / L11;
+                        if (K21 > K11)
+                        {
+                            Lr = (K21 * L11 / Diagonal_viga.Rz__mm_.Value);
+
+                            if (Lr <= 120)
+                            {
+                                KLr = 30 + 0.75 * Lr;
+                                Kmajor = KLr / Lr;
+                                Kminor = KLr / Lr;
+
+                            }
+                            else if (Lr > 120 && Lr < 200)
+                            {
+
+                                Kmajor = 1;
+                                Kminor = 1;
+
+                            }
+                            else
+                            {
+                                Kmajor = 0;
+                                Kminor = 0;
+                            }
+                        }
+                        else
+                        {
+                            Lr = (K11 * L11 / Diagonal_viga.Rz__mm_.Value);
+                            if (Lr <= 120)
+                            {
+                                KLr = 30 + 0.75 * Lr;
+                                Kmajor = (KLr / Lr) * K11;
+                                Kminor = (KLr / Lr) * K11;
+
+                            }
+                            else if (Lr > 120 && Lr < 200)
+                            {
+                                Kmajor = 1 * K11;
+                                Kminor = 1 * K11;
+
+                            }
+                            else
+                            {
+                                Kmajor = 0;
+                                Kminor = 0;
+
+                            }
+                        }
+                        ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 17, 0.99);
+                        ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 18, 0.99);
+                        ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 19, Kmajor);
+                        ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 20, Kminor);
+                        ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(Dx, 17, 0.99);
+                        ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(Dx, 18, 0.99);
+                        ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(Dx, 19, Kmajor);
+                        ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(Dx, 20, Kminor);
+
+                        #endregion
+
+
+                    }//definicion de K para diagonales en X
+                    else
+                    {
+                        #region asignacion de K
+                        double a, b, a1, b1, a2, b2, L11, L21, L31, L41, L12, L22, L32, L42, Dx1, Dx2, Dy1, Dy2, Dz1, Dz2, X1 = 1, X2, Y1 = 1, Y2, Z1 = 1, Z2, K11, K21, K12, K22, Kmajor, Kminor, Lr, KLr;
+                        Punto Pun1 = P_principales.Find(x => x.Name.Equals(P1));
+                        Punto Pun2 = P_principales.Find(x => x.Name.Equals(P2));
+                        L11 = Math.Sqrt(Math.Pow(Pun1.X - Pun2.X, 2) + Math.Pow(Pun1.Y - Pun2.Y, 2) + Math.Pow(Pun1.Z - Pun2.Z, 2));
+                        Lr = (L11 / Diagonal_viga.Rz__mm_.Value);
+
+                        if (Lr <= 120)
+                        {
+                            KLr = 60 + 0.5 * Lr;
+                            Kmajor = KLr / Lr;
+                            Kminor = KLr / Lr;
+
+                        }
+                        else if (Lr > 120 && Lr < 200)
+                        {
+
+                            Kmajor = 1;
+                            Kminor = 1;
+
+                        }
+                        else
+                        {
+                            Kmajor = 0;
+                            Kminor = 0;
+                        }
+                        ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 17, 0.99);
+                        ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 18, 0.99);
+                        ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 19, Kmajor);
+                        ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(D, 20, Kminor);
+
+
+                        #endregion
+
+                    }//definicion de K para diagonales en Z
+
+
+
                     j++;
                 }
 
@@ -3853,6 +3062,37 @@ namespace IEB.GC.Net.ApiSAP.Models
                     string P2 = "" + referencia.Id + c2 + "1" + (nd + referencia.Divisiones);
                     string M = "" + referencia.Id + "C" + (i + 1 + (nd + referencia.Divisiones));
                     ret = subestacion.FrameObj.AddByPoint(P1, P2, ref M, Cierres.Nombre_del_perfil, M);
+                    #region asignacion de K
+                    double L11, Kmajor, Kminor, Lr, KLr;
+                    Punto Pun1 = P_principales.Find(x => x.Name.Equals(P1));
+                    Punto Pun2 = P_principales.Find(x => x.Name.Equals(P2));
+                    L11 = Math.Sqrt(Math.Pow(Pun1.X - Pun2.X, 2) + Math.Pow(Pun1.Y - Pun2.Y, 2) + Math.Pow(Pun1.Z - Pun2.Z, 2));
+
+                    Lr = (L11 / Cierres.Rz__mm_.Value);
+                    if (Lr <= 120)
+                    {
+                        Kmajor = 1;
+                        Kminor = 1;
+
+                    }
+                    else if (Lr > 120 && Lr < 250)
+                    {
+                        KLr = 46.2 + 0.615 * Lr;
+                        Kmajor = 1;
+                        Kminor = 1;
+
+                    }
+                    else
+                    {
+                        Kmajor = 0;
+                        Kminor = 0;
+                    }
+                    ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 17, 0.99);
+                    ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 18, 0.99);
+                    ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 19, Kmajor);
+                    ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 20, Kminor);
+
+                    #endregion
                     ret = subestacion.FrameObj.SetReleases(M, ref II, ref JJ, ref Valorinicio, ref Valorfinal, tipo);
                     ret = subestacion.FrameObj.SetGroupAssign(M, "Cierres");
                     ret = subestacion.FrameObj.SetGroupAssign(M, referencia.Elemento);
@@ -3892,6 +3132,83 @@ namespace IEB.GC.Net.ApiSAP.Models
                     string  P2 = "" + referencia.Id + c2 + "1" + (nd + referencia.Divisiones);
                     string  M = "" + referencia.Id + "DV" + (i + 1 + (nd + referencia.Divisiones));
                     ret = subestacion.FrameObj.AddByPoint(P1, P2, ref M, Diagonal_viga.Nombre_del_perfil, M);
+                    #region asignacion de K
+                    double a, b, a1, b1, a2, b2, L11, L21, L31, L41, L12, L22, L32, L42, Dx1, Dx2, Dy1, Dy2, Dz1, Dz2, X1 = 1, X2, Y1 = 1, Y2, Z1 = 1, Z2, K11, K21, K12, K22, Kmajor, Kminor, Lr, KLr;
+                    Punto Pun1 = P_principales.Find(x => x.Name.Equals(P1));
+                    Punto Pun2 = P_principales.Find(x => x.Name.Equals(P2));
+                    K21 = Diagonal_viga.Rz__mm_.Value / Diagonal_viga.R33__mm_.Value;
+                    Dx1 = (Pun1.X - Pun2.X);
+                    Dy1 = (Pun1.Y - Pun2.Y);
+                    Dz1 = (Pun1.Z - Pun2.Z);
+                    if (Dx1 > Dy1)
+                    {
+                        X1 = referencia.X;
+                        Y1 = ((X1 - Pun1.X) / Dx1) * Dy1 + Pun1.Y;
+                        Z1 = ((X1 - Pun1.X) / Dx1) * Dz1 + Pun1.Z;
+                    }
+                    else
+                    {
+                        Y1 = referencia.Y;
+                        X1 = ((Y1 - Pun1.Y) / Dy1) * Dx1 + Pun1.X;
+                        Z1 = ((Y1 - Pun1.Y) / Dy1) * Dz1 + Pun1.Z;
+                    }
+                    L11 = Math.Sqrt(Math.Pow(Pun1.X - Pun2.X, 2) + Math.Pow(Pun1.Y - Pun2.Y, 2) + Math.Pow(Pun1.Z - Pun2.Z, 2));
+                    L21 = Math.Max(Math.Sqrt(Math.Pow(Pun1.X - X1, 2) + Math.Pow(Pun1.Y - Y1, 2) + Math.Pow(Pun1.Z - Z1, 2)), Math.Sqrt(Math.Pow(X1 - Pun2.X, 2) + Math.Pow(Y1 - Pun2.Y, 2) + Math.Pow(Z1 - Pun2.Z, 2)));
+                    L31 = Math.Sqrt(Math.Pow(X1 - Pun2.X, 2) + Math.Pow(Y1 - Pun2.Y, 2) + Math.Pow(Z1 - Pun2.Z, 2));
+                    K11 = L21 / L11;
+                    if (K21 > K11)
+                    {
+                        Lr = (K21 * L11 / Diagonal_viga.Rz__mm_.Value);
+
+                        if (Lr <= 120)
+                        {
+                            KLr = 30 + 0.75 * Lr;
+                            Kmajor = KLr / Lr;
+                            Kminor = KLr / Lr;
+
+                        }
+                        else if (Lr > 120 && Lr < 200)
+                        {
+
+                            Kmajor = 1;
+                            Kminor = 1;
+
+                        }
+                        else
+                        {
+                            Kmajor = 0;
+                            Kminor = 0;
+                        }
+                    }
+                    else
+                    {
+                        Lr = (K11 * L11 / Diagonal_viga.Rz__mm_.Value);
+                        if (Lr <= 120)
+                        {
+                            KLr = 30 + 0.75 * Lr;
+                            Kmajor = (KLr / Lr) * K11;
+                            Kminor = (KLr / Lr) * K11;
+
+                        }
+                        else if (Lr > 120 && Lr < 200)
+                        {
+                            Kmajor = 1 *K11;
+                            Kminor = 1 * K11;
+
+                        }
+                        else
+                        {
+                            Kmajor = 0;
+                            Kminor = 0;
+
+                        }
+                    }
+                    ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 17, 0.99);
+                    ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 18, 0.99);
+                    ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 19, Kmajor);
+                    ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 20, Kminor);
+                    #endregion
+
                     ret = subestacion.FrameObj.SetReleases(M, ref II, ref JJ, ref Valorinicio, ref Valorfinal, tipo);
                     if (i == 1)
                     {

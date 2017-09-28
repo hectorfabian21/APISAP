@@ -44,7 +44,7 @@ namespace IEB.GC.Net.ApiSAP.Controllers
             ret = subestacion.GroupDef.SetGroup("Apoyos");
             #endregion
 
-            List<Ensamble_subestacion> lista = entidadesBD.Ensamble_subestacions.ToList().FindAll(x => x.id_Caso == id_caso);
+            List<Ensamble_subestacion> lista = entidadesBD.Ensamble_subestacions.AsNoTracking().ToList().FindAll(x => x.id_Caso == id_caso);
             foreach (Ensamble_subestacion item in lista)
             {
                 if (item.Elemento.ToUpper().StartsWith("C"))
