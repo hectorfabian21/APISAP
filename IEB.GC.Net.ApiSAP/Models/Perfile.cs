@@ -19,6 +19,7 @@ namespace IEB.GC.Net.ApiSAP.Models
         [Display(Name = "Nombre")]
         public string Nombre_del_perfil { get; set; }
         [Display(Name = "Material")]
+        [Required]
         public string Material_del_perfil { get; set; }
         [Display(Name = "Tipo de perfil")]
         public string Tipo_del_perfil { get; set; }

@@ -877,7 +877,21 @@ namespace IEB.GC.Net.ApiSAP.Models
                     {
                         P1 = "" + referencia.Id + c1 + "1" + (referencia.Divisiones + j);
                         P2 = "" + referencia.Id + c1 + "1" + (referencia.Divisiones + j + 1);
+
+                        if (cuerpo.TipoDeElemento.Equals("Cuerpo de castillete"))
+                        {
+                            if (j >= nd || j + 2 >= nd)
+                            {
+                                P2 = "" + referencia.Id + "D1" + (nd + referencia.Divisiones);
+                            }
+                            else
+                            {
+                                P2 = "" + referencia.Id + c1 + "1" + (referencia.Divisiones + j + 2);
+                            }
+
+                        }//definicion del punto final del castillete
                         string M = "" + referencia.Id + "M" + (i + 1 + referencia.Divisiones) + j;
+
                         if (cuerpo.TipoDeElemento.Equals("Cuerpo de castillete"))
                         {
                             ret = subestacion.FrameObj.AddByPoint(P1, P2, ref M, Montante_Castillete.Nombre_del_perfil, M);
@@ -2499,26 +2513,12 @@ namespace IEB.GC.Net.ApiSAP.Models
                     X = A1.X + dx;
                     Y = A1.Y + dy;
                     Z = A1.Z + dz;
-                    Dx1 = (X - B1.X);
-                    Dy1 = (Y - B1.Y);
-                    Dz1 = (Z - B1.Z);
-                    Dx2 = (X - D1.X);
-                    Dy2 = (Y - D1.Y);
-                    Dz2 = (Z - D1.Z);
-                    X1 = referencia.X;
-                    Y1 = ((X1 - X) / Dx1) * Dy1 + Y;
-                    Z1 = ((X1 - X) / Dx1) * Dz1 + Z;
-                    Y2 = referencia.Y;
-                    X2 = ((Y2 - Y) / Dy2) * Dx2 + X;
-                    Z2 = ((Y2 - Y) / Dy2) * Dz2 + Z;
+                   
+
                     L11 = Math.Sqrt(Math.Pow(B1.X - X, 2) + Math.Pow(B1.Y - Y, 2) + Math.Pow(B1.Z - Z, 2));
                     L12 = Math.Sqrt(Math.Pow(D1.X - X, 2) + Math.Pow(D1.Y - Y, 2) + Math.Pow(D1.Z - Z, 2));
-                    L21 = Math.Sqrt(Math.Pow(B1.X - X1, 2) + Math.Pow(B1.Y - Y1, 2) + Math.Pow(B1.Z - Z1, 2));
-                    L22 = Math.Sqrt(Math.Pow(D1.X - X2, 2) + Math.Pow(D1.Y - Y2, 2) + Math.Pow(D1.Z - Z2, 2));
-                    L31 = Math.Sqrt(Math.Pow(X1 - X, 2) + Math.Pow(Y1 - Y, 2) + Math.Pow(Z1 - Z, 2));
-                    L32 = Math.Sqrt(Math.Pow(X2 - X, 2) + Math.Pow(Y2 - Y, 2) + Math.Pow(Z2 - Z, 2));
-                    L41 = L21 + L31;
-                    L42 = L22 + L32;
+                    L21 =L11*0.5;
+                    L22 =L12*0.5;                    
                     K11 = L11 / L21;
                     K21 = Diagonal_viga.Rz__mm_.Value / Diagonal_viga.R33__mm_.Value;
                     K12 = L12 / L22;
@@ -2661,7 +2661,7 @@ namespace IEB.GC.Net.ApiSAP.Models
                         string M = "" + referencia.Id + "M" + (i + 1 + referencia.Divisiones) + j;
                         
                             ret = subestacion.FrameObj.AddByPoint(P1, P2, ref M, Montante_viga.Nombre_del_perfil, M);
-                        #region asignacion de K
+                            #region asignacion de K
                         double L11, Kmajor, Kminor, Lr, KLr;
                         Punto Pun1 = P_principales.Find(x => x.Name.Equals(P1));
                         Punto Pun2 = P_principales.Find(x => x.Name.Equals(P2));
@@ -2691,7 +2691,7 @@ namespace IEB.GC.Net.ApiSAP.Models
                         ret = subestacion.DesignSteel.ASCE_10_97.SetOverwrite(M, 20, Kminor);
 
                         #endregion
-                        ret = subestacion.FrameObj.SetLocalAxes(M, ang);
+                            ret = subestacion.FrameObj.SetLocalAxes(M, ang);
                             ret = subestacion.FrameObj.SetGroupAssign(M, "Montante Viga");
                             ret = subestacion.FrameObj.SetGroupAssign(M, referencia.Elemento);
                             ret = subestacion.FrameObj.SetGroupAssign(M, referencia.Elemento+referencia.Id);
@@ -2893,24 +2893,10 @@ namespace IEB.GC.Net.ApiSAP.Models
                         Punto Pun1 = P_principales.Find(x => x.Name.Equals(P1));
                         Punto Pun2 = P_principales.Find(x => x.Name.Equals(P2));
                         K21 = Diagonal_viga.Rz__mm_.Value / Diagonal_viga.R33__mm_.Value;
-                        Dx1 = (Pun1.X - Pun2.X);
-                        Dy1 = (Pun1.Y - Pun2.Y);
-                        Dz1 = (Pun1.Z - Pun2.Z);
-                        if (Dx1 > Dy1)
-                        {
-                            X1 = referencia.X;
-                            Y1 = ((X1 - Pun1.X) / Dx1) * Dy1 + Pun1.Y;
-                            Z1 = ((X1 - Pun1.X) / Dx1) * Dz1 + Pun1.Z;
-                        }
-                        else
-                        {
-                            Y1 = referencia.Y;
-                            X1 = ((Y1 - Pun1.Y) / Dy1) * Dx1 + Pun1.X;
-                            Z1 = ((Y1 - Pun1.Y) / Dy1) * Dz1 + Pun1.Z;
-                        }
+                        
                         L11 = Math.Sqrt(Math.Pow(Pun1.X - Pun2.X, 2) + Math.Pow(Pun1.Y - Pun2.Y, 2) + Math.Pow(Pun1.Z - Pun2.Z, 2));
-                        L21 = Math.Max(Math.Sqrt(Math.Pow(Pun1.X - X1, 2) + Math.Pow(Pun1.Y - Y1, 2) + Math.Pow(Pun1.Z - Z1, 2)), Math.Sqrt(Math.Pow(X1 - Pun2.X, 2) + Math.Pow(Y1 - Pun2.Y, 2) + Math.Pow(Z1 - Pun2.Z, 2)));
-                        L31 = Math.Sqrt(Math.Pow(X1 - Pun2.X, 2) + Math.Pow(Y1 - Pun2.Y, 2) + Math.Pow(Z1 - Pun2.Z, 2));
+                        L21 = L11*0.5;
+                        
                         K11 = L21 / L11;
                         if (K21 > K11)
                         {
@@ -3137,24 +3123,10 @@ namespace IEB.GC.Net.ApiSAP.Models
                     Punto Pun1 = P_principales.Find(x => x.Name.Equals(P1));
                     Punto Pun2 = P_principales.Find(x => x.Name.Equals(P2));
                     K21 = Diagonal_viga.Rz__mm_.Value / Diagonal_viga.R33__mm_.Value;
-                    Dx1 = (Pun1.X - Pun2.X);
-                    Dy1 = (Pun1.Y - Pun2.Y);
-                    Dz1 = (Pun1.Z - Pun2.Z);
-                    if (Dx1 > Dy1)
-                    {
-                        X1 = referencia.X;
-                        Y1 = ((X1 - Pun1.X) / Dx1) * Dy1 + Pun1.Y;
-                        Z1 = ((X1 - Pun1.X) / Dx1) * Dz1 + Pun1.Z;
-                    }
-                    else
-                    {
-                        Y1 = referencia.Y;
-                        X1 = ((Y1 - Pun1.Y) / Dy1) * Dx1 + Pun1.X;
-                        Z1 = ((Y1 - Pun1.Y) / Dy1) * Dz1 + Pun1.Z;
-                    }
+                    
                     L11 = Math.Sqrt(Math.Pow(Pun1.X - Pun2.X, 2) + Math.Pow(Pun1.Y - Pun2.Y, 2) + Math.Pow(Pun1.Z - Pun2.Z, 2));
-                    L21 = Math.Max(Math.Sqrt(Math.Pow(Pun1.X - X1, 2) + Math.Pow(Pun1.Y - Y1, 2) + Math.Pow(Pun1.Z - Z1, 2)), Math.Sqrt(Math.Pow(X1 - Pun2.X, 2) + Math.Pow(Y1 - Pun2.Y, 2) + Math.Pow(Z1 - Pun2.Z, 2)));
-                    L31 = Math.Sqrt(Math.Pow(X1 - Pun2.X, 2) + Math.Pow(Y1 - Pun2.Y, 2) + Math.Pow(Z1 - Pun2.Z, 2));
+                    L21 = L11*0.5;
+                   
                     K11 = L21 / L11;
                     if (K21 > K11)
                     {
