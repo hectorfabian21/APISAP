@@ -129,15 +129,19 @@
                         @Html.ValidationMessageFor(model => model.PerfilDiagonalViga, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
+                
                 <div class="form-group ocultable PerfilCierre">
                     @Html.LabelFor(model => model.PerfilCierre, htmlAttributes: new { @class = "control-label col-md-6" })
                     <div class="col-md-6">
-                        @* @Html.EditorFor(model => model.PerfilCierre, new { htmlAttributes = new { @class = "form-control", @Style = "display:none" } })*@
+                        @*@Html.EditorFor(model => model.PerfilDiagonalViga, new { htmlAttributes = new { @class = "form-control", @Style = "display:none" } })
                         @Html.DropDownListFor(model => model.PerfilCierre, (SelectList)ViewBag.ListaPerfiles, "Por defecto", new { @class = "form-control" })
+
+                        *@
+                        @Html.DropDownListFor(model => model.PerfilCierre,ViewBag.ListaPerfiles as SelectList, "Por defecto",new {@class="form-control" })
                         @Html.ValidationMessageFor(model => model.PerfilCierre, "", new { @class = "text-danger" })
                     </div>
                 </div>
+                
 
                 <div class="form-group ocultable PerfilMontanteCastillete">
                     @Html.LabelFor(model => model.PerfilMontanteCastillete, htmlAttributes: new { @class = "control-label col-md-6" })
@@ -326,14 +330,13 @@
                             $(".PerfilDiagonarl").addClass("hidden");
                             $(".perfilMontanteViga").removeClass("hidden");
                             $(".PerfilDiagonalViga").removeClass("hidden");
-                            $(".PerfilCierre").addClass("hidden");
+                            $(".PerfilCierre").removeClass("hidden");
                             $(".PerfilMontanteCastillete").addClass("hidden");
                             $(".PerfilDiagonalCastillete").addClass("hidden");
                             $("#PerfilMontante").val("");
                             $("#PerfilDiagonarl").val("");
                             $("#PerfilMontanteCastillete").val("");
-                            $("#PerfilDiagonalCastillete").val("");
-                            $("#PerfilCierre").val("");
+                            $("#PerfilDiagonalCastillete").val("");                            
                             $(".Cuerpos").addClass("hidden");
                             $(".Ctransicion").addClass("hidden");
                             $(".vigaconexion").addClass("hidden");

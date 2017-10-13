@@ -29,7 +29,7 @@ namespace IEB.GC.Net.ApiSAP.Controllers
                 car.Factor_importancia = 1;
                 car.Factor_topografia = 1;
                 car.Factor_rafaga = 1;
-                car.Factor_direccion = 1;
+                car.Factor_direccion = 0.85;
                 car.R_Porticos = 3;
                 car.R_Equipos = 1;
                 db.Cargas_Automaticas.Add(car);

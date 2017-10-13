@@ -1024,15 +1024,15 @@ namespace IEB.GC.Net.ApiSAP.Models
 
                                 if (Lr <= 120)
                                 {
-                                    Kmajor = 1;
-                                    Kminor = 1;
+                                    Kmajor = 1* K21;
+                                    Kminor = 1* K21;
 
                                 }
                                 else if(Lr > 120 && Lr<250)
                                 {
                                     KLr = 46.2 + 0.615 * Lr;
-                                    Kmajor = KLr/Lr;
-                                    Kminor = KLr / Lr;
+                                    Kmajor = KLr* K21 / Lr;
+                                    Kminor = KLr* K21 / Lr;
 
                                 }
                                 else
@@ -1091,15 +1091,15 @@ namespace IEB.GC.Net.ApiSAP.Models
 
                                 if (Lr <= 150)
                                 {
-                                    Kmajor = 1.2;
-                                    Kminor = 1.2;
+                                    Kmajor = 1.2* K21;
+                                    Kminor = 1.2* K21;
 
                                 }
                                 else if (Lr > 150 && Lr < 250)
                                 {
                                     KLr = 46.2 + 0.615 * Lr;
-                                    Kmajor = KLr / Lr;
-                                    Kminor = KLr / Lr;
+                                    Kmajor = KLr* K21 / Lr;
+                                    Kminor = KLr * K21 / Lr;
 
                                 }
                                 else
@@ -1319,7 +1319,7 @@ namespace IEB.GC.Net.ApiSAP.Models
                             Dx1 = (Pun1.X - Pun2.X);
                             Dy1 = (Pun1.Y - Pun2.Y);
                             Dz1 = (Pun1.Z - Pun2.Z);
-                            if(Dx1>Dy1)
+                            if(Math.Abs(Dx1) > Math.Abs(Dy1))
                             {
                                 X1 = referencia.X;
                                 Y1 = ((X1 - Pun1.X) / Dx1) * Dy1 + Pun1.Y;
@@ -1342,15 +1342,15 @@ namespace IEB.GC.Net.ApiSAP.Models
                                 if (Lr <= 120)
                                 {
                                     KLr = 30 + 0.75 * Lr;
-                                    Kmajor = KLr/Lr;
-                                    Kminor = KLr / Lr;
+                                    Kmajor = KLr* K21 / Lr;
+                                    Kminor = KLr* K21 / Lr;
 
                                 }
                                 else if (Lr > 120 && Lr < 200)
                                 {
                                     
-                                    Kmajor = 1;
-                                    Kminor = 1;
+                                    Kmajor = 1* K21;
+                                    Kminor = 1* K21;
 
                                 }
                                 else
@@ -1498,7 +1498,7 @@ namespace IEB.GC.Net.ApiSAP.Models
                             Dx1 = (Pun1.X - Pun2.X);
                             Dy1 = (Pun1.Y - Pun2.Y);
                             Dz1 = (Pun1.Z - Pun2.Z);
-                            if (Dx1 > Dy1)
+                            if (Math.Abs(Dx1) > Math.Abs(Dy1))
                             {
                                 X1 = referencia.X;
                                 Y1 = ((X1 - Pun1.X) / Dx1) * Dy1 + Pun1.Y;
@@ -1521,15 +1521,15 @@ namespace IEB.GC.Net.ApiSAP.Models
                                 if (Lr <= 120)
                                 {
                                     KLr = 30 + 0.75 * Lr;
-                                    Kmajor = KLr / Lr;
-                                    Kminor = KLr / Lr;
+                                    Kmajor = KLr* K21 / Lr;
+                                    Kminor = KLr* K21 / Lr;
 
                                 }
                                 else if (Lr > 120 && Lr < 200)
                                 {
 
-                                    Kmajor = 1;
-                                    Kminor = 1;
+                                    Kmajor = 1* K21;
+                                    Kminor = 1* K21;
 
                                 }
                                 else
@@ -1780,7 +1780,7 @@ namespace IEB.GC.Net.ApiSAP.Models
                     Dx1 = (Pun1.X - Pun2.X);
                     Dy1 = (Pun1.Y - Pun2.Y);
                     Dz1 = (Pun1.Z - Pun2.Z);
-                    if (Dx1 > Dy1)
+                    if (Math.Abs(Dx1) > Math.Abs(Dy1))
                     {
                         X1 = referencia.X;
                         Y1 = ((X1 - Pun1.X) / Dx1) * Dy1 + Pun1.Y;
@@ -1803,15 +1803,15 @@ namespace IEB.GC.Net.ApiSAP.Models
                         if (Lr <= 120)
                         {
                             KLr = 30 + 0.75 * Lr;
-                            Kmajor = KLr / Lr;
-                            Kminor = KLr / Lr;
+                            Kmajor = KLr* K21 / Lr;
+                            Kminor = KLr * K21 / Lr;
 
                         }
                         else if (Lr > 120 && Lr < 200)
                         {
 
-                            Kmajor = 1;
-                            Kminor = 1;
+                            Kmajor = 1* K21;
+                            Kminor = 1* K21;
 
                         }
                         else
@@ -2661,7 +2661,7 @@ namespace IEB.GC.Net.ApiSAP.Models
                         string M = "" + referencia.Id + "M" + (i + 1 + referencia.Divisiones) + j;
                         
                             ret = subestacion.FrameObj.AddByPoint(P1, P2, ref M, Montante_viga.Nombre_del_perfil, M);
-                            #region asignacion de K
+                        #region asignacion de K
                         double L11, Kmajor, Kminor, Lr, KLr;
                         Punto Pun1 = P_principales.Find(x => x.Name.Equals(P1));
                         Punto Pun2 = P_principales.Find(x => x.Name.Equals(P2));
@@ -2725,15 +2725,15 @@ namespace IEB.GC.Net.ApiSAP.Models
 
                             if (Lr <= 120)
                             {
-                                Kmajor = 1;
-                                Kminor = 1;
+                                Kmajor = 1* K21;
+                                Kminor = 1* K21;
 
                             }
                             else if (Lr > 120 && Lr < 250)
                             {
                                 KLr = 46.2 + 0.615 * Lr;
-                                Kmajor = KLr / Lr;
-                                Kminor = KLr / Lr;
+                                Kmajor = KLr* K21 / Lr;
+                                Kminor = KLr* K21 / Lr;
 
                             }
                             else
@@ -2905,15 +2905,15 @@ namespace IEB.GC.Net.ApiSAP.Models
                             if (Lr <= 120)
                             {
                                 KLr = 30 + 0.75 * Lr;
-                                Kmajor = KLr / Lr;
-                                Kminor = KLr / Lr;
+                                Kmajor = KLr* K21 / Lr;
+                                Kminor = KLr* K21 / Lr;
 
                             }
                             else if (Lr > 120 && Lr < 200)
                             {
 
-                                Kmajor = 1;
-                                Kminor = 1;
+                                Kmajor = 1* K21;
+                                Kminor = 1* K21;
 
                             }
                             else
@@ -3135,15 +3135,15 @@ namespace IEB.GC.Net.ApiSAP.Models
                         if (Lr <= 120)
                         {
                             KLr = 30 + 0.75 * Lr;
-                            Kmajor = KLr / Lr;
-                            Kminor = KLr / Lr;
+                            Kmajor = KLr* K21 / Lr;
+                            Kminor = KLr* K21 / Lr;
 
                         }
                         else if (Lr > 120 && Lr < 200)
                         {
 
-                            Kmajor = 1;
-                            Kminor = 1;
+                            Kmajor = 1*K21;
+                            Kminor = 1* K21;
 
                         }
                         else
@@ -3868,11 +3868,12 @@ namespace IEB.GC.Net.ApiSAP.Models
                         {
                             if (item.Convencion.ToUpper().Contains("X"))
                             {
-                                ret = subestacion.LoadPatterns.AutoWind.SetASCE710(item.Convencion, 3, 0, 0, 0, 0, 0, 0, false, 0, 0, auto.Velocidad_viento, 1, auto.Factor_importancia, auto.Factor_topografia, auto.Factor_rafaga, auto.Factor_direccion, 0.2, false);
+                                ret = subestacion.LoadPatterns.AutoWind.SetASCE710(item.Convencion, 3, 0, 0, 0, 0, 0, 0, false, 0, 0, auto.Velocidad_viento, 1, auto.Factor_importancia, auto.Factor_topografia, auto.Factor_rafaga, auto.Factor_direccion, 0.31, false);
                             }
                             else
                             {
-                                ret = subestacion.LoadPatterns.AutoWind.SetASCE710(item.Convencion, 3, 90, 0, 0, 0, 0, 0, false, 0, 0, auto.Velocidad_viento, 1, auto.Factor_importancia, auto.Factor_topografia, auto.Factor_rafaga, auto.Factor_direccion, 0.2, false);
+                                ret = subestacion.LoadPatterns.AutoWind.SetASCE710(item.Convencion, 1, 90, 0.8, 0.5, 1, 0, 0, false, 0, 0, auto.Velocidad_viento, 1, auto.Factor_importancia, auto.Factor_topografia, auto.Factor_rafaga, auto.Factor_direccion, 0, false);
+                                ret = subestacion.LoadPatterns.AutoWind.SetASCE710(item.Convencion, 3, 90, 0, 0, 0, 0, 0, false, 0, 0, auto.Velocidad_viento, 1, auto.Factor_importancia, auto.Factor_topografia, auto.Factor_rafaga, auto.Factor_direccion, 0.31, false);
                             }
 
                         }
@@ -3880,22 +3881,24 @@ namespace IEB.GC.Net.ApiSAP.Models
                         {
                             if (item.Convencion.ToUpper().Contains("X"))
                             {
-                                ret = subestacion.LoadPatterns.AutoWind.SetASCE710(item.Convencion, 3, 0, 0, 0, 0, 0, 0, false, 0, 0, auto.Velocidad_viento, 2, auto.Factor_importancia, auto.Factor_topografia, auto.Factor_rafaga, auto.Factor_direccion, 0.2, false);
+                                ret = subestacion.LoadPatterns.AutoWind.SetASCE710(item.Convencion, 3, 0, 0, 0, 0, 0, 0, false, 0, 0, auto.Velocidad_viento, 2, auto.Factor_importancia, auto.Factor_topografia, auto.Factor_rafaga, auto.Factor_direccion, 0.31, false);
                             }
                             else
                             {
-                                ret = subestacion.LoadPatterns.AutoWind.SetASCE710(item.Convencion, 3, 90, 0, 0, 0, 0, 0, false, 0, 0, auto.Velocidad_viento, 2, auto.Factor_importancia, auto.Factor_topografia, auto.Factor_rafaga, auto.Factor_direccion, 0.2, false);
+                                ret = subestacion.LoadPatterns.AutoWind.SetASCE710(item.Convencion, 1, 90, 0.8, 0.5, 1, 0, 0, false, 0, 0, auto.Velocidad_viento, 2, auto.Factor_importancia, auto.Factor_topografia, auto.Factor_rafaga, auto.Factor_direccion, 0, false);
+                                ret = subestacion.LoadPatterns.AutoWind.SetASCE710(item.Convencion, 3, 90, 0, 0, 0, 0, 0, false, 0, 0, auto.Velocidad_viento, 2, auto.Factor_importancia, auto.Factor_topografia, auto.Factor_rafaga, auto.Factor_direccion, 0.31, false);
                             }
                         }
                         else
                         {
                             if (item.Convencion.ToUpper().Contains("X"))
                             {
-                                ret = subestacion.LoadPatterns.AutoWind.SetASCE710(item.Convencion, 3, 0, 0, 0, 0, 0, 0, false, 0, 0, auto.Velocidad_viento, 3, auto.Factor_importancia, auto.Factor_topografia, auto.Factor_rafaga, auto.Factor_direccion, 0.2, false);
+                                ret = subestacion.LoadPatterns.AutoWind.SetASCE710(item.Convencion, 3, 0, 0, 0, 0, 0, 0, false, 0, 0, auto.Velocidad_viento, 3, auto.Factor_importancia, auto.Factor_topografia, auto.Factor_rafaga, auto.Factor_direccion, 0.31, false);
                             }
                             else
                             {
-                                ret = subestacion.LoadPatterns.AutoWind.SetASCE710(item.Convencion, 3, 90, 0, 0, 0, 0, 0, false, 0, 0, auto.Velocidad_viento, 3, auto.Factor_importancia, auto.Factor_topografia, auto.Factor_rafaga, auto.Factor_direccion, 0.2, false);
+                               ret = subestacion.LoadPatterns.AutoWind.SetASCE710(item.Convencion, 1, 90, 0.8, 0.5, 1, 0, 0, false, 0, 0, auto.Velocidad_viento, 3, auto.Factor_importancia, auto.Factor_topografia, auto.Factor_rafaga, auto.Factor_direccion, 0, false);
+                                ret = subestacion.LoadPatterns.AutoWind.SetASCE710(item.Convencion, 3, 90, 0, 0, 0, 0, 0, false, 0, 0, auto.Velocidad_viento, 3, auto.Factor_importancia, auto.Factor_topografia, auto.Factor_rafaga, auto.Factor_direccion, 0.31, false);
                             }
                         }
                     }
@@ -4080,7 +4083,7 @@ namespace IEB.GC.Net.ApiSAP.Models
                 string combinacion = "COMB" + i;
                 ret = subestacion.DesignSteel.SetComboStrength(combinacion, true);                
             }
-            ret = subestacion.DesignSteel.StartDesign();
+            ret = subestacion.DesignSteel.StartDesign();            
         }
         public void borrarcaso(int id)
         {
