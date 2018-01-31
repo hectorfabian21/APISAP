@@ -16,8 +16,6 @@ namespace IEB.GC.Net.ApiSAP.Models
         List<Cuerpo> lista = new List<Cuerpo>();
         APISAPEntities1 entidadesBD = new APISAPEntities1();
                 
-       
-
         #region Operaciones BD
 
         public List<Perfile> Perfiles() //trae la lista de perfiles de la base de datos
@@ -242,9 +240,6 @@ namespace IEB.GC.Net.ApiSAP.Models
         }//agrega o modifica puntos en la base de datos 
         #endregion
 
-       
-
-        
         public ElemtosSAP abrir_sap2000()
         {
             // inicializacion de sap2000            
